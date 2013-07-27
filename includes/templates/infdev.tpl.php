@@ -1,0 +1,1 @@
+<p>current build: <?= $VARS["version"];?></p>

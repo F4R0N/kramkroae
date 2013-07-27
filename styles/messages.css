@@ -1,0 +1,24 @@
+#convPartnerOverview{
+    max-width: 65em;
+}
+
+#messageBox{
+    width: 65em;
+    
+}
+#messageBox:hover{
+}
+
+#messageBoxImg, #messageBoxImg img{
+    width: 100px;
+    height: 100px;
+}
+
+#messageBoxConvPartnersName{
+    margin-top: -7em;
+    margin-left: 7em;
+}
+
+#messageBoxLastMessage{
+    margin-left: 7em;
+}

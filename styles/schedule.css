@@ -1,0 +1,21 @@
+table{
+    margin: 2.5em auto;
+    border-collapse: collapse;
+}
+table td, table th{
+    text-align: center;
+    padding: 0.7331em;
+}
+table td:nth-child(2){
+    border-right: 0.1337em solid blue;
+}
+table th{
+    border-bottom: 0.1337em solid blue;
+}
+table tbody tr{
+    border-radius: 5px;
+}
+table tbody tr:hover{
+    background-color: lightgrey;
+    box-shadow: 0px 0px 10px black;
+}
