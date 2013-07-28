@@ -6,6 +6,6 @@ define("PATH_TO_PROFIL_IMAGES", "http://fabian1998.de/ha/uploads/");
 
 //mysql
 
-require_once "../private/mysql.php";
+require_once "../private/privates.php";
 
 ?>
