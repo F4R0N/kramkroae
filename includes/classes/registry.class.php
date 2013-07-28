@@ -13,7 +13,7 @@ class registry {
     private $acceptTerms;
    
     function __construct() {
-        $this->mysqli = new mysqli("fabian1998.de", "c23fabian1998", "8r6(Jh+7G", "c23fabian1998");
+        $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
     }
     
     function __destruct() {
@@ -109,9 +109,9 @@ class registry {
     }
     function intoDatabase(){
         $sql = "INSERT INTO 
-                    user (firstName, lastName, email, password, gender,schoolID, acceptTerms, registryDate) 
+                    user (FirstName, LastName, Email, Password, Gender,SchoolID, AcceptTerms, RegistryDate) 
                 VALUES 
-                    ('" . mysql_real_escape_string($this->firstName) . "', 
+                    ('" . $this->mysqli->real_escape_string($this->firstName) . "', 
                      '" . mysql_real_escape_string($this->lastName) . "', 
                      '" . mysql_real_escape_string($this->email) . "', 
                      '" . crypt(SALT, hash(HASHALG, $this->password)) . "', 

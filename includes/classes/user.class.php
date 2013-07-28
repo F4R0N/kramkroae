@@ -11,7 +11,7 @@ class user {
     function __construct($ID) {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
         if ($ID !== 0) {
-            $this->ID = $this->mysqli->escape_string($ID);
+            $this->ID = $this->mysqli->real_escape_string($ID);
             $result = $this->mysqli->query("SELECT FirstName, LastName, Pats from Users WHERE ID = " . $this->ID . "");
             $obj = $result->fetch_object();
 
@@ -32,7 +32,7 @@ class user {
         if ($ID === false) {
             return false;
         }
-        $this->ID = $this->mysqli->escape_string($ID);
+        $this->ID = $this->mysqli->real_escape_string($ID);
         
         if($this->CheckFailedLogins(3, 3)){
             return $loginSuccessed;
@@ -46,7 +46,7 @@ class user {
             WHERE
 		ID = '" . $this->ID . "'
                 AND
-                Password = '" . $this->mysqli->escape_string(md5($password)) . "'
+                Password = '" . $this->mysqli->real_escape_string(md5($password)) . "'
         ");
         if ($result->num_rows === 1) {
             $_SESSION['UserID'] = $this->ID;
@@ -63,12 +63,12 @@ class user {
                 Logins (
                     UserID,
                     IP,
-                    Successed
+                    Succeeded
                 )
                 VALUES(
                     '" . $this->ID . "',
-                    INET_ATON('" . $this->mysqli->escape_string($_SERVER["REMOTE_ADDR"]) . "'),
-                    '" . $this->mysqli->escape_string($loginSuccessed) . "'
+                    INET_ATON('" . $this->mysqli->real_escape_string($_SERVER["REMOTE_ADDR"]) . "'),
+                    '" . $this->mysqli->real_escape_string($loginSuccessed) . "'
                 );
         ");
     }
@@ -80,7 +80,7 @@ class user {
             FROM
 		Users
             WHERE
-		Email = '" . $this->mysqli->escape_string($email) . "';
+		Email = '" . $this->mysqli->real_escape_string($email) . "';
         ");
 
         if ($result->num_rows !== 1) {
@@ -137,7 +137,7 @@ class user {
             FROM
                 Logins
             WHERE
-                Time + INTERVAL " . $this->mysqli->escape_string($time) . " MINUTE > NOW()
+                Time + INTERVAL " . $this->mysqli->real_escape_string($time) . " MINUTE > NOW()
             AND
                 Successed = 0
             AND

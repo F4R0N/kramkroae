@@ -25,7 +25,7 @@
         <input type="radio" required id="herr" name="gender" value="m" /><label for="herr">M&auml;nnlich</label>
         <br />
 
-        <input type="checkbox" id="terms" name="acceptTerms" required/>
+        <input type="checkbox" id="terms" name="acceptTerms" required value="1"/>
         <label for="terms">
             Ich stimme den <a href="">AGBs</a> zu!
         </label>
