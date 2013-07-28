@@ -167,15 +167,17 @@ class user {
     }
 
     function getUnreadMessages() {
-        /* $result = $this->mysqli->query("SELECT
-          Gelesen
-          FROM
-          Nachrichten
-          WHERE
-          Fuer = '" . $this->ID . "' AND Gelesen = 'False' AND loeschenfuer ='False'");
-          $count = $result->num_rows;
+        $result = $this->mysqli->query(
+            "SELECT
+                ID
+             FROM
+                Conversations
+             WHERE
+                Members LIKE '%;$this->ID;%'
+        ");
+        $count = $result->num_rows;
 
-          return $count; */
+        return $count; 
     }
 }
 

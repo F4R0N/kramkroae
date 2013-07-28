@@ -12,7 +12,7 @@ $allowedOnlinePages = array(
     "message",
     "schedule",
     "hwhelper",
-    " substitutions",
+    "substitutions",
     "calendar",
     "settings",
     "list"
