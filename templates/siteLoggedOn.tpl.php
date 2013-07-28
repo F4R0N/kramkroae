@@ -21,11 +21,11 @@
                 <img src="images/logo.jpg" alt="Logo" width="100px" height="35px" id="logo">
             </a>
             <nav class="links">
-                <a href="index.php?logout=false">Logout</a>
+                <a href="index.php?logout=true">Logout</a>
                 <a href="index.php?screen=message">Nachrichten (<?= $VARS["MessagesCount"] ?>)</a>
                 <a href="index.php?screen=settings">Einstellungen</a>
                 <a href="index.php?screen=list">Benutzerliste</a>
-                <a href="index.php?screen=games">Games (<?= $VARS["GamesCount"] ?>)</a>
+                <a href="index.php?screen=infdev">Entwickler Infos</a>
             </nav>
         </nav>
         <nav id="mainmenu">
@@ -37,10 +37,9 @@
                 <a href="index.php?screen=overview">News</a>
                 <a href="index.php?screen=homework">Hausaufgaben</a>
                 <a href="index.php?screen=schedule">Stundenplan</a>
-                <a href="index.php?screen=subs">Vertretungsplan</a>
+                <a href="index.php?screen=substitutions">Vertretungsplan</a>
                 <a href="index.php?screen=calendar">Kalender</a>
-                <a href="index.php?screen=helper">HA-Helfer</a>
-                <a href="index.php?screen=infdev">Infos von den Entwicklern</a>
+                <a href="index.php?screen=hwhelper">HA-Helfer</a>
             </nav>
         </nav>
         <div id="main">

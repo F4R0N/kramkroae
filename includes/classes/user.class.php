@@ -177,20 +177,6 @@ class user {
 
           return $count; */
     }
-
-    function getSSPESRequests() {
-        /* $result = $this->mysqli->query("
-          SELECT
-          ID
-          FROM
-          sspes
-          WHERE
-          Fuer = '" . $this->ID . "' AND FuerWahl =''");
-          $count = $result->num_rows;
-
-          return $count; */
-    }
-
 }
 
 ?>

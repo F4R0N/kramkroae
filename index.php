@@ -1,20 +1,29 @@
 <?php
+
 session_start();
 
 require_once "config.php";
 require_once "includes/classes/template.class.php";
 require_once "includes/classes/user.class.php";
 
-if(!isset($_SESSION["UserID"])){
+if (!isset($_SESSION["UserID"])) {
     $user = new user(0);
     $user->login("mail@fabian1998.de", "asdert");
+
+    $path = "includes/" . $_GET["screen"] . ".inc.php";
+    if (file_exists($path) && in_array($_GET["screen"], $allowedOfflinePages)) {
+        include $path;
+    } else {
+        include "includes/login.inc.php";
+    }
+    $tpl->display("siteLoggedOut.tpl.php");
     exit;
 }
 
 $user = new user($_SESSION["UserID"]);
 $user->updateLastAction();
 
-if( $_GET["logout"] ){
+if ($_GET["logout"]) {
     $user->logout();
     exit;
 }
@@ -43,21 +52,20 @@ $tpl->addJS(array("path" => "js/mainmenu.js"));
 $tpl->assign("Title", "Startseite");
 $tpl->assign("FirstName", $user->getFirstName());
 $tpl->assign("LastName", $user->getLastName());
-$tpl->assign("GamesCount", $user->getSSPESRequests());
 $tpl->assign("MessagesCount", $user->getUnreadMessages());
 $profileImagePath = PATH_TO_PROFIL_IMAGES . $user->getID() . ".png";
 
-/*if(file_exists($profileImagePath)){*/
+if (file_exists($profileImagePath)) {
     $tpl->assign("PathToUserImage", $profileImagePath);
-/*} else {
-    $tpl->assign("PathToUserImage", "http://fabian1998.de/ha/uploads/kein-Bild.jpg");
-}*/
+} else {
+    $tpl->assign("PathToUserImage", "/images/uploads/kein-Bild.jpg");
+}
 
 
 // add maincontent
 
 $path = "includes/" . $_GET["screen"] . ".inc.php";
-if( file_exists($path) ){
+if (file_exists($path) && in_array($_GET["screen"], $allowedOnlinePages)) {
     include $path;
 } else {
     include "includes/overview.inc.php";
@@ -66,5 +74,4 @@ if( file_exists($path) ){
 // display the site
 
 $tpl->display("siteLoggedOn.tpl.php");
-
 ?>
