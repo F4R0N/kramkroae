@@ -65,7 +65,10 @@ if (file_exists($profileImagePath)) {
 // add maincontent
 
 $path = "includes/" . $_GET["screen"] . ".inc.php";
-if (file_exists($path) && in_array($_GET["screen"], $allowedOnlinePages)) {
+if (file_exists($path) && 
+    in_array($_GET["screen"], $allowedOnlinePages) 
+    // Die untere Zeile muss später raus!
+    || in_array($_GET["screen"], $allowedOfflinePages)) {
     include $path;
 } else {
     include "includes/overview.inc.php";
