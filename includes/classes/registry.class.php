@@ -114,7 +114,7 @@ class registry {
                     ('" . mysql_real_escape_string($this->firstName) . "', 
                      '" . mysql_real_escape_string($this->lastName) . "', 
                      '" . mysql_real_escape_string($this->email) . "', 
-                     '" . crypt(SALT, hash("sha256", $this->password)) . "', 
+                     '" . crypt(SALT, hash(HASHALG, $this->password)) . "', 
                      '" . mysql_real_escape_string($this->gender) . "', 
                      '" . mysql_real_escape_string($this->schoolID) . "', 
                      '" . mysql_real_escape_string($this->acceptTerms) . "',
