@@ -1,3 +1,6 @@
+<?php foreach ($VARS["Errors"] as $error): ?>
+    <? print $error; ?>
+<?php endforeach; ?>
 <h2>Registrierung</h2>
 <form method="POST" action="" name="registry">
     <input type="text" id="name" name="firstName" placeholder="Vorname" required autofocus/>
@@ -21,8 +24,8 @@
     <br />
     
     <div id="registryBottom">
-        <input type="radio" required id="dame" name="gender" value="w" /><label for="dame">Weiblich</label>
-        <input type="radio" required id="herr" name="gender" value="m" /><label for="herr">M&auml;nnlich</label>
+        <input type="radio" required id="dame" name="gender" value="1" /><label for="dame">Weiblich</label>
+        <input type="radio" required id="herr" name="gender" value="0" /><label for="herr">M&auml;nnlich</label>
         <br />
 
         <input type="checkbox" id="terms" name="acceptTerms" required value="1"/>
