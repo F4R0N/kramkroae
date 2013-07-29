@@ -23,11 +23,17 @@ class registry {
         $this->mysqli->close();
     }
     
+    function echoErrors(){
+        foreach($this->errors as $error){
+            echo $error;
+        }
+    }
+    
     function checkIfErrors(){
-        if($this->errors != ""){
-            return true;
-        }else{
+        if(empty($this->errors)){
             return false;
+        }else{
+            return $this->errors;
         }
     }
     
