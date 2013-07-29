@@ -15,7 +15,7 @@
     <input type="password" id="password" name="passwordCheck" placeholder="Passwort wiederholen" required/>
     <br />
 
-    <input type="text" name="schoolSelect" id="schoolID" placeholder="W&auml;hlen Sie Ihre Ausbildungsst&auml;tte" required />
+    <input type="text" name="schoolID" id="schoolID" placeholder="Ausbildungsst&auml;tte" required />
     <div id="schools"></div>
     <br />
 
@@ -41,7 +41,7 @@
                         var value = $(this).val();
                         if (value.length !== 0 && !onjson) {
                             onjson = true;
-                            $.getJSON("/web/json.php?schoolName=" + value, function(data) {
+                            $.getJSON("/json.php?schoolName=" + value, function(data) {
                                 $("#schools data").remove();
                                 if (data !== null) {
                                     for (var i = 0; i < data.length; i++) {
@@ -52,8 +52,8 @@
                                             var ID = $(this).data("id");
                                             var Name = $(this).data("schoolname");
                                             console.log(ID);
-                                            $("#schoolID").after("<div class='name'>" + Name + "</div>" +
-                                                    "<input type='hidden' name='schoolSelect' value='" + ID + "'>");
+                                            $("#schoolID").after("<div class='schoolName'>"+ Name +"</div>" +
+                                                    "<input type='hidden' name='schoolID' value='" + ID + "'>");
                                             $("#schoolID").remove();
                                             $("#schools #schoolID").unbind();
                                             $("#schools").remove();
