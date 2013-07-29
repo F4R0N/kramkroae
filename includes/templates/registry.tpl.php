@@ -6,23 +6,19 @@
     <input type="text" id="name" name="firstName" placeholder="Vorname" required autofocus/>
     <input type="text" id="name" name="lastName" placeholder="Nachname" required />
     <br />
-    
+
     <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" required/>
     <input type="email" id="email" name="emailCheck" placeholder="E-Mail-Adresse wiederholen" required/>
     <br />
-    
+
     <input type="password" id="password" name="password" placeholder="Passwort" required/>
     <input type="password" id="password" name="passwordCheck" placeholder="Passwort wiederholen" required/>
     <br />
-    
-    <input type="text" id="schoolID" list="schoolList" placeholder="W&auml;hlen Sie Ihre Ausbildungsst&auml;tte" required/>
-    <datalist id="schoolList">
-        <option value="-- Bitte w&auml;hlen Sie Ihre Ausbildungsst&auml;tte --">-- Bitte w&auml;hlen Sie Ihre Ausbildungsst&auml;tte --</option>
-        <option value="Meine Ausbildungsst&auml;tte ist nicht gegeben">Meine Ausbildungsst&auml;tte ist nicht gegeben</option>
-    	<option value="GER - Halstenbek, Wolfgang-Borchert-Gymnasium">GER - Halstenbek, Wolfgang-Borchert-Gymnasium</option>
-    </datalist>
+
+    <input type="text" name="schoolSelect" id="schoolID" placeholder="W&auml;hlen Sie Ihre Ausbildungsst&auml;tte" required />
+    <div id="schools"></div>
     <br />
-    
+
     <div id="registryBottom">
         <input type="radio" required id="dame" name="gender" value="1" /><label for="dame">Weiblich</label>
         <input type="radio" required id="herr" name="gender" value="0" /><label for="herr">M&auml;nnlich</label>
@@ -36,3 +32,41 @@
         <button type="submit" name="registerSubmit" value="1">Registrieren</button>
     </div>
 </form>
+<script>
+    var onjson = false;
+    $(document).ready(
+            function() {
+                $("#schoolID").bind({
+                    keyup: function(e) {
+                        var value = $(this).val();
+                        if (value.length !== 0 && !onjson) {
+                            onjson = true;
+                            $.getJSON("/web/json.php?schoolName=" + value, function(data) {
+                                $("#schools data").remove();
+                                if (data !== null) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        $("#schools").append("<data id='schoolID' data-ID='" + data[i].ID + "' data-SchoolName='" + data[i].SchoolName + "'>" + data[i].SchoolName + "</data>");
+                                    }
+                                    $("#schools #schoolID").bind({
+                                        click: function(e) {
+                                            var ID = $(this).data("id");
+                                            var Name = $(this).data("schoolname");
+                                            console.log(ID);
+                                            $("#schoolID").after("<div class='name'>" + Name + "</div>" +
+                                                    "<input type='hidden' name='schoolSelect' value='" + ID + "'>");
+                                            $("#schoolID").remove();
+                                            $("#schools #schoolID").unbind();
+                                            $("#schools").remove();
+                                        }
+                                    });
+                                } else {
+
+                                }
+                                onjson = false;
+                            });
+                        }
+                    }
+                });
+            });
+
+</script>
