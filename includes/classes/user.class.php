@@ -33,11 +33,11 @@ class user {
             return false;
         }
         $this->ID = $this->mysqli->real_escape_string($ID);
-        
-        if($this->CheckFailedLogins(3, 3)){
+
+        if ($this->CheckFailedLogins(3, 3)) {
             return $loginSuccessed;
         }
-        
+
         $result = $this->mysqli->query("
             SELECT
 		ID
@@ -46,8 +46,9 @@ class user {
             WHERE
 		ID = '" . $this->ID . "'
                 AND
-                Password = '" . $this->mysqli->real_escape_string(md5($password)) . "'
+                Password = '" . $this->mysqli->real_escape_string(hash(PASSWORD_HASHALG, crypt(PASSWORD_SALT, $password))) . "'
         ");
+        
         if ($result->num_rows === 1) {
             $_SESSION['UserID'] = $this->ID;
             $loginSuccessed = true;
@@ -108,11 +109,11 @@ class user {
 
     function getLoggedLogins() {
         /**
-         *@return array with objects of logged logins( IP, Time, Successed )
+         * @return array with objects of logged logins( IP, Time, Successed )
          * 
          * 
          *  
-         **/
+         * */
         $result = $this->mysqli->query("
             SELECT
                 INET_NTOA( `IP` ) AS  IP,
@@ -123,14 +124,14 @@ class user {
             WHERE
                 UserID = '" . $this->ID . "'
         ");
-        
-        while($obj = $result->fetch_object()){
+
+        while ($obj = $result->fetch_object()) {
             $array[] = $obj;
         }
         return $array;
     }
-    
-    private function CheckFailedLogins($count, $time){
+
+    private function CheckFailedLogins($count, $time) {
         $result = $this->mysqli->query("
             SELECT
                 UserID
@@ -143,8 +144,8 @@ class user {
             AND
                 UserID = '" . $this->ID . "'
         ");
-        
-        if( $result->num_rows >= $count ){
+
+        if ($result->num_rows >= $count) {
             return true;
         }
         return false;
@@ -168,17 +169,18 @@ class user {
 
     function getUnreadMessages() {
         $result = $this->mysqli->query(
-            "SELECT
+                "SELECT
                 ID
              FROM
                 Conversations
              WHERE
-                Members LIKE '%;$this->ID;%'
+                Members LIKE '%;" . $this->ID . ";%'
         ");
         $count = $result->num_rows;
 
-        return $count; 
+        return $count;
     }
+
 }
 
 ?>

@@ -7,4 +7,5 @@ $morgen = date("d. m. Y", $morgen);
 
 $tpl->assign("morgen", $morgen);
 $tpl->addMainTemplate("overview.tpl.php");
+
 ?>
