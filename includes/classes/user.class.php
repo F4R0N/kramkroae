@@ -12,12 +12,14 @@ class user {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
         if ($ID !== 0) {
             $this->ID = $this->mysqli->real_escape_string($ID);
-            $result = $this->mysqli->query("SELECT FirstName, LastName, Pats from Users WHERE ID = " . $this->ID . "");
+            $result = $this->mysqli->query("SELECT FirstName, LastName, Pats, SchoolID, ClassID from Users WHERE ID = " . $this->ID . "");
             $obj = $result->fetch_object();
 
             $this->FirstName = $obj->FirstName;
             $this->LastName = $obj->LastName;
             $this->Pats = $obj->Pats;
+            $this->SchoolID = $obj->SchoolID;
+            $this->ClassID = $obj->ClassID;
         }
     }
 
@@ -167,6 +169,14 @@ class user {
         return $this->ID;
     }
 
+    function getSchoolID() {
+        return $this->SchoolID;
+    }
+
+    function getClassID() {
+        return $this->CLassID;
+    }
+
     function getUnreadMessages() {
         $result = $this->mysqli->query(
                 "SELECT
@@ -180,7 +190,31 @@ class user {
 
         return $count;
     }
-
+    
+    function hasRight($right){
+        $sql = "SELECT 
+                    * 
+                FROM 
+                    RightProperties 
+                LEFT JOIN 
+                    Rights 
+                ON 
+                    RightProperties.RightID = Rights.ID
+                WHERE 
+                    `Right` = '" . $this->mysqli->real_escape_string($right) . "'
+                OR
+                    `Right` = 'God'
+                AND 
+                    UserID = " . $this->ID ."
+                        
+                ";
+        $result = $this->mysqli->query($sql);
+        
+        if($result->num_rows !== 0){
+            return true;
+        }
+        return false;
+    }
 }
 
 ?>
