@@ -27,16 +27,16 @@ class registry {
                 if($this->checkPassword()){
                     if($this->checkEmail()){
                         if($this->checkGender()){
-                            //if($this->checkSchoolID()){
+                            if($this->checkSchoolID()){
                                 if($this->checkAcceptTerms()){
                                    return true;
                                 }
                                 else{
                                     return false;
                                 }
-                            //}else{
-                            //     return false;
-                           //}
+                            }else{
+                                 return false;
+                           }
                         }else{
                              return false;
                         }
@@ -61,15 +61,15 @@ class registry {
     }
     
     function getRegistryValues(){
-        $this->firstName = trim($_POST["firstName"]);
-        $this->lastName = trim($_POST["lastName"]);
-        $this->email = trim($_POST["email"]);
-        $this->emailCheck = trim($_POST["emailCheck"]);
-        $this->password = trim($_POST["password"]);
-        $this->passwordCheck = trim($_POST["passwordCheck"]);
-        $this->gender = trim($_POST["gender"]);
-        $this->schoolID = trim($_POST["schoolID"]);
-        $this->acceptTerms = trim($_POST["acceptTerms"]);
+        $this->firstName = $this->mysqli->real_escape_string(trim($_POST["firstName"]));
+        $this->lastName = $this->mysqli->real_escape_string(trim($_POST["lastName"]));
+        $this->email = $this->mysqli->real_escape_string(trim($_POST["email"]));
+        $this->emailCheck = $this->mysqli->real_escape_string(trim($_POST["emailCheck"]));
+        $this->password = $this->mysqli->real_escape_string(trim($_POST["password"]));
+        $this->passwordCheck = $this->mysqli->real_escape_string(trim($_POST["passwordCheck"]));
+        $this->gender = $this->mysqli->real_escape_string(trim($_POST["gender"]));
+        $this->schoolID = $this->mysqli->real_escape_string(trim($_POST["schoolID"]));
+        $this->acceptTerms = $this->mysqli->real_escape_string(trim($_POST["acceptTerms"]));
         
         return true;
     }
@@ -93,14 +93,14 @@ class registry {
     }
     
     function checkEmail(){
-        $sql = "SELECT ID FROM Users WHERE email = " . $this->email;
+        $sql = "SELECT ID FROM Users WHERE Email = " . $this->email;
         $result = $this->mysqli->query($sql);
         $number = $result->num_rows;
         
         if($this->email == ""){
             return "Bitte eine E-Mail-Adresse angeben!";
         }
-        elseif($number !== 0){
+        elseif($number != 0){
             return "Die E-Mail-Adresse wird bereits verwendet!<br />
                     Bitte eine andere E-Mail-Adresse angeben!";
         }
@@ -141,7 +141,7 @@ class registry {
     }
             
     function checkSchoolID(){
-        $sql = "SELECT SchoolName FROM Schools WHERE SchoolID = " . $this->schoolID;
+        $sql = "SELECT SchoolName FROM Schools WHERE ID = " . $this->schoolID;
         $result = $this->mysqli->query($sql);
         $number = $result->num_rows;
         if($number === 1){
