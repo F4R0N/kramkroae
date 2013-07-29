@@ -22,6 +22,7 @@ class user {
             $this->Pats = $obj->Pats;
             $this->SchoolID = $obj->SchoolID;
             $this->ClassID = $obj->ClassID;
+
         }
     }
 
@@ -38,7 +39,7 @@ class user {
         }
         $this->ID = $this->mysqli->real_escape_string($ID);
 
-        if ($this->CheckFailedLogins(3, 3)) {
+        if ($this->checkFailedLogins(3, 3)) {
             return $loginSuccessed;
         }
 
@@ -135,7 +136,7 @@ class user {
         return $array;
     }
 
-    private function CheckFailedLogins($count, $time) {
+    private function checkFailedLogins($count, $time) {
         $result = $this->mysqli->query("
             SELECT
                 UserID
@@ -176,7 +177,7 @@ class user {
     }
 
     function getClassID() {
-        return $this->CLassID;
+        return $this->ClassID;
     }
 
     function getUnreadMessages() {

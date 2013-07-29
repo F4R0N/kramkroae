@@ -12,10 +12,10 @@ Zuletzt aktualisiert am <?= $VARS["LastUpdate"] ?> von <?= $VARS["UpdatedBy"]->g
     <tbody>
         <? foreach ($VARS["Homeworks"] as $homework): ?>
             <tr>
-                <td><?= $homework->Subject; ?></td>
-                <td><?= $homework->Homework; ?></td>
-                <td><?= $VARS["Weekdays"][$homework->StartDay] ?> den <?= $homework->Start; ?></td>
-                <td><?= $VARS["Weekdays"][$homework->EndDay]?> den <?= $homework->End; ?></td>
+                <td><?= htmlentities($homework->Subject); ?></td>
+                <td><?= htmlentities($homework->Homework); ?></td>
+                <td><?= htmlentities($VARS["Weekdays"][$homework->StartDay]); ?> den <?= htmlentities($homework->Start); ?></td>
+                <td><?= htmlentities($VARS["Weekdays"][$homework->EndDay]); ?> den <?= htmlentities($homework->End); ?></td>
             </tr>
         <? endforeach; ?>
     </tbody>
