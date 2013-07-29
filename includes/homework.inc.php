@@ -6,7 +6,7 @@ $tpl->assign("Title", "Hausaufgaben");
 $tpl->addCss(array("name" => "hausaufgaben.css"));
 
 
-$homeworks = new homeworks();
+$homeworks = new homeworks($user);
 $homeworks->setHomeworks();
 $tpl->assign("Weekdays", array('Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Sonnabend'));
 

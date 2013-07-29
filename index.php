@@ -78,4 +78,6 @@ if (file_exists($path) &&
 // display the site
 
 $tpl->display("siteLoggedOn.tpl.php");
+
+echo $user->getClassID();
 ?>

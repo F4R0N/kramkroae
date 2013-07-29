@@ -7,6 +7,8 @@ class user {
     private $Pats;
     private $FirstName;
     private $LastName;
+    private $ClassID;
+    private $SchoolID;
 
     function __construct($ID) {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
