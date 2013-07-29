@@ -15,7 +15,7 @@
     <input type="password" id="password" name="passwordCheck" placeholder="Passwort wiederholen" required/>
     <br />
 
-    <input type="text" name="schoolID" id="schoolID" placeholder="W&auml;hlen Sie Ihre Ausbildungsst&auml;tte" required />
+    <input type="text" name="schoolID" id="schoolID" placeholder="Ausbildungsst&auml;tte" required />
     <div id="schools"></div>
     <br />
 
