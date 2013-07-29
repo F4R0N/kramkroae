@@ -11,7 +11,7 @@ class homeworks {
 
     public function setHomeworks() {
         echo $user;
-        $sql = "SELECT Homework, DATE_FORMAT( Start, '%d.%m.%Y') as Start, DATE_FORMAT(Start, '%w') as StartDay, DATE_FORMAT( `End`, '%d.%m.%Y' ) as End, DATE_FORMAT(End, '%w') as EndDay, Subject FROM Homeworks LEFT JOIN Subjects ON Homeworks.SubjectID = Subjects.ID";
+        $sql = "SELECT Homeworks.ID, Homework, DATE_FORMAT( Start, '%d.%m.%Y') as Start, DATE_FORMAT(Start, '%w') as StartDay, DATE_FORMAT( `End`, '%d.%m.%Y' ) as End, DATE_FORMAT(End, '%w') as EndDay, Subject FROM Homeworks LEFT JOIN Subjects ON Homeworks.SubjectID = Subjects.ID";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {
             $this->homeworks[] = $obj;

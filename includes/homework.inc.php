@@ -8,10 +8,11 @@ $tpl->addCss(array("name" => "hausaufgaben.css"));
 
 $homeworks = new homeworks();
 $homeworks->setHomeworks();
-
-
 $tpl->assign("Weekdays", array('Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Sonnabend'));
+
+
 if ($_GET["mode"] == "edit") {
+    
     $tpl->addMainTemplate("edithomework.tpl.php");
 } elseif ($homeworks->getCountOfHomeworks() !== 0) {
     if ($user->hasRight("Homeworks")) {

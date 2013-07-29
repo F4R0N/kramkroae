@@ -3,6 +3,7 @@
 session_start();
 
 require_once "config.php";
+
 require_once "includes/classes/template.class.php";
 require_once "includes/classes/user.class.php";
 
