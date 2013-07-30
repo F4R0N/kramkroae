@@ -32,6 +32,8 @@ class user {
 
     function login($email, $password) {
         $loginSuccessed = 0;
+        $password = explode("$", crypt($password, PASSWORD_SALT));
+        $password = $password[4];
 
         $ID = $this->getIDFromEmail($email);
         if ($ID === false) {
@@ -51,7 +53,7 @@ class user {
             WHERE
 		ID = '" . $this->ID . "'
                 AND
-                Password = '" . $this->mysqli->real_escape_string(hash(PASSWORD_HASHALG, crypt(PASSWORD_SALT, $password))) . "'
+                Password = '" . $this->mysqli->real_escape_string($password) . "'
         ");
         
         if ($result->num_rows === 1) {

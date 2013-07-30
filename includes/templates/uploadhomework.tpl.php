@@ -11,4 +11,5 @@
     <textarea name="homework" placeholder="Hausaufgaben"></textarea>
     <button type="submit" name="upload" value="true">Hausaufgabe eintragen</button>
 </form>
-</div>
+
+<a href="?screen=homework">Zur&uuml;ck zu den Hausaufgaben</a>

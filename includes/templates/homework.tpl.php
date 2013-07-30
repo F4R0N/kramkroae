@@ -5,7 +5,7 @@ Zuletzt aktualisiert am <?= $VARS["LastUpdate"] ?> von <?= $VARS["UpdatedBy"]->g
         <tr>
             <td>Fach</td>
             <td>Hausaufgabe</td>
-            <td>Vom</td>
+            <td>Von</td>
             <td>Bis</td>
         </tr>
     </thead>

@@ -6,6 +6,7 @@ class homeworks {
     private $homeworks;
     private $user;
     private $subjects;
+    private $errors;
 
     public function __construct($user) {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
@@ -55,7 +56,7 @@ class homeworks {
             WHERE
                 ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
             ORDER BY 
-                Updated ASC 
+                Updated DESC 
             LIMIT 0, 1
         ";
         $result = $this->mysqli->query($sql);
@@ -72,7 +73,7 @@ class homeworks {
         WHERE
             ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
         ORDER BY 
-            Updated ASC 
+            Updated DESC 
         LIMIT 0, 1
         
         ";
@@ -83,8 +84,19 @@ class homeworks {
     }
 
     public function insertHomework($homework, $start, $end, $subjectID) {
-        if ($this->isDate($start) && $this->isDate($end)) {
-            $sql = "
+        $this->errors = array();
+
+        if (!$this->isDate($start) || !$this->isDate($end))
+            $this->errors[] = "Falsches Datum!";
+        if (!$this->isSubject($subjectID))
+            $this->errors[] = "Falsches Fach!";
+        if (strlen($homework) <= 1)
+            $this->errors[] = "Hausaufgaben dürfen nicht leer sein!";
+
+        if (count($this->errors) !== 0)
+            return false;
+
+        $sql = "
             INSERT INTO
                 Homeworks(
                     Homework,
@@ -92,7 +104,8 @@ class homeworks {
                     End,
                     SubjectID,
                     ClassID,
-                    UpdatedBy
+                    UpdatedBy,
+                    Updated
                 )
                 VALUES(
                     '" . $this->mysqli->real_escape_string($homework) . "',
@@ -100,15 +113,56 @@ class homeworks {
                     '" . $this->mysqli->real_escape_string($end) . "',
                     '" . $this->mysqli->real_escape_string($subjectID) . "',
                     '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "',
-                    '" . $this->mysqli->real_escape_string($this->user->getID()) . "'
+                    '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
+                    NOW()
                 );
-        ";    
-          $this->mysqli->query($sql);
+        ";
+        $this->mysqli->query($sql);
 
-            return true;
-        } else {
-            return "Falsches Datum!";
-        }
+        return true;
+    }
+
+    public function deleteHomework($id) {
+        $sql = "
+            DELETE
+            FROM
+                Homeworks
+            WHERE
+                ID = '" . $this->mysqli->real_escape_string($id) . "'
+        ";
+
+        $this->mysqli->query($sql);
+
+        return true;
+    }
+
+    public function editHomework($id, $homework, $start, $end, $subjectID) {
+        $this->errors = array();
+
+        if (!$this->isDate($start) || !$this->isDate($end))
+            $this->errors[] = "Falsches Datum!";
+        if (!$this->isSubject($subjectID))
+            $this->errors[] = "Falsches Fach!";
+        if (strlen($homework) <= 1)
+            $this->errors[] = "Hausaufgaben dürfen nicht leer sein!";
+
+        if (count($this->errors) !== 0)
+            return false;
+
+        $sql = "
+            UPDATE
+                Homeworks
+            SET
+                Homework = '" . $this->mysqli->real_escape_string($homework) . "',
+                Start = '" . $this->mysqli->real_escape_string($start) . "',
+                End = '" . $this->mysqli->real_escape_string($end) . "',
+                UpdatedBy = '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
+                Updated = NOW()
+            WHERE
+                ID = '" . $this->mysqli->real_escape_string($id) . "'
+        ";
+        $this->mysqli->query($sql);
+        return true;
     }
 
     private function isDate($date) {
@@ -134,6 +188,24 @@ class homeworks {
 
     public function getSubjects() {
         return $this->subjects;
+    }
+
+    private function isSubject($subjectID) {
+        $sql = "
+            SELECT
+                *
+            FROM
+                Subjects
+            WHERE
+                ID = '" . $this->mysqli->real_escape_string($subjectID) . "'
+        ";
+        $result = $this->mysqli->query($sql);
+
+        return $result->num_rows;
+    }
+
+    public function getErrors() {
+        return $this->errors;
     }
 
 }
