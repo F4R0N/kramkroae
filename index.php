@@ -45,7 +45,7 @@ $iPhone["media"] = "only screen and (max-device-width: 480px)";
 $tpl->addCss($iPhone);
 
 // add Js
-$tpl->addJS(array("path" => "http://code.jquery.com/jquery-1.9.1.js"));
+$tpl->addJS(array("path" => "/js/jquery-1.10.2.min.js"));
 $tpl->addJS(array("path" => "js/mainmenu.js"));
 
 // add Variables
