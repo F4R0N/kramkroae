@@ -21,7 +21,18 @@ class registry {
     function __destruct() {
         $this->mysqli->close();
     }
-
+    
+    function getCheckedGender($gender){
+        if($gender == "0"){
+            return 'checked = "checked"';
+        }elseif($gender == "1"){
+            return 'checked = "checked"';
+        }
+    }
+    
+    function getErrors() {
+        return $this->errors;
+    }
     function checkIfErrors() {
         $this->getRegistryValues();
         $this->checkNames();

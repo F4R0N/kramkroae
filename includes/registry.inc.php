@@ -1,9 +1,5 @@
-<pre>
-    <?php print_r($_POST); ?>
-</pre>
 <?php
 include_once 'classes/registry.class.php';
-
 $registry = new registry();
 if($_GET["mode"] == "user" || !isset($_GET["mode"])){
     if (isset($_POST["registerSubmit"]) && $_POST["registerSubmit"] == 1) {
@@ -11,8 +7,13 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"])){
             $registry->register();
             echo "Erfolgreich registriert!";
         }else{
-            echo "Registrierung fehlgeschlagen!";
-            $registry->echoErrors();
+            $tpl->assign("Errors", $registry->getErrors());
+            $tpl->addMainTemplate("errors.tpl.php");
+            if($_POST["gender"] == 1){
+                $tpl->assign("checkedOne", $registry->getCheckedGender($_POST["gender"]));
+            }elseif($_POST["gender"] == 0){
+                $tpl->assign("checkedZero", $registry->getCheckedGender($_POST["gender"]));
+            }
         }
     }
     $tpl->addMainTemplate("registry.tpl.php");
