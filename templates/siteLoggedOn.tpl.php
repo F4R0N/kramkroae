@@ -7,6 +7,9 @@
         <meta name="creator" content="Fabian H., Alexander G.">
         <meta name="author" content="Fabian H., Alexander G.">
         <meta name="description" content="Checke deine Hausaufgaben, Schultermine und Stundenplan jederzeit und überall!">
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png" />
         <?php foreach ($CSSs as $CSS): ?>
             <link rel="stylesheet" href="styles/<?= $CSS['name'] ?>" type="text/css" media="<?= $CSS['media'] ?>" />
         <?php endforeach; ?>
