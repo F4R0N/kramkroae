@@ -52,14 +52,14 @@ class registry {
     function getRegistryValues() {
         $this->firstName = $this->mysqli->real_escape_string(trim($_POST["firstName"]));
         $this->lastName = $this->mysqli->real_escape_string(trim($_POST["lastName"]));
-        $this->email = $this->mysqli->real_escape_string(trim($_POST["email"]));
-        $this->emailCheck = $this->mysqli->real_escape_string(trim($_POST["emailCheck"]));
+        $this->email = strtolower($this->mysqli->real_escape_string(trim($_POST["email"])));
+        $this->emailCheck = strtolower($this->mysqli->real_escape_string(trim($_POST["emailCheck"])));
         $this->password = $this->mysqli->real_escape_string(trim($_POST["password"]));
         $this->passwordCheck = $this->mysqli->real_escape_string(trim($_POST["passwordCheck"]));
         $this->gender = $this->mysqli->real_escape_string(trim($_POST["gender"]));
         $this->schoolID = $this->mysqli->real_escape_string(trim($_POST["schoolID"]));
         $this->acceptTerms = $this->mysqli->real_escape_string(trim($_POST["acceptTerms"]));
-
+        
         return true;
     }
 
@@ -132,13 +132,15 @@ class registry {
     }
 
     function intoDatabase() {
+        $password = explode("$", crypt($this->password, PASSWORD_SALT));
+        $password = $password[4];
         $sql = "INSERT INTO
 Users (FirstName, LastName, Email, Password, Gender,SchoolID, AcceptTerms, RegistryDate)
 VALUES
 ('" . $this->mysqli->real_escape_string(ucfirst($this->firstName)) . "',
 '" . $this->mysqli->real_escape_string(ucfirst($this->lastName)) . "',
 '" . $this->mysqli->real_escape_string($this->email) . "',
-'" . hash(PASSWORD_HASHALG, crypt(PASSWORD_SALT, $this->password)) . "',
+'" . $this->mysqli->real_escape_string($password) . "',
 '" . $this->mysqli->real_escape_string($this->gender) . "',
 '" . $this->mysqli->real_escape_string($this->schoolID) . "',
 '" . $this->mysqli->real_escape_string($this->acceptTerms) . "',
