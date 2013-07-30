@@ -1,11 +1,11 @@
 <h2>Registrierung</h2>
 <form method="POST" action="" name="registry">
-    <input type="text" id="name" name="firstName" placeholder="Vorname" value="<?= htmlentities($_POST["firstName"])?>" required autofocus/>
-    <input type="text" id="name" name="lastName" placeholder="Nachname" value="<?= htmlentities($_POST["lastName"])?>"required />
+    <input type="text" id="name" name="firstName" placeholder="Vorname" value="<?= $VARS["firstName"] ?>" required autofocus/>
+    <input type="text" id="name" name="lastName" placeholder="Nachname" value="<?= $VARS["lastName"]?>"required />
     <br />
 
-    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= htmlentities($_POST["email"])?>" required/>
-    <input type="email" id="email" name="emailCheck" placeholder="E-Mail-Adresse wiederholen" value="<?= htmlentities($_POST["emailCheck"])?>" required/>
+    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= $VARS["email"]?>" required/>
+    <input type="email" id="email" name="emailCheck" placeholder="E-Mail-Adresse wiederholen" value="<?= $VARS["emailCheck"]?>" required/>
     <br />
 
     <input type="password" id="password" name="password" placeholder="Passwort" required/>
