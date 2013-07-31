@@ -15,12 +15,12 @@ if ($_GET["mode"] == "edit" && $_POST["upload"]) {
 } /*elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
     $homeworks->deleteHomework($_GET["delete"]);
     header("LOCATION: ?screen=homework&mode=edit");
-} elseif ($_GET["mode"] == "edit" && is_numeric($_POST["edit"])) {
-    if (!$homeworks->editHomework($_POST["edit"], $_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
-        $tpl->assign("Errors", $homeworks->getErrors());
+} else*/if ($_GET["mode"] == "edit" && $_POST["edit"]) {
+    if (!$substitution->updateSubstitutions($_POST["id"], $_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
+        $tpl->assign("Errors", $substitution->getErrors());
         $tpl->addMainTemplate("errors.tpl.php");
     }
-}*/
+}
 
  
 

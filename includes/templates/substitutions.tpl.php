@@ -21,7 +21,7 @@ Zuletzt aktualisiert am <?= htmlentities($VARS["LastUpdate"]) ?> von <?= htmlent
                 <td><?= htmlentities($substitution->Substitute); ?></td>
                 <td><?= htmlentities($substitution->Subject); ?></td>
                 <td><?= htmlentities($substitution->Type); ?></td>
-                <td><?= htmlentities($substitution->Comments); ?></td>
+                <td><?= nl2br(htmlentities($substitution->Comments)); ?></td>
             </tr>
             <? endforeach; ?>
         </tbody>

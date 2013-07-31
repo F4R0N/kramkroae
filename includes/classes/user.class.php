@@ -31,7 +31,6 @@ class user {
     }
 
     private function logLogin($loginSucceeded) {
-        echo $loginSucceeded;
         $this->mysqli->query("
             INSERT INTO
                 Logins (
