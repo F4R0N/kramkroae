@@ -30,24 +30,9 @@ class user {
         $this->mysqli->close();
     }
 
-    private function logLogin($loginSucceeded) {
-        $this->mysqli->query("
-            INSERT INTO
-                Logins (
-                    UserID,
-                    IP,
-                    Succeeded
-                )
-                VALUES(
-                    '" . $this->ID . "',
-                    INET_ATON('" . $this->mysqli->real_escape_string($_SERVER["REMOTE_ADDR"]) . "'),
-                    '" . $this->mysqli->real_escape_string($loginSucceeded) . "'
-                );
-        ");
-    }
-
     function logout() {
         session_destroy();
+        header("LOCATION: /index.php?screen=login");
     }
 
     function updateLastAction() {
@@ -83,26 +68,6 @@ class user {
             $array[] = $obj;
         }
         return $array;
-    }
-
-    private function checkFailedLogins($count, $time) {
-        $result = $this->mysqli->query("
-            SELECT
-                UserID
-            FROM
-                Logins
-            WHERE
-                Time + INTERVAL " . $this->mysqli->real_escape_string($time) . " MINUTE > NOW()
-            AND
-                Successed = 0
-            AND
-                UserID = '" . $this->ID . "'
-        ");
-
-        if ($result->num_rows >= $count) {
-            return true;
-        }
-        return false;
     }
 
     function getPats() {

@@ -3,6 +3,14 @@
 class login{
     private $ID;
     
+    function __construct() {
+        $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
+    }
+
+    function __destruct() {
+        $this->mysqli->close();
+    }
+    
     function login($email, $password) {
         $loginSucceeded = 0;
         $password = explode("$", crypt($password, PASSWORD_SALT));
@@ -35,6 +43,52 @@ class login{
         }
         $this->logLogin($loginSucceeded);
         return $loginSucceeded;
+    }
+    
+    private function checkLogin($email, $password){
+        $sql = "SELECT ID FROM Users WHERE email = $email AND password = $password";
+        $this->mysqli->query($sql);
+        if($result->num_rows === 1){
+            return true;
+        }else{
+            return "fehlgeschlagen!";
+        }
+    }
+    
+    private function logLogin($loginSucceeded) {
+        $this->mysqli->query("
+            INSERT INTO
+                Logins (
+                    UserID,
+                    IP,
+                    Succeeded
+                )
+                VALUES(
+                    '" . $this->ID . "',
+                    INET_ATON('" . $this->mysqli->real_escape_string($_SERVER["REMOTE_ADDR"]) . "'),
+                    '" . $this->mysqli->real_escape_string($loginSucceeded) . "'
+                );
+        ");
+    }
+    
+    private function checkFailedLogins($count, $time) {
+        $result = $this->mysqli->query("
+            SELECT
+                UserID
+            FROM
+                Logins
+            WHERE
+                Time + INTERVAL " . $this->mysqli->real_escape_string($time) . " MINUTE > NOW()
+            AND
+                Successed = 0
+            AND
+                UserID = '" . $this->ID . "'
+        ");
+
+        if ($result->num_rows >= $count) {
+            return true;
+        }
+        return false;
     }
     
     private function getIDFromEmail($email) {
