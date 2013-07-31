@@ -13,7 +13,7 @@ Zuletzt aktualisiert am <?= htmlentities($VARS["LastUpdate"]) ?> von <?= htmlent
         <? foreach ($VARS["Homeworks"] as $homework): ?>
             <tr>
                 <td><?= htmlentities($homework->Subject); ?></td>
-                <td><?= htmlentities($homework->Homework); ?></td>
+                <td><?= nl2br(htmlentities($homework->Homework)); ?></td>
                 <td><?= htmlentities($VARS["Weekdays"][$homework->StartDay]); ?>, dem <?= htmlentities($homework->Start); ?></td>
                 <td><?= htmlentities($VARS["Weekdays"][$homework->EndDay]); ?>, dem <?= htmlentities($homework->End); ?></td>
             </tr>

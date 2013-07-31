@@ -1,23 +1,25 @@
 <?php
+
 include_once "classes/homeworks.class.php";
 
 $tpl->assign("Title", "Hausaufgaben");
 $tpl->addCss(array("name" => "hausaufgaben.css"));
 
 $homeworks = new homeworks($user);
-
-if ($_GET["mode"] == "edit" && $_POST["upload"]) {
-    if (!$homeworks->insertHomework($_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
-        $tpl->assign("Errors", $homeworks->getErrors());
-        $tpl->addMainTemplate("errors.tpl.php");
-    }
-} elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
-    $homeworks->deleteHomework($_GET["delete"]);
-    header("LOCATION: ?screen=homework&mode=edit");
-} elseif ($_GET["mode"] == "edit" && $_POST["edit"]) {
-    if (!$homeworks->editHomeworks($_POST["id"], $_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
-        $tpl->assign("Errors", $homeworks->getErrors());
-        $tpl->addMainTemplate("errors.tpl.php");
+if ($user->hasRight("Homeworks")) {
+    if ($_GET["mode"] == "edit" && $_POST["upload"]) {
+        if (!$homeworks->insertHomework($_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
+            $tpl->assign("Errors", $homeworks->getErrors());
+            $tpl->addMainTemplate("errors.tpl.php");
+        }
+    } elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
+        $homeworks->deleteHomework($_GET["delete"]);
+        header("LOCATION: ?screen=homework&mode=edit");
+    } elseif ($_GET["mode"] == "edit" && $_POST["edit"]) {
+        if (!$homeworks->editHomeworks($_POST["id"], $_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
+            $tpl->assign("Errors", $homeworks->getErrors());
+            $tpl->addMainTemplate("errors.tpl.php");
+        }
     }
 }
 
@@ -27,7 +29,7 @@ if ($user->hasRight("Homeworks")) {
     $tpl->assign("EditLink", "| <a href='?screen=homework&mode=edit'>Bearbeiten</a>");
 }
 
-if ($_GET["mode"] == "edit") {
+if ($_GET["mode"] == "edit" && $user->hasRight("Homeworks")) {
     $homeworks->setSubjects();
 
     $tpl->addJS(array("path" => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"));

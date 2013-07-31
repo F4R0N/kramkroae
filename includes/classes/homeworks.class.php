@@ -87,9 +87,9 @@ class homeworks {
         $this->errors = array();
 
         if (!$this->isDate($start) || !$this->isDate($end))
-            $this->errors[] = "Falsches Datum!";
+            $this->errors[] = "Ungültiges Datum!";
         if (!$this->isSubject($subjectID))
-            $this->errors[] = "Falsches Fach!";
+            $this->errors[] = "Ungültiges Fach!";
         if (strlen($homework) <= 1)
             $this->errors[] = "Hausaufgaben dürfen nicht leer sein!";
 
@@ -147,9 +147,9 @@ class homeworks {
     private function editHomework($id, $homework, $start, $end, $subjectID) {
         $this->errors = array();
         if (!$this->isDate($start) || !$this->isDate($end))
-            $this->errors[] = "Falsches Datum!";
+            $this->errors[] = "Ungültiges Datum!";
         if (!$this->isSubject($subjectID))
-            $this->errors[] = "Falsches Fach!";
+            $this->errors[] = "Ungültiges Fach!";
         if (strlen($homework) <= 1)
             $this->errors[] = "Hausaufgaben dürfen nicht leer sein!";
 

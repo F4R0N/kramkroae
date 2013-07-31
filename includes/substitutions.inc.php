@@ -7,21 +7,22 @@ $tpl->addCss(array("name" => "substitutions.css"));
 
 $substitution = new substitutions($user);
 
-if ($_GET["mode"] == "edit" && $_POST["upload"]) {
-    if (!$substitution->insertSubstitution($_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
-        $tpl->assign("Errors", $substitution->getErrors());
-        $tpl->addMainTemplate("errors.tpl.php");
-    }
-} /* elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
-  $homeworks->deleteHomework($_GET["delete"]);
-  header("LOCATION: ?screen=homework&mode=edit");
-  } else */if ($_GET["mode"] == "edit" && $_POST["edit"]) {
-    if (!$substitution->updateSubstitutions($_POST["id"], $_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
-        $tpl->assign("Errors", $substitution->getErrors());
-        $tpl->addMainTemplate("errors.tpl.php");
+if ($user->hasRight("Substitutions")) {
+    if ($_GET["mode"] == "edit" && $_POST["upload"]) {
+        if (!$substitution->insertSubstitution($_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
+            $tpl->assign("Errors", $substitution->getErrors());
+            $tpl->addMainTemplate("errors.tpl.php");
+        }
+    } /* elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
+      $homeworks->deleteHomework($_GET["delete"]);
+      header("LOCATION: ?screen=homework&mode=edit");
+      } else */if ($_GET["mode"] == "edit" && $_POST["edit"]) {
+        if (!$substitution->updateSubstitutions($_POST["id"], $_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
+            $tpl->assign("Errors", $substitution->getErrors());
+            $tpl->addMainTemplate("errors.tpl.php");
+        }
     }
 }
-
 
 
 $substitution->setSubstitutions();
@@ -33,7 +34,7 @@ if ($user->hasRight("Substitutions")) {
     $tpl->assign("EditLink", "| <a href='?screen=substitutions&mode=edit'>Bearbeiten</a>");
 }
 
-if ($_GET["mode"] == "edit") {
+if ($_GET["mode"] == "edit" && $user->hasRight("Substitutions")) {
     $substitution->setSubjects();
     $substitution->setSubstitutionTypes();
 

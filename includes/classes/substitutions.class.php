@@ -178,8 +178,8 @@ class substitutions {
     }
     
     public function insertSubstitution($lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date){
-        if(!$this->isSubject($subjectID)) $this->errors = "Falsches Fach!";
-        if(!$this->isDate($date)) $this->errors = "Falsches Datum!";
+        if(!$this->isSubject($subjectID)) $this->errors[] = "Ungültiges Fach!";
+        if(!$this->isDate($date)) $this->errors[] = "Ungültiges Datum!";
         
         if(count($this->errors) !== 0)
             return false;
@@ -227,9 +227,8 @@ class substitutions {
     }
     
     public function updateSubstitution($ID, $lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date){
-        if(!$this->isSubject($subjectID)) $this->errors = "Falsches Fach!";
-        if(!$this->isDate($date)) $this->errors = "Falsches Datum!";
-        
+        if(!$this->isSubject($subjectID)) $this->errors[] = "Ungültiges Fach!";
+        if(!$this->isDate($date)) $this->errors[] = "Ungültiges Datum!";
         if(count($this->errors) !== 0)
             return false;
         
