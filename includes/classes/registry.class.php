@@ -144,18 +144,18 @@ class registry {
 
     function intoDatabase() {
         $sql = "INSERT INTO
-Users (FirstName, LastName, Email, Password, Gender,SchoolID, AcceptTerms, RegistryDate)
-VALUES
-('" . $this->mysqli->real_escape_string(ucfirst($this->firstName)) . "',
-'" . $this->mysqli->real_escape_string(ucfirst($this->lastName)) . "',
-'" . $this->mysqli->real_escape_string($this->email) . "',
-'" . $this->mysqli->real_escape_string($password) . "',
-'" . $this->mysqli->real_escape_string($this->gender) . "',
-'" . $this->mysqli->real_escape_string($this->schoolID) . "',
-'" . $this->mysqli->real_escape_string($this->acceptTerms) . "',
-CURDATE()
-)
-";
+                    Users (FirstName, LastName, Email, Password, Gender,SchoolID, AcceptTerms, RegistryDate)
+                VALUES
+                    ('" . $this->mysqli->real_escape_string(ucfirst($this->firstName)) . "',
+                    '" . $this->mysqli->real_escape_string(ucfirst($this->lastName)) . "',
+                    '" . $this->mysqli->real_escape_string($this->email) . "',
+                    '" . $this->mysqli->real_escape_string($password) . "',
+                    '" . $this->mysqli->real_escape_string($this->gender) . "',
+                    '" . $this->mysqli->real_escape_string($this->schoolID) . "',
+                    '" . $this->mysqli->real_escape_string($this->acceptTerms) . "',
+                    CURDATE()
+                    )
+                ";
         $result = $this->mysqli->query($sql);
         if ($result) {
             return true;

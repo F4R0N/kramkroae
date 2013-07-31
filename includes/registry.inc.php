@@ -5,7 +5,6 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"])){
     if (isset($_POST["registerSubmit"]) && $_POST["registerSubmit"] == 1) {
         if (!$registry->checkIfErrors()) {
             $registry->register();
-            echo "Erfolgreich registriert!";
         }else{
             $tpl->assign("Errors", $registry->getErrors());
             $tpl->assign("firstName", htmlentities($_POST["firstName"]));

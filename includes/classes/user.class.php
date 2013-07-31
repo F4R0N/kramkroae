@@ -30,42 +30,8 @@ class user {
         $this->mysqli->close();
     }
 
-    function login($email, $password) {
-        $loginSuccessed = 0;
-        $password = explode("$", crypt($password, PASSWORD_SALT));
-        $password = $password[4];
-
-        $ID = $this->getIDFromEmail($email);
-        if ($ID === false) {
-            return false;
-        }
-        $this->ID = $this->mysqli->real_escape_string($ID);
-
-        if ($this->checkFailedLogins(3, 3)) {
-            return $loginSuccessed;
-        }
-
-        $result = $this->mysqli->query("
-            SELECT
-		ID
-            FROM
-		Users
-            WHERE
-		ID = '" . $this->ID . "'
-                AND
-                Password = '" . $this->mysqli->real_escape_string($password) . "'
-        ");
-        
-        if ($result->num_rows === 1) {
-            $_SESSION['UserID'] = $this->ID;
-            $loginSuccessed = true;
-        }
-        $this->logLogin($loginSuccessed);
-        return $loginSuccessed;
-    }
-
-    private function logLogin($loginSuccessed) {
-        echo $loginSuccessed;
+    private function logLogin($loginSucceeded) {
+        echo $loginSucceeded;
         $this->mysqli->query("
             INSERT INTO
                 Logins (
@@ -76,27 +42,9 @@ class user {
                 VALUES(
                     '" . $this->ID . "',
                     INET_ATON('" . $this->mysqli->real_escape_string($_SERVER["REMOTE_ADDR"]) . "'),
-                    '" . $this->mysqli->real_escape_string($loginSuccessed) . "'
+                    '" . $this->mysqli->real_escape_string($loginSucceeded) . "'
                 );
         ");
-    }
-
-    private function getIDFromEmail($email) {
-        $result = $this->mysqli->query("
-            SELECT
-		ID
-            FROM
-		Users
-            WHERE
-		Email = '" . $this->mysqli->real_escape_string($email) . "';
-        ");
-
-        if ($result->num_rows !== 1) {
-            return false;
-        }
-
-        $obj = $result->fetch_object();
-        return $obj->ID;
     }
 
     function logout() {

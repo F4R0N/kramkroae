@@ -7,10 +7,9 @@ require_once "config.php";
 require_once "includes/classes/template.class.php";
 require_once "includes/classes/user.class.php";
 
-if (!isset($_SESSION["UserID"])) {
-    $user = new user(0);
-    $user->login("admin@admin.admin", "asdert23");
+$tpl = new template();
 
+if (!isset($_SESSION["UserID"])) {
     $path = "includes/" . $_GET["screen"] . ".inc.php";
     if (file_exists($path) && in_array($_GET["screen"], $allowedOfflinePages)) {
         include $path;
@@ -18,7 +17,7 @@ if (!isset($_SESSION["UserID"])) {
         include "includes/login.inc.php";
     }
     $tpl->display("siteLoggedOut.tpl.php");
-    exit;
+    //exit;
 }
 
 $user = new user($_SESSION["UserID"]);
@@ -29,7 +28,7 @@ if ($_GET["logout"]) {
     exit;
 }
 
-$tpl = new template();
+
 
 // add CSS
 
