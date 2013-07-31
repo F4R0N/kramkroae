@@ -9,6 +9,8 @@ require_once "includes/classes/user.class.php";
 
 $tpl = new template();
 
+$tpl->addJS(array("path" => "/js/jquery-1.10.2.min.js"));
+
 if (!isset($_SESSION["UserID"])) {
     $path = "includes/" . $_GET["screen"] . ".inc.php";
     if (file_exists($path) && in_array($_GET["screen"], $allowedOfflinePages)) {
@@ -44,7 +46,6 @@ $iPhone["media"] = "only screen and (max-device-width: 480px)";
 $tpl->addCss($iPhone);
 
 // add Js
-$tpl->addJS(array("path" => "/js/jquery-1.10.2.min.js"));
 $tpl->addJS(array("path" => "js/mainmenu.js"));
 
 // add Variables
