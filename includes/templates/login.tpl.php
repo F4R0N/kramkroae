@@ -14,15 +14,19 @@
         <img src="/images/HAJC2-B.png" alt="indexPic" />
     </div>
     <div id="contentText">
-        <div id="registryUser">
-            <h4>Registrierung f&uuml;r Sch&uuml;ler und Studenten<br /></h4>
-            Registrieren Sie sich jetzt <a href="index.php?screen=registry&mode=user">HIER</a> und<br />
-            genie&szlig;en Sie alle Vorteile von fabian1998.de!
-        </div>
-        <div id="registrySchool">
-            <h4>Registrierung f&uuml;r Bildungseinrichtungen</h4>
-            Registrieren Sie jetzt <a href="index.php?screen=registry&mode=school">HIER</a> Ihre Einrichtung und<br />
-            nutzen Sie alle Funktionen und Vorteile von fabian1998.de
-        </div>
+        <a href="index.php?screen=registry&mode=user">
+            <div id="registryUser">
+                <h4>Registrierung f&uuml;r Sch&uuml;ler und Studenten</h4>
+                Registrieren Sie sich jetzt und genie&szlig;en
+                Sie alle Vorteile von fabian1998.de!
+            </div>
+        </a>
+        <a href="index.php?screen=registry&mode=school">
+            <div id="registrySchool">
+                <h4>Registrierung f&uuml;r Bildungseinrichtungen</h4>
+                Registrieren Sie jetzt Ihre Bildungseinrichtung, 
+                damit Ihre gesamte Einrichtung die Funktionen nutzen k&ouml;nnen!
+            </div>
+        </a>
     </div>
 </div>
