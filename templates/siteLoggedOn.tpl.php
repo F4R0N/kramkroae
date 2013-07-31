@@ -38,8 +38,8 @@
             </a>
             <nav class='links'>
                 <a href="index.php?screen=overview">News</a>
-                <a href="index.php?screen=homework">Hausaufgaben</a>
                 <a href="index.php?screen=schedule">Stundenplan</a>
+                <a href="index.php?screen=homework">Hausaufgaben</a>
                 <a href="index.php?screen=substitutions">Vertretungsplan</a>
                 <a href="index.php?screen=calendar">Kalender</a>
                 <a href="index.php?screen=hwhelper">HA-Helfer</a>
