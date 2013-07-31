@@ -13,7 +13,7 @@ nav#loginMenu{
     box-shadow: 0px 3px 8px black;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    padding-bottom: 1em;
+    padding-bottom: 0.5em;
 }
 #domainLogo{
     border: thin solid #1F7BE4;
