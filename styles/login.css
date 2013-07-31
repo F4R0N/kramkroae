@@ -1,17 +1,19 @@
 form{
-    margin: 0.42em auto;
     float: right;
 }
-nav#loginmenu input{
-    padding: 0.42em;
-}
-nav#loginmenu{
+nav#loginMenu{
     border: thin solid #1F88FF;
-    background-color: #1F88FF;
+    background-color: rgb(31, 136, 255);
     color: white;
-    padding: 1em;
     left: 0;
     top: 0;
     right: 0;
     position: absolute;
+}
+nav#loginMenu input{
+    padding: 0.42em;
+    width: 20em;
+}
+#loginMenuContent{
+    margin: 2em 10.69em;
 }

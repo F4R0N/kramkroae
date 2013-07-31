@@ -1,4 +1,5 @@
-<nav id="loginmenu">
+<nav id="loginMenu">
+    <div id="loginMenuContent">
     <img src="images/logo.jpg" alt="Logo" width="100px" height="35px" id="logo" /> 
     <form name="login" method="POST">
         <input type="email" name="loginEmail" />
