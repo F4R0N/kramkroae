@@ -1,8 +1,9 @@
 <?php
 
-class login{
+class login {
+
     private $ID;
-    
+
     function __construct() {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
     }
@@ -10,8 +11,16 @@ class login{
     function __destruct() {
         $this->mysqli->close();
     }
-    
-    function login($email, $password) {
+
+    private function setEmailCookie($saveMail, $email) {
+        if ($saveMail) {
+            setcookie("Email", $email, time() + 60 * 60 * 24 * 30);
+        } else {
+            setcookie("Email", "", time() - 1337);
+        }
+    }
+
+    function login($email, $password, $saveMail) {
         $loginSucceeded = 0;
         $password = explode("$", crypt($password, PASSWORD_SALT));
         $password = $password[4];
@@ -36,15 +45,16 @@ class login{
                 AND
                 Password = '" . $this->mysqli->real_escape_string($password) . "'
         ");
-        
+
         if ($result->num_rows === 1) {
             $_SESSION['UserID'] = $this->ID;
+            $this->setEmailCookie($saveMail, $email);
             $loginSucceeded = true;
         }
         $this->logLogin($loginSucceeded);
         return $loginSucceeded;
     }
-    
+
     private function logLogin($loginSucceeded) {
         $this->mysqli->query("
             INSERT INTO
@@ -60,7 +70,7 @@ class login{
                 );
         ");
     }
-    
+
     private function checkFailedLogins($count, $time) {
         $result = $this->mysqli->query("
             SELECT
@@ -80,7 +90,7 @@ class login{
         }
         return false;
     }
-    
+
     private function getIDFromEmail($email) {
         $result = $this->mysqli->query("
             SELECT
@@ -98,5 +108,7 @@ class login{
         $obj = $result->fetch_object();
         return $obj->ID;
     }
+
 }
+
 ?>

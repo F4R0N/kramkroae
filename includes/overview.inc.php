@@ -10,10 +10,16 @@
 
 $tpl->addCss(array("name" => "startPage.css"));
 
-$morgen = mktime(0, 0, 0, date("m"), date("d") + 1, date("Y"));
-$morgen = date("d. m. Y", $morgen);
+setlocale(LC_TIME, "de_DE");
 
-$tpl->assign("morgen", $morgen);
+$tomorrowDate = mktime(0, 0, 0, date("m"), date("d") + 1, date("Y"));
+$tomorrowDate = date("d. m. Y", $tomorrowDate);
+
+$tomorrowDay = strftime("%A", $tomorrowDate);
+
+$tpl->assign("tomorrowDate", $tomorrowDate);
+$tpl->assign("tomorrowDay", $tomorrowDay);
+
 $tpl->addMainTemplate("overview.tpl.php");
 
 ?>
