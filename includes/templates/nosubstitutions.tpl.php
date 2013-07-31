@@ -1,0 +1,1 @@
+Der Vertretungsplan ist leer <?= $VARS["EditLink"] ?>

@@ -9,7 +9,7 @@ require_once "includes/classes/user.class.php";
 
 if (!isset($_SESSION["UserID"])) {
     $user = new user(0);
-    $user->login("mail@fabian1998.de", "asdert");
+    $user->login("admin@admin.admin", "asdert23");
 
     $path = "includes/" . $_GET["screen"] . ".inc.php";
     if (file_exists($path) && in_array($_GET["screen"], $allowedOfflinePages)) {

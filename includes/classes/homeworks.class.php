@@ -136,9 +136,16 @@ class homeworks {
         return true;
     }
 
-    public function editHomework($id, $homework, $start, $end, $subjectID) {
-        $this->errors = array();
+    public function editHomeworks($id, $homework, $start, $end, $subjectID) {
+        for ($i = 0; $i < count($id); $i++) {
+            if (!$this->editHomework($id[$i], $homework[$i], $start[$i], $end[$i], $subjectID[$i]))
+                return false;
+        }
+        return true;
+    }
 
+    private function editHomework($id, $homework, $start, $end, $subjectID) {
+        $this->errors = array();
         if (!$this->isDate($start) || !$this->isDate($end))
             $this->errors[] = "Falsches Datum!";
         if (!$this->isSubject($subjectID))
@@ -154,6 +161,7 @@ class homeworks {
                 Homeworks
             SET
                 Homework = '" . $this->mysqli->real_escape_string($homework) . "',
+                SubjectID = '" . $this->mysqli->real_escape_string($subjectID) . "',
                 Start = '" . $this->mysqli->real_escape_string($start) . "',
                 End = '" . $this->mysqli->real_escape_string($end) . "',
                 UpdatedBy = '" . $this->mysqli->real_escape_string($this->user->getID()) . "',

@@ -1,5 +1,4 @@
 <?php
-
 include_once "classes/homeworks.class.php";
 
 $tpl->assign("Title", "Hausaufgaben");
@@ -15,8 +14,8 @@ if ($_GET["mode"] == "edit" && $_POST["upload"]) {
 } elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
     $homeworks->deleteHomework($_GET["delete"]);
     header("LOCATION: ?screen=homework&mode=edit");
-} elseif ($_GET["mode"] == "edit" && is_numeric($_POST["edit"])) {
-    if (!$homeworks->editHomework($_POST["edit"], $_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
+} elseif ($_GET["mode"] == "edit" && $_POST["edit"]) {
+    if (!$homeworks->editHomeworks($_POST["id"], $_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
         $tpl->assign("Errors", $homeworks->getErrors());
         $tpl->addMainTemplate("errors.tpl.php");
     }
@@ -32,7 +31,7 @@ if ($_GET["mode"] == "edit") {
     $homeworks->setSubjects();
 
     $tpl->addJS(array("path" => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"));
-    $tpl->addJS(array("path" => "js/homework.js"));
+    $tpl->addJS(array("path" => "js/datepicker.js"));
     $tpl->addCSS(array("name" => "jquery-ui.css"));
 
     if ($homeworks->getCountOfHomeworks() !== 0) {
