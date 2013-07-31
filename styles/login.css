@@ -1,19 +1,63 @@
-form{
-    float: right;
+body{
+    font-family: Gill, Helvetica, sans-serif;
+    background: #E8E7FB;
 }
 nav#loginMenu{
-    border: thin solid #1F88FF;
-    background-color: rgb(31, 136, 255);
+    border: thin solid rgb(31, 136, 255);
+    background-color: #1F7BE4;
     color: white;
     left: 0;
     top: 0;
     right: 0;
     position: absolute;
-}
-nav#loginMenu input{
-    padding: 0.42em;
-    width: 20em;
+    box-shadow: 0px 3px 8px black;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 #loginMenuContent{
-    margin: 2em 10.69em;
+    margin: 1em 13.37em;
+}
+#loginMenuContent form{
+    float: right;
+    font-size: 19px;
+}
+#loginMenuContent input{
+    padding: 0.69em;
+    margin-right: 1.337em;
+    font-size: 13.37px;
+}
+#loginMenuContent input:hover{
+    box-shadow: 0px 0px 0px black;
+}
+#loginMenuContent input:focus{
+    box-shadow: 0px 0px 0px black;
+}
+#loginMenuContent input:hover:focus{
+    box-shadow: 0px 0px 0px black;
+}
+#loginMenuContent img{
+    width: 100px;
+    height: 35px;
+}
+#content{
+    margin: 5em 10em;
+}
+#contentPic{
+    margin: 10em 0em 0em 10em;
+}
+#contentPic img{
+    width: 337px;
+    height: 337px;
+}
+#contentText{
+    margin: -19em 0em 0em 35em;
+}
+#contentText a{
+    text-decoration: none;
+    color: #1F7BE4;
+    font-style: italic;
+}
+#contentText a:visited{
+    color: #1F7BE4;
+    font-style: italic;
 }
