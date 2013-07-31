@@ -45,16 +45,6 @@ class login{
         return $loginSucceeded;
     }
     
-    private function checkLogin($email, $password){
-        $sql = "SELECT ID FROM Users WHERE email = $email AND password = $password";
-        $this->mysqli->query($sql);
-        if($result->num_rows === 1){
-            return true;
-        }else{
-            return "fehlgeschlagen!";
-        }
-    }
-    
     private function logLogin($loginSucceeded) {
         $this->mysqli->query("
             INSERT INTO

@@ -66,9 +66,7 @@ if (file_exists($profileImagePath)) {
 
 $path = "includes/" . $_GET["screen"] . ".inc.php";
 if (file_exists($path) && 
-    in_array($_GET["screen"], $allowedOnlinePages) 
-    // Die untere Zeile muss später raus!
-    || in_array($_GET["screen"], $allowedOfflinePages)) {
+    in_array($_GET["screen"], $allowedOnlinePages)) {
     include $path;
 } else {
     include "includes/overview.inc.php";
