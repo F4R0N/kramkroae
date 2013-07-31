@@ -17,7 +17,7 @@ if (!isset($_SESSION["UserID"])) {
         include "includes/login.inc.php";
     }
     $tpl->display("siteLoggedOut.tpl.php");
-    //exit;
+    exit;
 }
 
 $user = new user($_SESSION["UserID"]);
