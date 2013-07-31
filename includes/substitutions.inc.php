@@ -12,17 +12,17 @@ if ($_GET["mode"] == "edit" && $_POST["upload"]) {
         $tpl->assign("Errors", $substitution->getErrors());
         $tpl->addMainTemplate("errors.tpl.php");
     }
-} /*elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
-    $homeworks->deleteHomework($_GET["delete"]);
-    header("LOCATION: ?screen=homework&mode=edit");
-} else*/if ($_GET["mode"] == "edit" && $_POST["edit"]) {
+} /* elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
+  $homeworks->deleteHomework($_GET["delete"]);
+  header("LOCATION: ?screen=homework&mode=edit");
+  } else */if ($_GET["mode"] == "edit" && $_POST["edit"]) {
     if (!$substitution->updateSubstitutions($_POST["id"], $_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
         $tpl->assign("Errors", $substitution->getErrors());
         $tpl->addMainTemplate("errors.tpl.php");
     }
 }
 
- 
+
 
 $substitution->setSubstitutions();
 
@@ -36,10 +36,10 @@ if ($user->hasRight("Substitutions")) {
 if ($_GET["mode"] == "edit") {
     $substitution->setSubjects();
     $substitution->setSubstitutionTypes();
-    
+
     $tpl->assign("Subjects", $substitution->getSubjects());
     $tpl->assign("Types", $substitution->getSubstitutionTypes());
-    
+
     $tpl->addJS(array("path" => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"));
     $tpl->addJS(array("path" => "js/datepicker.js"));
     $tpl->addCSS(array("name" => "jquery-ui.css"));
