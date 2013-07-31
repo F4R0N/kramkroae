@@ -3,7 +3,7 @@
     
     $login = new login();
     
-    $tpl->assign("Title", "Fabian1998.de - Startseite");
+    $tpl->assign("Title", "Startseite");
     $tpl->addMainTemplate("login.tpl.php");
     $tpl->addCss(array("name" => "login.css"));
     
