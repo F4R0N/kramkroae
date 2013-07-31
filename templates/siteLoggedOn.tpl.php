@@ -2,10 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=320" /> <!-- So zeigt das iPhone die Website im Hochformat ohne Zoom. -->
         <meta name="viewport" content="width = 200, user-scalable = yes, initial-scale = 0.4, maximum-scale = 1 "/>
-        <meta name="creator" content="Fabian H., Alexander G.">
-        <meta name="author" content="Fabian H., Alexander G.">
+        <meta name="creator" content="Fabian H.">
+        <meta name="creator" content="Alexander G.">
+        <meta name="author" content="Fabian H.">
+        <meta name="author" content="Alexander G.">
         <meta name="description" content="Checke deine Hausaufgaben, Schultermine und Stundenplan jederzeit und überall!">
         <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png" />
