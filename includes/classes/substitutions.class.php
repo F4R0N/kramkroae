@@ -254,6 +254,19 @@ class substitutions {
         $this->mysqli->query($sql);
         return true;
     }
+    public function deleteSubstitution($id) {
+        $sql = "
+            DELETE
+            FROM
+                Substitutions
+            WHERE
+                ID = '" . $this->mysqli->real_escape_string($id) . "'
+        ";
+
+        $this->mysqli->query($sql);
+
+        return true;
+    }
 
     public function getErrors(){
         return $this->errors;
