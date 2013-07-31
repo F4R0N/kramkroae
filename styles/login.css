@@ -13,6 +13,7 @@ nav#loginMenu{
     box-shadow: 0px 3px 8px black;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    padding-bottom: 1em;
 }
 #loginMenuContent{
     margin: 1em 13.37em;
@@ -36,6 +37,7 @@ nav#loginMenu{
     box-shadow: 0px 0px 0px black;
 }
 #loginMenuContent img{
+    float: left;
     width: 100px;
     height: 35px;
 }
