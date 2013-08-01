@@ -24,7 +24,7 @@ nav#loginMenu{
     width: 5.4em;
     font-family:"courier",Georgia,Serif;
     float: left;
-    margin: 0.5em 0em -2em 10em;
+    margin: 0.7em 0em -2em 10em;
 }
 #loginMenuContent{
 }
@@ -82,7 +82,7 @@ nav#loginMenu{
 }
 #contentText{
     float: left;
-    margin: 2em 0em 0em 4em;
+    margin: 0em 0em 0em 4em;
 }
 #contentText a{
     text-decoration: none;
@@ -94,9 +94,8 @@ nav#loginMenu{
 }
 #registryUser, #registrySchool{
     width: 22.6em;
-    padding: 2.3em;
+    padding: 1.337em;
     margin-bottom: 1em;
-    font-weight: bold;
 }
 #registryUser:hover, #registrySchool:hover{
     box-shadow: 0px 0px 2px black;

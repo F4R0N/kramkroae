@@ -23,12 +23,17 @@
     <div id="contentText">
         <a href="index.php?screen=registry&mode=user">
             <div id="registryUser">
-                Registrierung f&uuml;r Sch&uuml;ler und Studenten
+                <h4>Registrierung f&uuml;r Sch&uuml;ler und Studenten</h4>
+                Registrieren Sie sich jetzt mit Ihrer Bildungseinrichtung
+                und profitieren Sie von den Funktionen unserer Seite!
             </div>
         </a>
         <a href="index.php?screen=registry&mode=school">
             <div id="registrySchool">
-                Registrierung f&uuml;r Bildungseinrichtungen
+                <h4>Registrierung f&uuml;r Bildungseinrichtungen</h4>
+                Hier registrieren Sie Ihre Bildungseinrichtung, um Ihren
+                Studenten die M&ouml;glichkeit zu geben, alle Funktionen 
+                unserer Seite nutzen zu k&ouml;nnen!
             </div>
         </a>
     </div>
