@@ -1,3 +1,10 @@
+body{
+    font-family: Gill, Helvetica, sans-serif;
+    background: #E8E7FB;
+}
+h2{
+    text-align: center;
+}
 form{
     border: thin solid lightgrey;
     background-color: lightgrey;
@@ -49,7 +56,7 @@ input#name{
     color: black;
     padding: 0.69em;
     font-size: 1.1em;
-    margin-left: 8.75em;
+    margin-left: 9em;
 }
 #registryBottom button:hover{
     color: white;

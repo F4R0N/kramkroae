@@ -14,8 +14,7 @@
 
     <input type="text" name="schoolID" id="schoolID" placeholder="W&auml;hlen Sie Ihre Ausbildungsst&auml;tte" required autocomplete="off"/>
     <div id="schools"></div>
-    <br />
-
+    
     <div id="registryBottom">
         <input type="radio" required id="dame" name="gender" value="1" <?= $VARS["checkedOne"]?>/><label for="dame">Weiblich</label>
         <input type="radio" required id="herr" name="gender" value="0" <?= $VARS["checkedZero"]?>/><label for="herr">M&auml;nnlich</label>

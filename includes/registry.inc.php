@@ -24,14 +24,14 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"])){
     $tpl->addCss(array("name" => "registry.css"));
     $tpl->assign("Title", "Registrierung");
 }elseif (isset($_GET["mode"]) && $_GET["mode"] == "school") {
-    if (isset($_POST["registerSubmit"]) && $_POST["registerSubmit"] == 1) {
+    /*if (isset($_POST["registerSubmit"]) && $_POST["registerSubmit"] == 1) {
         if (!$registry->checkIfErrors()) {
             $registry->register();
         }else{
             $tpl->assign("Errors", $registry->getErrors());
             $tpl->addMainTemplate("errors.tpl.php");
         }
-    }
+    }*/
     $tpl->addMainTemplate("schoolRegistry.tpl.php");
     $tpl->addCss(array("name" => "schoolRegistry.css"));
     $tpl->assign("Title", "Registrierung f&uuml;r Bildungseinrichtungen");
