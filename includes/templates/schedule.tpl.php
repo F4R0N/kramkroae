@@ -1,22 +1,25 @@
-<h2>Stundenplan</h2>
+<h2>Stundenplan <?= $VARS["EditLink"] ?></h2>
+<? print_r(htmlentities($VARS)) ?>
 <table border="0">
     <thead>
         <?
         foreach ($VARS["scheduleHead"][0] as $thContent): ?>
-            <th><?= $thContent ?></th>
+            <th><?= htmlentities($thContent) ?></th>
         <?
         endforeach;
         ?>
     </thead>
     <tbody><? 
-        for ($i = 0; $i <= 8; $i++): ?>
+        for ($i = 1; $i <= htmlentities($VARS["maxLesson"]); $i++): ?>
             <tr>
+                <td><?= $i ?></td>
+                <td></td>
                 <?
-                foreach ($VARS["scheduleBody"][$i] as $lesson):
+                for($int = 1; $int <= htmlentities($VARS["maxDay"]); $int++):
                     ?>
-                    <td><?= $lesson ?></td>
+                    <td><?= htmlentities($VARS["scheduleBody"][$int][$i]->Subject) ?></td>
                     <?
-                endforeach;
+                endfor;
                 ?>
             </tr>
     <? endfor; ?>
