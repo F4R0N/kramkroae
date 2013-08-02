@@ -42,8 +42,8 @@
     <a href="" class="footerLink">
         Kontaktformular
     </a>
-    <a href="" class="footerLink">
-        Nutzungsbedingungen
+    <a href="terms.php" class="footerLink">
+        Vertragsbedingungen
     </a>
     <a href="" class="footerLink">
         Impressum
