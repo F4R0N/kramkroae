@@ -6,6 +6,9 @@ table td, table th{
     text-align: center;
     padding: 0.7331em;
 }
+table th:nth-child(2){
+    border-right: 0.1337em solid blue;
+}
 table td:nth-child(2){
     border-right: 0.1337em solid blue;
 }
