@@ -6,20 +6,15 @@
  * 
  */
 
+include_once 'classes/overview.class.php';
 
-
-$tpl->addCss(array("name" => "startPage.css"));
+$overview = new overview();
 
 setlocale(LC_TIME, "de_DE");
 
-$tomorrowMK = mktime(0, 0, 0, date("m"), date("d") + 1, date("Y"));
-
-$tomorrowDate = date("d. m. Y", $tomorrowMK);
-$tomorrowDay = strftime("%A", $tomorrowMK);
-
-$tpl->assign("tomorrowDate", $tomorrowDate);
-$tpl->assign("tomorrowDay", $tomorrowDay);
-
+$tpl->assign("tomorrowDate", date("d. m. Y", $overview->getTmrw()));
+$tpl->assign("tomorrowDay", strftime("%A", $overview->getTmrw()));
 $tpl->addMainTemplate("overview.tpl.php");
+$tpl->addCss(array("name" => "startPage.css"));
 
 ?>
