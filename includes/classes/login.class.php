@@ -22,7 +22,7 @@ class login {
 
     function login($email, $password, $saveMail) {
         $loginSucceeded = 0;
-        $password = explode("$", crypt($password, PASSWORD_SALT));
+        $password = explode("$", crypt($password, USER_PASSWORD_SALT));
         $password = $password[4];
 
         $ID = $this->getIDFromEmail($email);
