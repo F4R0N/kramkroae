@@ -1,7 +1,8 @@
 <?php
-include_once 'classes/registry.class.php';
-$registry = new registry();
 if($_GET["mode"] == "user" || !isset($_GET["mode"])){
+    
+    include_once 'classes/registry.class.php';
+    $registry = new registry();
     if (isset($_POST["registerSubmit"]) && $_POST["registerSubmit"] == 1) {
         if (!$registry->checkIfErrors()) {
             $registry->register();
@@ -23,15 +24,19 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"])){
     $tpl->addMainTemplate("registry.tpl.php");
     $tpl->addCss(array("name" => "registry.css"));
     $tpl->assign("Title", "Registrierung");
+    
 }elseif (isset($_GET["mode"]) && $_GET["mode"] == "school") {
-    /*if (isset($_POST["registerSubmit"]) && $_POST["registerSubmit"] == 1) {
-        if (!$registry->checkIfErrors()) {
-            $registry->register();
+    
+    include_once 'classes/schoolRegistry.class.php';
+    $schoolRegistry = new schoolRegistry();
+    if (isset($_POST["registerSubmit"]) && $_POST["registerSubmit"] == 1) {
+        if (!$schoolRegistry->checkIfErrors()) {
+            $schoolRegistry->register();
         }else{
-            $tpl->assign("Errors", $registry->getErrors());
+            $tpl->assign("Errors", $schoolRegistry->getErrors());
             $tpl->addMainTemplate("errors.tpl.php");
         }
-    }*/
+    }
     $tpl->addMainTemplate("schoolRegistry.tpl.php");
     $tpl->addCss(array("name" => "schoolRegistry.css"));
     $tpl->assign("Title", "Registrierung f&uuml;r Bildungseinrichtungen");

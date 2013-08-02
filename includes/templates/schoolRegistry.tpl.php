@@ -1,6 +1,9 @@
 <h2>Registrierung f&uuml;r Bildungseinrichtungen</h2>
 <form method="POST" name="registry">
-    <input type="text" name="schoolName" placeholder="Schulname" />
+    <div id="registryHeader">
+        <input type="text" id="schoolname" name="schoolName" placeholder="Schulname" />
+        <input type="password" id="password" name="password" placeholder="Passwort" />
+    </div>
     <!--
     <select name="country">
         <option value="Germany">Deutschland</option>
@@ -13,23 +16,23 @@
     </select> -->
     <div id="contactPC">
         <select name="state">
-            <option>Bundesland</option>
-            <option>Baden-Württemberg</option>
-            <option>Bayern</option>
-            <option>Berlin</option>
-            <option>Brandenburg</option>
-            <option>Bremen</option>
-            <option>Hamburg</option>
-            <option>Hessen</option>
-            <option>Mecklenburg-Vorpommern</option>
-            <option>Niedersachsen</option>
-            <option>Nordrhein-Westfalen</option>
-            <option>Rheinland-Pfalz</option>
-            <option>Saarland</option>
-            <option>Sachsen</option>
-            <option>Sachsen-Anhalt</option>
-            <option>Schleswig-Holstein</option>
-            <option>Th&uuml;ringen</option>
+            <option value="0">Bundesland</option>
+            <option value="1">Baden-Württemberg</option>
+            <option value="2">Bayern</option>
+            <option value="3">Berlin</option>
+            <option value="4">Brandenburg</option>
+            <option value="5">Bremen</option>
+            <option value="6">Hamburg</option>
+            <option value="7">Hessen</option>
+            <option value="8">Mecklenburg-Vorpommern</option>
+            <option value="9">Niedersachsen</option>
+            <option value="10">Nordrhein-Westfalen</option>
+            <option value="11">Rheinland-Pfalz</option>
+            <option value="12">Saarland</option>
+            <option value="13">Sachsen</option>
+            <option value="14">Sachsen-Anhalt</option>
+            <option value="15">Schleswig-Holstein</option>
+            <option value="16">Th&uuml;ringen</option>
         </select>
         <input type="text" id="town" name="town" placeholder="Stadt / Dorf"/>
         <input type="text" id="PC" name="postCode" placeholder="PLZ" />

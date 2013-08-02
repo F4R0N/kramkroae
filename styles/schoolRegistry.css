@@ -21,6 +21,12 @@ form input, select{
     padding:0.42em;
     margin: 0.42em;
 }
+#registryHeader input#schoolname{
+    width: 20.7em;
+}
+#registryHeader input#password{
+    width: 11.91em;
+}
 #contactPC select{
     width: 16em;
 }

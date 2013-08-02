@@ -4,6 +4,8 @@ class schoolRegistry {
     
     private $mysqli;
     private $schoolName;
+    private $password;
+    private $countryID = 1;
     private $state;
     private $town;
     private $postcode;
@@ -25,6 +27,7 @@ class schoolRegistry {
     
     public function getRegistryValues(){
         $this->schoolName = $this->mysqli->real_escape_string(trim($_POST["schoolName"]));
+        $this->password = $this->mysqli->real_escape_string(trim($_POST["password"]));
         $this->state = $this->mysqli->real_escape_string(trim($_POST["state"]));
         $this->town = $this->mysqli->real_escape_string(trim($_POST["town"]));
         $this->postcode = $this->mysqli->real_escape_string(trim($_POST["postcode"]));
@@ -47,11 +50,67 @@ class schoolRegistry {
         return false;
     }
     
-    private function checkState(){
-        $sql="SELECT ID FROM States WHERE STATE = '" . $this->state . "'";
+    public function getErrors() {
+        return $this->errors;
+    }
+    
+    public function register() {
+        $this->intoDatabase();
+        $this->sendRegistryEmail();
+        return true;
+    }
+    
+    private function intoDatabase(){
+        $password = explode("$", crypt($this->password, SCHOOL_PASSWORD_SALT));
+        $password = $password[4];
+        $sql = "INSERT INTO
+                    Schools (SchoolName, 
+                            Password,
+                            CountryID, 
+                            StateID, 
+                            Town, 
+                            Sreet,
+                            StreetNumber, 
+                            Postcode, 
+                            SchoolWebsite,
+                            CallNumber,
+                            FaxNumber,
+                            Email)
+                VALUES
+                    ('" . $this->mysqli->real_escape_string(ucfirst($this->schoolName)) . "',
+                    '" . $this->mysqli->real_escape_string(ucfirst($this->password)) . "',
+                    '" . $this->mysqli->real_escape_string(ucfirst($this->countryID)) . "',
+                    '" . $this->mysqli->real_escape_string($this->state) . "',
+                    '" . $this->mysqli->real_escape_string($this->town) . "',
+                    '" . $this->mysqli->real_escape_string($this->street) . "',
+                    '" . $this->mysqli->real_escape_string($this->streetNumber) . "',
+                    '" . $this->mysqli->real_escape_string($this->postcode) . "',
+                    '" . $this->mysqli->real_escape_string($this->schoolWebsite) . "',
+                    '" . $this->mysqli->real_escape_string($this->callNumber) . "',
+                    '" . $this->mysqli->real_escape_string($this->faxNumber) . "',
+                    '" . $this->mysqli->real_escape_string($this->email) . "',
+                    CURDATE()
+                    )
+                ";
         $result = $this->mysqli->query($sql);
-        if($result->num_rows !== 1){
-            $this->errors[1] = "Bitte ein gegebenes Bundesland ausw&auml;hlen!";
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private function sendRegistryEmail(){
+        
+    }
+    
+    private function checkState(){
+        $sql="SELECT ID FROM States WHERE ID = '" . $this->state . "'";
+        $result = $this->mysqli->query($sql);
+        $obj = $result->fetch_object;
+        $stateID = $obj->ID;
+        if($stateID < 1 || $stateID > 16){
+           $this->errors[1] = "Bitte ein gegebenes Bundesland ausw&auml;hlen!"; 
         }
         return true;
     }
