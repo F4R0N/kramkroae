@@ -11,21 +11,39 @@ form{
     background-color: lightgrey;
     padding: 2.3em;
     text-align: center;
-    width: 35em;
+    width: 37em;
     margin: 0 auto;
     font-size: 1em;
 }
 form input, select{
     font-size: 1em;
-    width: 30em;
+    width: 35em;
     padding:0.42em;
     margin: 0.42em;
-} 
-#contactPC input, #contactPC select{
-    width: 8.93em;
+}
+#contactPC select{
+    width: 16em;
+}
+#contactPC input#town{
+    width: 10.49em;
+}
+#contactPC input#PC{
+    width: 5em;
+}
+#street input#streetname{
+    width: 20.7em;
+}
+#street input#streetnumber{
+    width: 11.91em;
 }
 #street input{
     width: 13em;
+}
+#numbers input{
+    width: 16.3em;
+}
+#registryBottom input{
+    width: 16.3em;
 }
 button{
     border-radius: 0.69em;

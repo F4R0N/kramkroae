@@ -1,6 +1,7 @@
 <h2>Registrierung f&uuml;r Bildungseinrichtungen</h2>
-<!---<form method="POST" name="registry">
+<form method="POST" name="registry">
     <input type="text" name="schoolName" placeholder="Schulname" />
+    <!--
     <select name="country">
         <option value="Germany">Deutschland</option>
         <option value="Austria">&Ouml;sterreich</option>
@@ -9,7 +10,7 @@
         <option value="Luxembourg">Luxemburg</option>
         <option value="Belgium">Belgien</option>
         <option value="Italy">Italien</option>
-    </select>
+    </select> -->
     <div id="contactPC">
         <select name="state">
             <option>Bundesland</option>
@@ -30,20 +31,22 @@
             <option>Schleswig-Holstein</option>
             <option>Th&uuml;ringen</option>
         </select>
-        <input type="text" name="town" placeholder="Stadt / Dorf"/>
-        <input type="text" id="PC" name="postCode" placeholder="Postleitzahl" />
+        <input type="text" id="town" name="town" placeholder="Stadt / Dorf"/>
+        <input type="text" id="PC" name="postCode" placeholder="PLZ" />
     </div>
     <div id="street">
-        <input type="text" name="street" placeholder="Stra&szlig;e" />
-        <input type="text" id="SN" name="streetNumber" placeholder="Hausnummer" />
+        <input type="text" id="streetname" name="street" placeholder="Stra&szlig;e" />
+        <input type="text" id="streetnumber" name="streetNumber" placeholder="Hausnummer" />
     </div>
     <div id="numbers">
         <input type="tel" name="callNumber" placeholder="Telefonnummer" />
         <input type="tel" name="faxNumber" placeholder="Faxnummer (optional)" />
     </div>
-    <input type="email" name="email" placeholder="E-Mail-Adresse" />
-    <input type="url" name="schoolWebsite" placeholder="Schulwebsite (optional)" />
+    <div id="registryBottom">
+        <input type="email" name="email" placeholder="E-Mail-Adresse" />
+        <input type="url" name="schoolWebsite" placeholder="Schulwebsite (optional)" />
+    </div>
     <button type="submit" name="registerSubmit" value="1">Registrieren</button>
-</form>-->
+</form>
 
 <p>Hier entsteht gerade die Funktion eine Bildungseinrichtung zu registrieren!</p>
