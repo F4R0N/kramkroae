@@ -11,9 +11,12 @@
         $email = $_COOKIE["Email"];
         $checked = "checked";
    }
-    else {
-       $email = "";
+    elseif(isset($_GET["email"]) && filter_var($_GET["email"], FILTER_VALIDATE_EMAIL)) {
+       $email = $_GET["email"];
        $checked = "";
+    }else{
+        $email = "";
+        $checked = "";
     }
     
     $tpl->assign("Email", $email);
