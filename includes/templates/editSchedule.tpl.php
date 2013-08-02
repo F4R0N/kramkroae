@@ -14,7 +14,7 @@
             for ($i = 1; $i <= 11; $i++): ?>
                 <tr>
                     <td><textarea name="lesson" id="lesson"><?= $i ?></textarea></td>
-                    <td><textarea name="time" id="time" placeholder="10:25 - 11:10"><? ?></textarea></td>
+                    <td><textarea name="time" id="time" placeholder="10:25 - 11:10"><?= htmlentities($VARS["lesson"][$i]->Time) ?></textarea></td>
                     <?
                     for($int = 1; $int <= 7; $int++):
                         ?>

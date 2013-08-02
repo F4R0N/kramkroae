@@ -1,0 +1,1 @@
+Es wurde noch kein Stundenplan f&uuml;r Sie eingetragen
