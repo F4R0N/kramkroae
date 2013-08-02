@@ -13,7 +13,7 @@
         for ($i = 1; $i <= htmlentities($VARS["maxLesson"]); $i++): ?>
             <tr>
                 <td><?= $i ?></td>
-                <td></td>
+                <td><?= htmlentities($VARS["lesson"][$i]->Time) ?></td>
                 <?
                 for($int = 1; $int <= htmlentities($VARS["maxDay"]); $int++):
                     ?>

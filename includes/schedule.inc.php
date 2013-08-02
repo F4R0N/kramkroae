@@ -11,15 +11,20 @@ if($user->hasRight("Schedule")){
     }
 }
 if($_GET["mode"] != "edit"){
-    if(isset($_POST["lesson"]) && isset($_POST["time"]) && isset($_POST["subject"])){
+    if($schedule->checkScheduleAvail()){
+        if(isset($_POST["lesson"]) && isset($_POST["time"]) && isset($_POST["subject"])){
+        }
+        $tpl->addMainTemplate("schedule.tpl.php");
+        $tpl->addCss(array("name" => "schedule.css"));
+        $tpl->assign("Title", "Stundenplan");
+        $tpl->assign("scheduleHead", $schedule->getScheduleThead());
+        $tpl->assign("scheduleBody", $schedule->getSchedule());
+        $tpl->assign("maxLesson", $schedule->getMaxLesson());
+        $tpl->assign("maxDay", $schedule->getMaxDay());
+        $tpl->assign("lesson", $schedule->getLessonsTime());
+    }else{
+        echo "<h1>1</h1>";
+        $tpl->addMainTemplate("noSchedule.tpl.php");
     }
-    $tpl->addMainTemplate("schedule.tpl.php");
-    $tpl->addCss(array("name" => "schedule.css"));
-    $tpl->assign("Title", "Stundenplan");
-    $tpl->assign("scheduleHead", $schedule->getScheduleThead());
-    $tpl->assign("scheduleBody", $schedule->getSchedule());
-    $tpl->assign("maxLesson", $schedule->getMaxLesson());
-    $tpl->assign("maxDay", $schedule->getMaxDay());
-    //$tpl->assign("time", $schedule->);
 }
 ?>

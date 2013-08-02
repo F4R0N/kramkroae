@@ -4,6 +4,7 @@ class schedule {
     private $mysqli;
     private $user;
     private $schedule;
+    private $times;
 
     public function __construct($user) {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
@@ -38,7 +39,7 @@ class schedule {
                     ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
                 ";
         $result = $this->mysqli->query($sql);
-        if($result->num_rows == 1){
+        if($result->num_rows >= 1){
             return true;
         }else{
             return false;
@@ -60,6 +61,22 @@ class schedule {
         return $maxLesson->Lesson;
     }
     
+    public function getLessonsTime(){
+        $sql="SELECT
+                Lesson,
+                Time
+              FROM
+                SchedulesTimes
+              WHERE
+               ClassID = '" . $this->user->getClassID() . "'
+              ";
+        $result = $this->mysqli->query($sql);
+        while($obj = $result->fetch_object()){
+            $this->times[$obj->Lesson] = $obj;
+        }
+        return $this->times;
+    }
+    
     public function getSchedule(){
         $sql = "SELECT 
                     Subject,
@@ -71,7 +88,8 @@ class schedule {
                     Subjects 
                 ON 
                     Schedules.SubjectID = Subjects.ID 
-                WHERE ClassID = '" . $this->user->getClassID() . "'
+                WHERE 
+                    ClassID = '" . $this->user->getClassID() . "'
                 ";
         $result = $this->mysqli->query($sql);
         while($obj = $result->fetch_object()){

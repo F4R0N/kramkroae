@@ -35,7 +35,7 @@ class overview {
 -                   END = CURDATE() + INTERVAL 1 DAY";
         $result = $this->mysqli->query($sql);
         if($result){
-            return $result->fetch_object;
+            return $result->fetch_object();
         }else{
             return false;
         }
