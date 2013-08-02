@@ -46,13 +46,6 @@ class registry {
         }
         return false;
     }
-
-    function echoErrors(){
-        foreach($this->errors as $error){
-            echo "<br />";
-            echo $error;
-        }
-    }
     
     function register() {
         $this->intoDatabase();
@@ -188,6 +181,7 @@ Falls Sie Ihr Passwort vergessen haben sollten, klicken Sie bitte hier:
         $header .= "Content-Type:text/html\n";
         $header .= "content-transfer-encoding: 8-bit\n";
         mail($receiver, $subject, $message, $header);
+        header("LOCATION: index.php?screen=overview&email=$this->email");
         return true;
     }
  }
