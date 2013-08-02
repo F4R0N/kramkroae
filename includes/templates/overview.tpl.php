@@ -1,4 +1,4 @@
-<h2>Was steht morgen <?= $VARS["tomorrowDay"] ?>, dem <?= $VARS["tomorrowDate"]; ?> an?</h2> 
+<h2>Was steht morgen <?= $VARS["tomorrowDay"] ?>, dem <?= $VARS["tomorrowDate"]; ?> an?</h2>
 <article>
     <section class="startpage" id="hw">
         <h2>Hausaufgaben</h2>

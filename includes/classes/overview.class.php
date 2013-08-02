@@ -21,7 +21,6 @@ class overview {
     
     public function getTmrwHomeworks(){
         $sql = "SELECT
-                    SubjectID,
                     Homework,
                     Subject
                 FROM
@@ -32,8 +31,8 @@ class overview {
                     Homeworks.SubjectID = Subjects.ID 
                 WHERE
                     ClassID = '" . $user->getClassID() . "'
-                AND
-                    END = CURDATE() + INTERVAL 1 DAY";
+-               AND
+-                   END = CURDATE() + INTERVAL 1 DAY";
         $result = $this->mysqli->query($sql);
         if($result){
             return $result->fetch_object;
