@@ -42,7 +42,7 @@
     <a href="" class="footerLink">
         Kontaktformular
     </a>
-    <a href="terms.php" class="footerLink">
+    <a href="?screen=terms" class="footerLink">
         Vertragsbedingungen
     </a>
     <a href="" class="footerLink">
