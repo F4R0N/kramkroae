@@ -24,7 +24,7 @@
     <body>
         <nav id="usermenu">
             <a href="index.php?screen=overview">
-                <img src="images/logo.jpg" alt="Logo" width="100px" height="35px" id="logo">
+                <div id="logo">F98.DE/HA</div>
             </a>
             <nav class="links">
                 <a href="index.php?logout=true">Logout</a>
