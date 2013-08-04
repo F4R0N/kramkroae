@@ -33,7 +33,13 @@ a {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     z-index: 2;
-    max-height: 3em;
+    height: 3em;
+    transition-property: height, width;
+    transition-duration: 5s;
+}
+#usermenu:hover{
+    height: 24em;
+    width: 60em;
 }
 #usermenu a{
     text-decoration: none;
