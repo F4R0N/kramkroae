@@ -54,7 +54,7 @@ class calendar {
         $rows = ceil($restDays / 7.0);
 
         for ($monthDay = 1; $monthDay <= ($rows * 7) - $restDays; $monthDay++) {
-            $this->calendar[$monthDay + $restDays] = (object) array('tag' => $monthDay, 'shortInfo' => '', 'style' => 'otherMonth');
+            $this->calendar[$monthDay + $restDays] = (object) array('day' => $monthDay, 'shortInfo' => '', 'style' => 'otherMonth');
         }
     }
 
