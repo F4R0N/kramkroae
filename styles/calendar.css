@@ -1,0 +1,51 @@
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.termin_data {
+    position: relative;
+    background-color: white;
+    text-align: center;
+    width: 4.5em;
+}
+
+.termin_data:hover {
+    background-color: #55BBFF;
+}
+
+.termin_data_number {
+    margin: 0.1em;
+    font-size: 5em;
+    color: #CACACA;
+}
+
+.termin_data_info_short {
+    color: rgb(230,255,255);
+    top: 0%;
+    position: absolute;
+}
+
+.termin_data_event {
+    background-color: #FF2222;
+}
+
+.heute {
+    border: 0.2em solid blue;
+}
+
+.termin_days {
+    text-align: center;
+    padding: 0.2em 1.5em;
+    width: 4.5em;
+}
+.otherMonth {
+    background-color: #EEE;
+}
+.monat_wahl_vorher {
+    font-size: 1.4em;
+}
+.monat_wahl_weiter {
+    float: right;
+    font-size: 1.4em;
+}
