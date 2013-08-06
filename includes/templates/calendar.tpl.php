@@ -18,12 +18,16 @@
                 $day = $s + ($z * 7)
                 ?>
 
-                <td class="termin_data <?= $VARS["calendar"][$day]->style ?>">
+                <td class="termin_data <?php foreach( $VARS["calendar"][$day]->Style as $class ): ?>  <?= $class ?><?php endforeach; ?>">
                     <div class="termin_data_info_short">
-                        <?= $VARS["calendar"][$day]->shortInfo ?>
+                        <?php foreach($VARS["calendar"][$day]->Title as $title): ?>
+                        <div class="Title">
+                            <?= $title ?>
+                        </div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="termin_data_number">
-                        <?= $VARS["calendar"][$day]->day ?>
+                        <?= $VARS["calendar"][$day]->Day ?>
                     </div>
                 </td>
             <?php endfor; ?>

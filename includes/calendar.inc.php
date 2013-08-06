@@ -31,9 +31,9 @@ $tpl->assign("month", array(
 
 
 if ((checkdate($_GET["month"], 1, $_GET["year"]))) {
-    $calendar = new calendar($_GET['month'], $_GET['year']);
+    $calendar = new calendar($user, $_GET['month'], $_GET['year']);
 } else {
-    $calendar = new calendar(date('n'), date('Y'));
+    $calendar = new calendar($user, date('n'), date('Y'));
 }
 
 

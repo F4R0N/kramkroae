@@ -23,6 +23,10 @@ class month {
     public function getYear(){
         return date("Y", $this->timestamp);
     }
+    
+    public function getTimestamp(){
+        return $this->timestamp;
+    }
 }
 
 ?>
