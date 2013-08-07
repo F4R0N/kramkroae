@@ -94,15 +94,32 @@ class user {
         return $this->ClassID;
     }
 
+    function getClassmates(){
+        $sql = "SELECT 
+                    ID,
+                    FirstName,
+                    LastName
+                FROM
+                    Users
+                WHERE
+                    ClassID = '" . $this->ClassID . "'
+                ";
+        $result = $this->mysqli->query($sql);
+        while ($obj = $result->fetch_object()) {
+            $Classmates[] = $obj;
+        }
+        return $Classmates;
+    }
+    
     function getUnreadMessages() {
-        $result = $this->mysqli->query(
-                "SELECT
-                ID
-             FROM
-                Conversations
-             WHERE
-                Members LIKE '%;" . $this->ID . ";%'
-        ");
+        $sql = "SELECT
+                    ID
+                FROM
+                    Conversations
+                WHERE
+                    Members LIKE '%;" . $this->ID . ";%'
+        ";
+        $result = $this->mysqli->query($sql);
         $count = $result->num_rows;
 
         return $count;
