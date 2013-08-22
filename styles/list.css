@@ -1,4 +1,18 @@
 table{
     margin: 0 auto;
     text-align: center;
+    border-spacing: 0;
+    border-color: #BFBFBF;
+}
+table th{
+    color: blue;
+}
+table th,td{
+    padding: 0.5em;
+}
+td a{
+    text-decoration: none;
+}
+td a:hover{
+    color: blue;
 }

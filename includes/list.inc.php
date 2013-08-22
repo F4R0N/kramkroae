@@ -4,5 +4,5 @@
     $tpl->addCss(array("name" => "list.css"));
     
     $tpl->assign("Title", "Klassenliste");
-    $tpl->assign("Classmates", $user->getClassmates());
+    $tpl->assign("Cm", $user->getClassmates());
 ?>

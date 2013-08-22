@@ -1,5 +1,5 @@
 <h2>Meine Klasse</h2>
-<table border="2">
+<table border="1">
     <thead>
         <tr>
             <th>Student</th>
@@ -7,13 +7,15 @@
         </tr>
     </thead>
     <tbody>
-        <? for($i = 1; $i <= count($VARS["Classmates"]); $i++){ print_r($VARS["Classmates"])?>
-        <? foreach($VARS["Classmates"][$i] as $student){?>
-        <tr>
-            <td><?= $student ?></td>
-            <td></td>
-        </tr>
-        <?} ?>
-        <?} ?>
+        <? for($i = 0; $i < count($VARS["Cm"]); $i++){ ?>
+            <tr>
+                <td>
+                    <?= "<a href='index.php?screen=profile?id=" . $VARS["Cm"][$i]->ID . "'>" ?>
+                        <?= $VARS["Cm"][$i]->FirstName . " " . $VARS["Cm"][$i]->LastName ?>
+                    </a>
+                </td>
+                <td><?= $VARS["Cm"][$i]->LastAction ?></td>
+            </tr>
+        <? } ?>
     </tbody>
 </table>

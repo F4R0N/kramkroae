@@ -93,12 +93,13 @@ class user {
     function getClassID() {
         return $this->ClassID;
     }
-
+    
     function getClassmates(){
-        $sql = "SELECT 
+        $sql = "SELECT
                     ID,
                     FirstName,
-                    LastName
+                    LastName,
+                    LastAction
                 FROM
                     Users
                 WHERE
