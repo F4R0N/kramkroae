@@ -21,11 +21,8 @@ form input, select{
     padding:0.42em;
     margin: 0.42em;
 }
-#registryHeader input#schoolname{
-    width: 20.7em;
-}
-#registryHeader input#password{
-    width: 11.91em;
+#registryHeader input[type="email"], input#password{
+    width: 16.3em;
 }
 #contactPC select{
     width: 16em;
@@ -37,18 +34,15 @@ form input, select{
     width: 5em;
 }
 #street input#streetname{
-    width: 20.7em;
+    width: 23em;
 }
 #street input#streetnumber{
-    width: 11.91em;
+    width: 9.6em;
 }
 #street input{
     width: 13em;
 }
 #numbers input{
-    width: 16.3em;
-}
-#registryBottom input{
     width: 16.3em;
 }
 button{

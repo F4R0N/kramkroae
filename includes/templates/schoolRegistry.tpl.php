@@ -2,7 +2,10 @@
 <form method="POST" name="registry">
     <div id="registryHeader">
         <input type="text" id="schoolname" name="schoolName" placeholder="Schulname" />
+        <input type="email" name="email" placeholder="E-Mail-Adresse" />
+        <input type="email" name="emailCheck" placeholder="E-Mail-Adresse wiederholen" />
         <input type="password" id="password" name="password" placeholder="Passwort" />
+        <input type="password" id="password" name="passwordCheck" placeholder="Passwort wiederholen" />
     </div>
     <!--
     <select name="country">
@@ -46,10 +49,7 @@
         <input type="tel" name="faxNumber" placeholder="Faxnummer (optional)" />
     </div>
     <div id="registryBottom">
-        <input type="email" name="email" placeholder="E-Mail-Adresse" />
         <input type="url" name="schoolWebsite" placeholder="Schulwebsite (optional)" />
     </div>
     <button type="submit" name="registerSubmit" value="1">Registrieren</button>
 </form>
-
-<p>Hier entsteht gerade die Funktion eine Bildungseinrichtung zu registrieren!</p>

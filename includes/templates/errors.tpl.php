@@ -1,5 +1,5 @@
 <h2>Fehler</h2>
-Es gab <?= count($VARS["Errors"]) ?> Fehler:
+<?= count($VARS["Errors"]) ?> Fehler sind aufgetreten:
 <ol>
 <?php foreach($VARS["Errors"] as $error): ?>
     <li><?= $error ?></li>
