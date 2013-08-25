@@ -136,7 +136,7 @@ class registry {
     }
 
     function intoDatabase() {
-        $password = explode("$", crypt($this->password, USER_PASSWORD_SALT));
+        $password = explode("$", crypt($this->password, PASSWORD_SALT));
         $password = $password[4];
         $sql = "INSERT INTO
                     Users (FirstName, LastName, Email, Password, Gender,SchoolID, AcceptTerms, RegistryDate)

@@ -20,22 +20,9 @@
     <div id="contactPC">
         <select name="state">
             <option value="0">Bundesland</option>
-            <option value="1">Baden-Württemberg</option>
-            <option value="2">Bayern</option>
-            <option value="3">Berlin</option>
-            <option value="4">Brandenburg</option>
-            <option value="5">Bremen</option>
-            <option value="6">Hamburg</option>
-            <option value="7">Hessen</option>
-            <option value="8">Mecklenburg-Vorpommern</option>
-            <option value="9">Niedersachsen</option>
-            <option value="10">Nordrhein-Westfalen</option>
-            <option value="11">Rheinland-Pfalz</option>
-            <option value="12">Saarland</option>
-            <option value="13">Sachsen</option>
-            <option value="14">Sachsen-Anhalt</option>
-            <option value="15">Schleswig-Holstein</option>
-            <option value="16">Th&uuml;ringen</option>
+            <?for($i = 0; $i < count($VARS["GStates"]); $i++){ ?>
+                <?= "<option value='" . $VARS["GStates"][$i]->ID . "'>" . $VARS["GStates"][$i]->State . "</option>" ?>
+            <? } ?>
         </select>
         <input type="text" id="town" name="town" placeholder="Stadt / Dorf"/>
         <input type="text" id="PC" name="postCode" placeholder="PLZ" />

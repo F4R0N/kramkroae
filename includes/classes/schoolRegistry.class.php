@@ -27,6 +27,24 @@ class schoolRegistry {
         $this->mysqli->close();
     }
     
+    public function getGermanStates(){
+        $sql = "SELECT
+                    ID,
+                    State
+                FROM
+                    States
+                WHERE
+                    CountryID = 1
+                ORDER BY
+                    State ASC
+                ";
+        $result = $this->mysqli->query($sql);
+        while ($obj = $result->fetch_object()) {
+            $States[] = $obj;
+        }
+        return $States;
+    }
+    
     public function getRegistryValues(){
         $this->schoolName = $this->mysqli->real_escape_string(trim($_POST["schoolName"]));
         $this->email = strtolower($this->mysqli->real_escape_string(trim($_POST["email"])));
@@ -41,6 +59,7 @@ class schoolRegistry {
         $this->callNumber = $this->mysqli->real_escape_string(trim($_POST["callNumber"]));
         $this->faxNumber = $this->mysqli->real_escape_string(trim($_POST["faxNumber"]));
         $this->schoolWebsite = $this->mysqli->real_escape_string(trim($_POST["schoolWebsite"]));
+        return true;
     }
     
     public function checkIfErrors() {
@@ -73,7 +92,7 @@ class schoolRegistry {
     }
     
     private function intoDatabase(){
-        $password = explode("$", crypt($this->password, SCHOOL_PASSWORD_SALT));
+        $password = explode("$", crypt($this->password, PASSWORD_SALT));
         $password = $password[4];
         $sql = "INSERT INTO
                     Schools (SchoolName, 
@@ -81,20 +100,21 @@ class schoolRegistry {
                             CountryID, 
                             StateID, 
                             Town, 
-                            Sreet,
+                            Street,
                             StreetNumber, 
                             Postcode, 
                             SchoolWebsite,
                             CallNumber,
                             FaxNumber,
-                            Email)
+                            Email,
+                            RegistryDate)
                 VALUES
                     ('" . $this->mysqli->real_escape_string(ucfirst($this->schoolName)) . "',
-                    '" . $this->mysqli->real_escape_string(ucfirst($this->password)) . "',
-                    '" . $this->mysqli->real_escape_string(ucfirst($this->countryID)) . "',
+                    '" . $this->mysqli->real_escape_string($password) . "',
+                    '" . $this->mysqli->real_escape_string($this->countryID) . "',
                     '" . $this->mysqli->real_escape_string($this->state) . "',
-                    '" . $this->mysqli->real_escape_string($this->town) . "',
-                    '" . $this->mysqli->real_escape_string($this->street) . "',
+                    '" . $this->mysqli->real_escape_string(ucfirst($this->town)) . "',
+                    '" . $this->mysqli->real_escape_string(ucfirst($this->street)) . "',
                     '" . $this->mysqli->real_escape_string($this->streetNumber) . "',
                     '" . $this->mysqli->real_escape_string($this->postcode) . "',
                     '" . $this->mysqli->real_escape_string($this->schoolWebsite) . "',
@@ -105,9 +125,9 @@ class schoolRegistry {
                     )
                 ";
         $result = $this->mysqli->query($sql);
-        if ($result) {
+        if($result){
             return true;
-        } else {
+        }else{
             return false;
         }
     }
@@ -136,7 +156,6 @@ class schoolRegistry {
         $header .= "content-transfer-encoding: 8-bit\n";
         mail($receiver, $subject, $message, $header);
         header("LOCATION: index.php?screen=overview&email=$this->email");
-        return true;
  }
     
     private function checkFaxNumber(){

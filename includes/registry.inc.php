@@ -40,5 +40,6 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"])){
     $tpl->addMainTemplate("schoolRegistry.tpl.php");
     $tpl->addCss(array("name" => "schoolRegistry.css"));
     $tpl->assign("Title", "Registrierung f&uuml;r Bildungseinrichtungen");
+    $tpl->assign("GStates", $schoolRegistry->getGermanStates());
 }
 ?>
