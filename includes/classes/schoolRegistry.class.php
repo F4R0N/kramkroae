@@ -64,17 +64,19 @@ class schoolRegistry {
     
     public function checkIfErrors() {
         $this->getRegistryValues();
-        $this->checkSchoolname();
-        $this->checkEmail();
-        $this->checkPassword();
-        $this->checkState();
-        $this->checkTown();
-        $this->checkPC();
-        $this->checkStreet();
-        $this->checkStreetNumber();
-        $this->checkCallNumber();
-        $this->checkFaxNumber();
-        $this->checkURL();
+        if(!$this->checkGeneralSchool()){
+            $this->checkSchoolname();
+            $this->checkEmail();
+            $this->checkPassword();
+            $this->checkState();
+            $this->checkTown();
+            $this->checkPC();
+            $this->checkStreet();
+            $this->checkStreetNumber();
+            $this->checkCallNumber();
+            $this->checkFaxNumber();
+            $this->checkURL();
+        }
         if(count($this->errors)){
             return true;
         }
@@ -121,7 +123,7 @@ class schoolRegistry {
                     '" . $this->mysqli->real_escape_string($this->callNumber) . "',
                     '" . $this->mysqli->real_escape_string($this->faxNumber) . "',
                     '" . $this->mysqli->real_escape_string($this->email) . "',
-                    CURDATE()
+                    NOW()
                     )
                 ";
         $result = $this->mysqli->query($sql);
@@ -158,6 +160,38 @@ class schoolRegistry {
         header("LOCATION: index.php?screen=overview&email=$this->email");
  }
     
+    private function checkGeneralSchool(){
+        $sql = "SELECT
+                    ID
+                FROM
+                    Schools
+                WHERE
+                    SchoolName 
+                LIKE
+                    '" . $this->schoolName . "'
+                AND
+                    StateID = '" . $this->state . "'
+                AND
+                    Town
+                LIKE
+                    '" . $this->town . "'
+                AND
+                    Street
+                LIKE
+                    '" . $this->street . "'
+                AND
+                    StreetNumber = '" . $this->streetNumber . "'
+                    ";
+        $result = $this->mysqli->query($sql);
+        if($result->num_rows != 0){
+            $this->errors[12] = "Diese Schule wurde schon registriert!<br />
+                                Wenn dies nicht m&ouml;glich ist, 
+                                wenden Sie sich bitte an den Support.";
+            return true;
+        }
+        return false;
+    }
+ 
     private function checkFaxNumber(){
         if($this->faxNumber != ""){
             if(!is_numeric ($this->faxNumber)){
@@ -256,10 +290,19 @@ class schoolRegistry {
                     Email = '" . $this->email . "'
                ";
         $result = $this->mysqli->query($sql);
-        $number = $result->num_rows;
+        $numberSchool = $result->num_rows;
+        $sql = "SELECT
+                    ID
+                FROM
+                    Users
+                WHERE
+                    Email = '" . $this->email . "'
+               ";
+        $result = $this->mysqli->query($sql);
+        $numberUser = $result->num_rows;
         if ($this->email == "") {
             $this->errors[2] = "Bitte eine E-Mail-Adresse angeben!";
-        } elseif ($number !== 0) {
+        } elseif ($numberSchool !== 0 || $numberUser !== 0) {
             $this->errors[2] = "Die E-Mail-Adresse wird bereits verwendet!<br />
                                 Bitte eine andere E-Mail-Adresse angeben!";
         } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {

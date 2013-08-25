@@ -81,12 +81,27 @@ class registry {
     }
 
     function checkEmail() {
-        $sql = "SELECT ID FROM Users WHERE Email = '" . $this->email . "'";
+        $sql = "SELECT 
+                    ID 
+                FROM 
+                    Users 
+                WHERE 
+                    Email = '" . $this->email . "'
+               ";
         $result = $this->mysqli->query($sql);
-        $number = $result->num_rows;
+        $numberUser = $result->num_rows;
+        $sql = "SELECT 
+                    ID 
+                FROM 
+                    Schools 
+                WHERE 
+                    Email = '" . $this->email . "'
+               ";
+        $result = $this->mysqli->query($sql);
+        $numberSchool = $result->num_rows;
         if ($this->email == "") {
             $this->errors[5] = "Bitte eine E-Mail-Adresse angeben!";
-        } elseif ($number !== 0) {
+        } elseif ($numberUser !== 0 || $numberSchool !== 0) {
             $this->errors[6] = "Die E-Mail-Adresse wird bereits verwendet!<br />
                                 Bitte eine andere E-Mail-Adresse angeben!";
         } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
