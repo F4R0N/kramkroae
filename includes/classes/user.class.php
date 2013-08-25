@@ -104,6 +104,8 @@ class user {
                     Users
                 WHERE
                     ClassID = '" . $this->ClassID . "'
+                ORDER BY
+                    LastAction DESC
                 ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {
