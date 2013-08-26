@@ -97,13 +97,18 @@ a {
     display: block;
     text-decoration: none;
     margin: 0 auto;
-    padding: 5px;
+    padding: 10px;
     text-align: center; 
     max-width: 10em;
     border-left: thick solid black;
 }
 #mainmenu .links a:hover{
-    border-left: thick solid red;
+    border-left: thick solid lime;
+}
+
+#mainmenu .links{
+    border-top: thin solid black;
+    border-bottom: thin solid black;
 }
 
 /* Fixed background
@@ -133,88 +138,6 @@ a {
 }
 #main h2{
     text-align: center;
-}
-#newsfeed{
-    text-decoration: none;
-}
-#newsfeed a{
-    text-decoration: none;
-}
-
-.newPic {
-    background-color: #E1E1E1;
-    border-radius: 5px 5px;
-    -moz-border-radius: 5px 5px;
-    -webkit-border-radius: 5px 5px; 
-    padding: 1em 1em 1em 1em;
-    margin: 1em 1em 1em 1em;
-    text-decoration: none;
-    width: 90%;
-}
-.newStatus .picture a{
-    color: #1F88FF;
-    margin: 0em 0em 1em 0em;
-} 
-.newPic .picture img{
-    width: 125px;
-    height: 125px;
-}
-.newPic .details{
-    margin: -8em 0em 7em 9em;
-}
-.newPic .action{
-    border: thin solid #E1E1E1;
-    background-color: #ABCDEF;
-    margin: -6em 0em 3em 9em;
-    padding: 1em;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    -webkit-border-radius: 10px;
-}
-
-.newStatus{
-    background-color: #E1E1E1;
-    border-radius: 5px 5px;
-    -moz-border-radius: 5px 5px;
-    -webkit-border-radius: 5px 5px; 
-    padding: 1em 1em 1em 1em;
-    margin: 1em 1em 1em 1em;
-    text-decoration: none;
-    width: 90%;
-}
-.newStatus .picture img{
-    width: 125px;
-    height: 125px;
-}
-.newStatus .details{
-    margin: -8em 0em 7em 9em;
-}
-.newStatus .action{
-    border: thin solid #E1E1E1;
-    background-color: #ABCDEF;
-    margin: -6em 0em 3em 9em;
-    padding: 1em;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    -webkit-border-radius: 10px;
-}
-
-.taetschel_button{
-    border: thin solid #A1A1E1;
-    color: rgb(31, 136, 255);
-    padding: 0.1337em;
-    text-align: center;
-    width: 7em;
-}
-.taetschel_button img{
-    width: 30px;
-    height: 30px;
-}
-.index_post_action{
-    padding: 0.1337em;
-    margin: -2.5em 0em 0em 9em;
 }
 
 @media only screen and (max-width: 850px){
