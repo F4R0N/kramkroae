@@ -15,12 +15,15 @@ $allowedOnlinePages = array(
     "substitutions",
     "calendar",
     "settings",
-    "list"
+    "list",
+    "terms",
+    "legNotice"
 );
 $allowedOfflinePages = array(
     "login",
     "registry",
-    "terms"
+    "terms",
+    "legNotice"
 );
 
 ?>

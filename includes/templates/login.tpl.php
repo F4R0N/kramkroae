@@ -45,7 +45,7 @@
     <a href="?screen=terms" class="footerLink">
         Vertragsbedingungen
     </a>
-    <a href="" class="footerLink">
+    <a href="?screen=legNotice" class="footerLink">
         Impressum
     </a>
 </footer>
