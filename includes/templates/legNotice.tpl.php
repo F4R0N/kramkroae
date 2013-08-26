@@ -54,9 +54,7 @@
     Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p> 
 <p><b>Datenschutz</b></p> 
 <p>
-    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. 
-    Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. 
-    Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. </p> 
+    Die von Ihnen personenbezogene, eingegebene Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben. </p> 
 <p>
     Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. 
     Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. 
