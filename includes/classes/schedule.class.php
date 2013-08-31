@@ -99,7 +99,6 @@ class schedule {
     }
 
     public function intoDatabase(){
-        for($IDay = 1; $IDay <= $this->getMaxDay(); $IDay++){
             $sql = "INSERT INTO 
                         Schedules(
                            ClassID,
@@ -108,7 +107,7 @@ class schedule {
                            SubjectID
                         ) 
                     VALUES(
-                    
+                        '". $this->user->getClassID() . "',
                     )";
             $result = $this->mysqli->query($sql);
             if($result){
@@ -116,7 +115,6 @@ class schedule {
             }else{
                 return false;
             }
-        }
     }
     
     function getScheduleThead() {

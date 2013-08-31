@@ -13,7 +13,7 @@ if($user->hasRight("Schedule")){
 }
 if(!isset($_GET["mode"])){
     if($schedule->checkScheduleAvail()){
-        if(isset($_POST["lesson"]) && isset($_POST["time"]) && isset($_POST["subject"])){
+        if(isset($_GET["lesson"]) && isset($_GET["time"]) && isset($_GET["subject"])){
         }
         $tpl->addMainTemplate("schedule.tpl.php");
         $tpl->assign("Title", "Stundenplan");
