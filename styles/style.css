@@ -100,30 +100,11 @@ a {
     padding: 10px;
     text-align: center; 
     max-width: 10em;
-    border-left: thick solid black;
 }
 #mainmenu .links a:hover{
-    border-left: thick solid lime;
+    color: #6789AA;
+    background: linear-gradient(180deg, #F9F8FC, #E8E7FB);
 }
-
-#mainmenu .links{
-    border-top: thin solid black;
-    border-bottom: thin solid black;
-}
-
-/* Fixed background
-
-#mainmenu #background {
-    left: 0;
-    top: 0;
-    height: 100%;
-    position: fixed;
-    width: 14em;
-    background-color: #2BA1FF;
-    z-index: -123;
-}
-
-*/
 
 /* - - - Main - - - */
 #main{
