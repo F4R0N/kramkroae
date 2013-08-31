@@ -1,6 +1,6 @@
 <h2>Stundenplan <?= $VARS["EditLink"] ?></h2>
 <? print_r(htmlentities($VARS)) ?>
-<table border="0">
+<table border="0" id="schedule">
     <thead>
         <?
         foreach ($VARS["scheduleHead"][0] as $thContent): ?>
