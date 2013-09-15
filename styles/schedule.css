@@ -21,7 +21,6 @@ table tbody tr{
     border-radius: 5px;
 }
 table tbody tr:hover{
-    background-color: lightgrey;
     box-shadow: 0px 0px 10px black;
 }
 textarea#lesson{
