@@ -1,4 +1,4 @@
-<form action="index.php?screen=schedule&mode=edit" method="GET" accept-charset="UTF-8">
+<form action="" method="POST" accept-charset="UTF-8">
     <h2>Stundenplan bearbeiten - <button type="submit" name="">&Auml;ndern</button></h2>
     <table border="0">
         <thead>

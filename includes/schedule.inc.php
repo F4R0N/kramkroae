@@ -9,25 +9,23 @@ if($user->hasRight("Schedule")){
     $tpl->assign("EditLink", "| <a href='?screen=schedule&mode=edit'>Bearbeiten</a>");
     if(isset($_GET["mode"]) && $_GET["mode"] == "edit"){
         $tpl->addMainTemplate("editSchedule.tpl.php");
+        if($_POST["lesson"]){
+            $schedule->editSchedule($_POST["lesson"], $_POST["time"], $_POST["subject"]);
+        }
     }
 }
 if(!isset($_GET["mode"])){
     if($schedule->checkScheduleAvail()){
-        if(isset($_GET["lesson"]) && isset($_GET["time"]) && isset($_GET["subject"])){
-        }
         $tpl->addMainTemplate("schedule.tpl.php");
         $tpl->assign("Title", "Stundenplan");
         $tpl->assign("maxLesson", $schedule->getMaxLesson());
         $tpl->assign("maxDay", $schedule->getMaxDay());
     }else{
         if($user->hasRight("Schedule")){
-            $tpl->addMainTemplate("editschedule.tpl.php");
+            $tpl->addMainTemplate("editSchedule.tpl.php");
         }else{
             $tpl->addMainTemplate("noSchedule.tpl.php");
         }
     }
-}
-if($_GET["mode"] == "new"){
-    echo "<h1>1</h1>";
 }
 ?>
