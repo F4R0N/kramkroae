@@ -45,7 +45,6 @@
                 <a href="index.php?screen=homework">Hausaufgaben</a>
                 <a href="index.php?screen=substitutions">Vertretungsplan</a>
                 <a href="index.php?screen=calendar">Kalender</a>
-                <a href="index.php?screen=hwhelper">HA-Helfer</a>
             </nav>
         </nav>
         <div id="main">
