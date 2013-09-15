@@ -108,7 +108,7 @@ class homeworks {
                     Updated
                 )
                 VALUES(
-                    '" . $this->mysqli->real_escape_string($homework) . "',
+                    '" . trim($this->mysqli->real_escape_string($homework)) . "',
                     '" . $this->mysqli->real_escape_string($start) . "',
                     '" . $this->mysqli->real_escape_string($end) . "',
                     '" . $this->mysqli->real_escape_string($subjectID) . "',
@@ -160,7 +160,7 @@ class homeworks {
             UPDATE
                 Homeworks
             SET
-                Homework = '" . $this->mysqli->real_escape_string($homework) . "',
+                Homework = '" . trim($this->mysqli->real_escape_string($homework)) . "',
                 SubjectID = '" . $this->mysqli->real_escape_string($subjectID) . "',
                 Start = '" . $this->mysqli->real_escape_string($start) . "',
                 End = '" . $this->mysqli->real_escape_string($end) . "',
