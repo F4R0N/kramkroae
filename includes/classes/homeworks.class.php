@@ -31,7 +31,10 @@ class homeworks {
                 Homeworks.SubjectID = Subjects.ID 
             WHERE
                 ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
-            AND End > Now()
+            AND 
+                End > Now()
+            AND
+                Display = 1
         ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {
@@ -105,7 +108,8 @@ class homeworks {
                     SubjectID,
                     ClassID,
                     UpdatedBy,
-                    Updated
+                    Updated,
+                    Display
                 )
                 VALUES(
                     '" . trim($this->mysqli->real_escape_string($homework)) . "',
@@ -114,7 +118,8 @@ class homeworks {
                     '" . $this->mysqli->real_escape_string($subjectID) . "',
                     '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "',
                     '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
-                    NOW()
+                    NOW(),
+                    1
                 );
         ";
         $this->mysqli->query($sql);
@@ -124,9 +129,10 @@ class homeworks {
 
     public function deleteHomework($id) {
         $sql = "
-            DELETE
-            FROM
+            Update
                 Homeworks
+            SET
+                Display = 0
             WHERE
                 ID = '" . $this->mysqli->real_escape_string($id) . "'
         ";
