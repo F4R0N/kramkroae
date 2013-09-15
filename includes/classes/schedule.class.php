@@ -78,26 +78,54 @@ class schedule {
     }
     
     public function getSchedule(){
-        $sql = "SELECT 
-                    Subject,
-                    Lesson,
-                    Day
-                FROM 
-                    Schedules 
-                LEFT JOIN 
-                    Subjects 
-                ON 
-                    Schedules.SubjectID = Subjects.ID 
-                WHERE 
-                    ClassID = '" . $this->user->getClassID() . "'
+        $sql = "
+            SELECT 
+                Subject, 
+                Schedules.Lesson as 'Lesson', 
+                Day, 
+                SchedulesTimes.Time as 'Time' 
+            FROM 
+                Schedules 
+            LEFT JOIN 
+                Subjects 
+            ON 
+                Schedules.SubjectID = Subjects.ID
+            LEFT JOIN 
+                SchedulesTimes 
+            ON 
+                Schedules.Lesson = SchedulesTimes.Lesson
+            WHERE
+                Schedules.ClassID = '" . $this->user->getClassID() . "'
                 ";
+     
         $result = $this->mysqli->query($sql);
         while($obj = $result->fetch_object()){
             $this->schedule[$obj->Day][$obj->Lesson] = $obj;
         }
         return $this->schedule;
     }
-
+    public function editSchedule($lesson, $time, $subject){
+        for($i = 0; $i < count($lesson); $i++){
+            ?>
+            <pre>
+                <? print_r($lesson);?>
+                <? print_r($time); ?>
+                <? print_r($subject); ?>
+            </pre>
+            <?
+            updateScheduleLessonTime($lesson[$i], $time[$i]);
+        }
+    }
+    
+    private function updateScheduleLessonTime($lesson, $time){
+        $sql = "
+                UPDATE
+                    ScheduleTimes
+                SET
+                    Time = 
+                ";
+    }
+    
     public function intoDatabase(){
             $sql = "INSERT INTO 
                         Schedules(
