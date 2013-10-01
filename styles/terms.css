@@ -22,10 +22,21 @@ div#backToLinks{
 
 div#backToLinks a{
     text-decoration: none;
+    border: thin solid black;
+    display:inline-block;
+    width: 10em;
+    padding: 0.42em;
+    box-shadow: 0px 1px 10px black;
 }
 
-div#backToLinks a:active, a:visited, a:active:visited{
+div#backToLinks a:hover{
+    background-color: white;
     color: blue;
+}
+
+
+div#backToLinks a:active, a:visited, a:active:visited{
+    color: black;
 }
 
 div#lastUpdate{
