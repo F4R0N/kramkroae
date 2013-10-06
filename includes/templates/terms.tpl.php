@@ -1,9 +1,11 @@
-<h2>Vertragsbedingungen</h2>
-<section id="content">
+<div id="topBar">
+    <h2>Vertragsbedingungen</h2>
     <div id="backToLinks">
         <a href="index.php?screen=registry">Zur Registrierung</a>
         <a href="index.php?screen=overview">Zur Startseite</a>
     </div>
+</div>
+<section id="content">
     <h3>1. Registrierung</h3>
     1.1 Die Registrierung ist und bleibt vollkommen kostenlos.</br>
     1.2 Es d&uuml;rgen keine falschen Daten angeben werden. Ansonsten kommt es zu einer L&ouml;schung des Accounts.</br>
