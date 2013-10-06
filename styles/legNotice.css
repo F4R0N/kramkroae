@@ -1,0 +1,55 @@
+body{
+    background-color: rgb(232, 231, 251);
+    padding: 1em 10em;  
+}
+
+div#topBar h2{
+    text-align: center;
+}
+
+div#topBar{
+    font-family: Gill, Helvetica, sans-serif;
+    border: thin solid #1F7BE4;
+    background-color: #1F7BE4;
+    color: #E8E7FB;
+    left: 0;
+    top: 0;
+    right: 0;
+    position: absolute;
+    box-shadow: 0px 3px 8px black;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-bottom: 0.5em;
+}
+
+div#topBarLinks{
+    text-align: center;
+}
+
+div#topBarLinks a{
+    background-color: lightgray;
+    text-decoration: none;
+    border: thin solid lightgray;
+    display:inline-block;
+    width: 10em;
+    padding: 0.42em;
+    color: black;
+}
+
+div#topBar a:hover{
+    color: #1F7BE4;
+}
+
+div#topBar a:active, a:visited, a:active:visited{
+    color: black;
+}
+section#content{
+    padding: 2em 7em;
+    background-color: lightgray;
+    margin: 0 auto;
+    margin-top: 5em;
+}
+
+section#content h4{
+     margin-bottom:0px
+}
