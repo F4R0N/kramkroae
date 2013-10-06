@@ -7,6 +7,7 @@ h2{
 }
 
 div#topBar{
+    font-family: Gill, Helvetica, sans-serif;
     border: thin solid #1F7BE4;
     background-color: #1F7BE4;
     color: #E8E7FB;
