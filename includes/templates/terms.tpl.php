@@ -1,8 +1,8 @@
 <div id="topBar">
     <h2>Vertragsbedingungen</h2>
     <div id="backToLinks">
-        <a href="index.php?screen=registry">Zur Registrierung</a>
-        <a href="index.php?screen=overview">Zur Startseite</a>
+        <a href="index.php">Startseite</a>
+        <a href="index.php?screen=registry">Registrierung</a>
     </div>
 </div>
 <section id="content">
