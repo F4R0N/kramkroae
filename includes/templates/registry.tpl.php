@@ -1,8 +1,8 @@
 <div id="topBar">
     <h2>Registrierung</h2> 
     <div id="topBarLinks">
+        <a href="index.php">Startseite</a>
         <a href="index.php?screen=terms">Vertragsbedingungen</a>
-        <a href="index.php?screen=overview">Startseite</a>
     </div>
 </div>
 <form method="POST" action="" name="registry">
