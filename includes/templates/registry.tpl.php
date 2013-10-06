@@ -1,4 +1,10 @@
-<h2>Registrierung</h2>
+<div id="topBar">
+    <h2>Registrierung</h2> 
+    <div id="topBarLinks">
+        <a href="index.php?screen=terms">Vertragsbedingungen</a>
+        <a href="index.php?screen=overview">Startseite</a>
+    </div>
+</div>
 <form method="POST" action="" name="registry">
     <input type="text" id="name" name="firstName" placeholder="Vorname" value="<?= $VARS["firstName"] ?>" required autofocus/>
     <input type="text" id="name" name="lastName" placeholder="Nachname" value="<?= $VARS["lastName"]?>"required />
@@ -22,7 +28,7 @@
 
         <input type="checkbox" id="terms" name="acceptTerms" required value="1"/>
         <label for="terms">
-            Ich stimme den <a href="">AGBs</a> zu!
+            Ich stimme den <a href="index.php?screen=terms">AGBs</a> zu!
         </label>
         <br />
         <button type="submit" name="registerSubmit" value="1">Registrieren</button>
