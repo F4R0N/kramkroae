@@ -9,14 +9,14 @@
     </thead>
     <tbody>
         <?
-        while ($row = getOlderVersions()) {
-            ?>
+       /* while ($row = getOlderVersions()) {
+           ?>
             <tr>
                 <td><?= $VARS["olderVersion"];?></td>
                 <td><?= $VARS["olderDescription"];?></td>
             </tr>
             <?
         }
-        ?>
+        */?>
     </tbody>
 </table>
