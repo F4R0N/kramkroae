@@ -6,6 +6,8 @@ class overview {
     private $tmrwEvents;
     private $tmrwSchedule;
     
+    //date_default_timezone_set('Europe/Berlin');
+    
     public function __construct() {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
     }
