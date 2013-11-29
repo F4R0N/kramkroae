@@ -22,8 +22,8 @@ a {
 
 /* - - - Obenmenue - - - */
 #usermenu{
-    border: thin solid #1F7BE4;
-    background-color: #1F7BE4;
+    border: thin solid #1D6AD3;
+    background-color: #1D6AD3;
     color: #E8E7FB;
     left: 0;
     top: 0;
@@ -51,10 +51,10 @@ a {
     color: #BCDEFF;
 }
 #logo{
-    border: thin solid #1F7BE4;
+    border: thin solid #1D6AD3;
     color: #E8E7FB;
     font-size: xx-large;
-    background: #1F7BE4;
+    background: #1D6AD3;
     font-weight: 900;
     width: 5.4em;
     font-family:"courier",Georgia,Serif;
