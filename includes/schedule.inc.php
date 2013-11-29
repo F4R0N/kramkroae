@@ -1,9 +1,7 @@
 <?php
 include_once 'classes/schedule.class.php';
 $schedule = new schedule($user);
-$tpl->assign("scheduleHead", $schedule->getScheduleThead());
-$tpl->assign("scheduleBody", $schedule->getSchedule());
-$tpl->assign("lesson", $schedule->getLessonsTime());
+
 $tpl->addCss(array("name" => "schedule.css"));
 if($user->hasRight("Schedule")){
     $tpl->assign("EditLink", "| <a href='?screen=schedule&mode=edit'>Bearbeiten</a>");
@@ -14,6 +12,11 @@ if($user->hasRight("Schedule")){
         }
     }
 }
+
+$tpl->assign("scheduleHead", $schedule->getScheduleThead());
+$tpl->assign("scheduleBody", $schedule->getSchedule());
+$tpl->assign("lesson", $schedule->getLessonsTime());
+
 if(!isset($_GET["mode"])){
     if($schedule->checkScheduleAvail()){
         $tpl->addMainTemplate("schedule.tpl.php");

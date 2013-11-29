@@ -1,5 +1,5 @@
 <h2>Stundenplan <?= $VARS["EditLink"] ?></h2>
-<? print_r(htmlentities($VARS)) ?>
+<? print_r($VARS) ?>
 <table border="0" id="schedule">
     <thead>
         <?
