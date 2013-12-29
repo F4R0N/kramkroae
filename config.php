@@ -21,7 +21,8 @@ $allowedOnlinePages = array(
     "settings",
     "list",
     "terms",
-    "legNotice"
+    "legNotice",
+    "profile"
 );
 $allowedOfflinePages = array(
     "login",
