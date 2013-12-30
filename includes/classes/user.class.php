@@ -89,37 +89,9 @@ class user {
     function getSchoolID() {
         return $this->SchoolID;
     }
-    
-    function getSchoolNameByID($schoolID){
-        $sql = "SELECT 
-                    SchoolName
-                FROM
-                    Schools
-                WHERE
-                    ID = '" . $schoolID . "'";
-        $result = $this->mysqli->query($sql);
-         while ($row = $result->fetch_assoc()) {
-            $schoolName = $row["SchoolName"];
-        }
-        return $schoolName;
-    }
 
     function getClassID() {
         return $this->ClassID;
-    }
-    
-    function getClassNameByID($classID){
-        $sql = "SELECT 
-                    ClassName
-                FROM
-                    Classes
-                WHERE
-                    ID = '" . $classID . "'";
-        $result = $this->mysqli->query($sql);
-         while ($row = $result->fetch_assoc()) {
-            $className = $row["ClassName"];
-        }
-        return $className;
     }
     
     function getClassmates(){
