@@ -19,11 +19,11 @@ section#dates{
 }
 
 section#homework{
-    width: 33em;
+    width: 36em;
 }
 
 section#subjects {
-    width: 16em;
+    width: 15em;
 }
 
 section h3{
@@ -55,9 +55,6 @@ table#timetable thead th{
 table#timetable tr {
     text-align: center;
 }
-
-div.actHW{
+div.hwCard{
     border: thin solid black;
-    padding-bottom: 23em;
 }
-    
