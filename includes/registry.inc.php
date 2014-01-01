@@ -1,5 +1,5 @@
 <?php
-if($_GET["mode"] == "user" || !isset($_GET["mode"])){
+if($_GET["mode"] == "user" || !isset($_GET["mode"]) || $_GET["mode"] == ""){
     
     include_once 'classes/registry.class.php';
     $registry = new registry();

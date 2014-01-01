@@ -1,7 +1,8 @@
 <div id="topBar">
-    <h2>Registrierung</h2> 
+    <h2>Registrierung f&uuml;r Sch&uuml;ler und Studenten</h2> 
     <div id="topBarLinks">
         <a href="index.php">Startseite</a>
+        <a href="index.php?screen=registry&mode=school">Schulregistrierung</a>
         <a href="index.php?screen=terms">Vertragsbedingungen</a>
     </div>
 </div>

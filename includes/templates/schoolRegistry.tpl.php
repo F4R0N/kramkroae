@@ -1,4 +1,11 @@
-<h2>Registrierung f&uuml;r Bildungseinrichtungen</h2>
+<div id="topBar">
+    <h2>Registrierung f&uuml;r Bildungseinrichtungen</h2>
+    <div id="topBarLinks">
+        <a href="index.php">Startseite</a>
+        <a href="index.php?screen=registry&mode=user">Nutzerregistrierung</a>
+        <a href="index.php?screen=terms">Vertragsbedingungen</a>
+    </div>
+</div>
 <form method="POST" name="registry">
     <div id="registryHeader">
         <input type="text" id="schoolname" name="schoolName" placeholder="Schulname" />
