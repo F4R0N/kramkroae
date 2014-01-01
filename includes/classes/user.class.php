@@ -35,17 +35,6 @@ class user {
         header("LOCATION: /index.php?screen=login");
     }
 
-    function updateLastAction() {
-        $this->mysqli->query("
-            UPDATE
-                Users
-            SET
-                LastAction = NOW()
-            WHERE
-                ID = " . $this->ID . "
-        ");
-    }
-
     function getLoggedLogins() {
         /**
          * @return array with objects of logged logins( IP, Time, Successed )
@@ -96,16 +85,14 @@ class user {
     
     function getClassmates(){
         $sql = "SELECT
-                    ID,
                     FirstName,
-                    LastName,
-                    LastAction
+                    LastName
                 FROM
                     Users
                 WHERE
                     ClassID = '" . $this->ClassID . "'
                 ORDER BY
-                    LastAction DESC
+                    RegistryDate DESC
                 ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {
