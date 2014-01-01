@@ -2,7 +2,8 @@
     <h2>Vertragsbedingungen</h2>
     <div id="backToLinks">
         <a href="index.php">Startseite</a>
-        <a href="index.php?screen=registry">Registrierung</a>
+        <a href="index.php?screen=registry&mode=user">Nutzerregistrierung</a>
+        <a href="index.php?screen=registry&mode=school">Schulregistrierung</a>
     </div>
 </div>
 <section id="content">
@@ -13,7 +14,7 @@
     1.4 Es darf sich nur registriert werden, wenn noch keine Mitgliedschaft bei uns vorliegt.</br>
     1.5 Im Falle einer nicht vollst&auml;ndig abgeschlossenen Registrierung, versichern wir, dass wir die eingegebenen Daten nicht speichern.</br>
     1.6 Falls die zur Registration angegebenen Daten nicht durch die Betreiber als akzeptabel angesehen werden, liegt diesen das Recht vor, die Daten zu &auml;ndern.</br>
-    1.7 Im Falle, dass Sie weder Student noch Lehrkraft/Professor sind, ist es Ihnen verboten, sich zu registrieren.<br /> 
+    1.7 Im Falle, dass Sie weder Sch&uuml;ler/Student noch Lehrkraft/Professor sind, ist es Ihnen verboten, sich zu registrieren.<br /> 
     1.8 Eine Registration kann nur abgeschlossen werden, wenn diese Vertragsbedingungen akzeptiert werden.
     </p>&nbsp;</p>
 
