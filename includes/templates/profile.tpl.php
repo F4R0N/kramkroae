@@ -27,11 +27,11 @@
         </tr>
         <tr>
             <td>angem. Kurse in dieser Klasse:</td>
-            <td><?= $VARS["countCourses"] ?>$</td>
+            <td><?= $VARS["countCourses"] ?></td>
         </tr>
         <tr>
             <td>Stunden/Woche:</td>
-            <td>42</td>
+            <td><?= $VARS["countLessons"] ?></td>
         </tr>
     </tbody>
 </table>

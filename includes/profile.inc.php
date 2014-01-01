@@ -23,13 +23,16 @@
     $classRDate = $school->getClassRegistryDateByID($classID, 2);
     $tpl->assign("classRDate", $classRDate);
     
-    $HWUploaded = $school->getHWUploadedByClassID($classID);
+    $HWUploaded = $school->countHWByClassID($classID);
     $tpl->assign("HWUploaded", $HWUploaded);
     
     $subsUploaded = $school->countSubsByClassID($classID);
     $tpl->assign("subsUploaded", $subsUploaded);
     
     $countCourses = $school->countClassCoursesByClassID($classID);
-    $tpl->assign("$countCourses", $countCourses);
+    $tpl->assign("countCourses", $countCourses);
+    
+    $countLessons = $school->countLessonsByClassID($classID);
+    $tpl->assign("countLessons", $countLessons);
     
 ?>

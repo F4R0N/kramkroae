@@ -40,15 +40,6 @@ class school {
         return $className;
     }
     
-    function getHWUploadedByClassID($classID){
-        $sql = "SELECT ID FROM Homeworks WHERE ClassID = '" . $classID . "'";
-        $result = $this->mysqli->query($sql);
-         while ($row = $result->fetch_assoc()) {
-            $HWUploaded = count($row["ID"]);
-        }
-        return $HWUploaded;
-    }
-    
     function getClassRegistryDateByID($classID, $printType){        
         $sql = "SELECT                                              
                     RegistryDate 
@@ -67,22 +58,36 @@ class school {
         }
     }
     
+    function countHWByClassID($classID){
+        $sql = "SELECT ID FROM Homeworks WHERE ClassID = '" . $classID . "'";
+        $result = $this->mysqli->query($sql);
+        $HWUploaded = $result->num_rows;
+        
+        return $HWUploaded;
+    }
+    
     function countSubsByClassID($classID){
         $sql = "SELECT ID FROM Substitutions WHERE ClassID = '" . $classID . "'" ;
         $result = $this->mysqli->query($sql);
-         while ($row = $result->fetch_assoc()) {
-            $Subsploaded = count($row["ID"]);
-        }
-        return $Subsploaded;
+        $subsUploaded = $result->num_rows;
+        
+        return $subsUploaded;
     }
     
     function countClassCoursesByClassID($classID){
-        $sql = "SELECT ID FROM Courses WHERE ClassIDs LIKE '%0%'";
+        $sql = "SELECT ID FROM Courses WHERE ClassIDs LIKE '%" . $classID . "%'";
         $result = $this->mysqli->query($sql);
-         while ($row = $result->fetch_assoc()) {
-            $countCourses = count($row["ID"]);
-        }
+        $countCourses = $result->num_rows;
+        
         return $countCourses;
+    }
+    
+    function countLessonsByClassID($classID){
+        $sql = "SELECT ID FROM Schedules WHERE ClassID = '" . $classID . "'";
+        $result = $this->mysqli->query($sql);
+        $countLessons = $result->num_rows;
+        
+        return $countLessons;
     }
 }
 
