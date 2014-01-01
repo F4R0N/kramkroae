@@ -27,10 +27,9 @@
                 <div id="logo">F98.DE/HA</div>
             </a>
             <nav class="links">
-                <a href="index.php?logout=true">Logout</a>
                 <a href="index.php?screen=settings">Einstellungen</a>
                 <a href="index.php?screen=list">Benutzerliste</a>
-                <a href="index.php?screen=infdev">Entwickler Infos</a>
+                <a id="logout" href="index.php?logout=true">Logout</a>
             </nav>
         </nav>
         <nav id="mainmenu">

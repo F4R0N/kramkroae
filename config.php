@@ -12,7 +12,6 @@ define("UMLAUT_SMALL_U", "Ã¼");
 $allowedOnlinePages = array(
     "homework",
     "overview",
-    "infdev",
     "schedule",
     "hwhelper",
     "substitutions",
