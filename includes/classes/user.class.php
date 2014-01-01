@@ -22,7 +22,6 @@ class user {
             $this->Pats = $obj->Pats;
             $this->SchoolID = $obj->SchoolID;
             $this->ClassID = $obj->ClassID;
-
         }
     }
 
@@ -82,8 +81,8 @@ class user {
     function getClassID() {
         return $this->ClassID;
     }
-    
-    function getClassmates(){
+
+    function getClassmates() {
         $sql = "SELECT
                     FirstName,
                     LastName
@@ -100,12 +99,12 @@ class user {
         }
         return $Classmates;
     }
-    
-    function getCountClassmates(){
+
+    function getCountClassmates() {
         return count($this->getClassmates());
     }
-    
-    function hasRight($right){
+
+    function hasRight($right) {
         $sql = "SELECT 
                     * 
                 FROM 
@@ -119,16 +118,17 @@ class user {
                 OR
                     `Right` = 'God'
                 AND 
-                    UserID = " . $this->ID ."
+                    UserID = " . $this->ID . "
                         
                 ";
         $result = $this->mysqli->query($sql);
-        
-        if($result->num_rows !== 0){
+
+        if ($result->num_rows !== 0) {
             return true;
         }
         return false;
     }
+
 }
 
 ?>

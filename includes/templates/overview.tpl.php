@@ -1,4 +1,4 @@
-<h2>Was steht morgen <?= $VARS["tomorrowDay"] ?>, dem <?= $VARS["tomorrowDate"]; ?> an?</h2>
+<h2>Was steht morgen <?= $VARS["tomorrowDay"] ?>, dem <?= $VARS["tomorrowDate"]; ?>, an?</h2>
 <article>
     <table id="all">
         <tr>
@@ -18,28 +18,35 @@
             <td>
                 <section id="homework">
                     <h3>Hausaufgaben</h3>
+                    <? if($VARS["countHW"] != 0){ ?>
                     <div class="hwCard">
-                        <table>
+                        <table class="hwInfo">
                             <tr>
-                                <td>Biologie</td>
+                                <td><b>Fach</b></td> 
+                                <td><b>Datum</b></td>
+                                <td><b>Hausaufgabe</b></td>
                             </tr>
+                            <?  for($i = 0; $i < $VARS["countHW"]; $i++){ ?>
                             <tr>
-                                <td>Bis zum 23.3.37</td>
+                                <td><?= $VARS["hwSub"][$i] ?></td>
+                                <td><?= $VARS["hwEnd"][$i] ?></td>
+                                <td><?= $VARS["homework"][$i] ?></td>
                             </tr>
+                            <? } ?>
                         </table>
-                        <div class="actHW">
-                            Hier steht irgendeine Hausaufgabe
-                        </div>
                     </div>
+                    <? }else{ ?>
+                    <i>Es sind keine Hausaufgaben zu machen!</i>
+                    <? } ?>
                 </section>
             </td>
             <td>
-               <section id="subjects">
+                <section id="subjects">
                     <h3>Stundenplan</h3>
                     <table id="timetable">
                         <thead>
-                            <th>Stunde</th>
-                            <th>Fach</th>
+                        <th>Stunde</th>
+                        <th>Fach</th>
                         </thead>
                         <tbody>
                             <tr>
