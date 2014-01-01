@@ -50,6 +50,8 @@ class login {
             $_SESSION['UserID'] = $this->ID;
             $this->setEmailCookie($saveMail, $email);
             $loginSucceeded = true;
+            $sql = "UPDATE Users SET SecurityCode = '0'";
+            $result = $this->mysqli->query($sql);
         }
         $this->logLogin($loginSucceeded);
         return $loginSucceeded;

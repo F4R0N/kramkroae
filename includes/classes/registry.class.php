@@ -187,9 +187,6 @@ Jetzt aber viel Spa&szlig; und viel Freude mit Fabian1998.de
 Ihre Login-E-Mail: " . $this->email . "
 <p>
 Hier k&ouml;nnen Sie sich sofort einloggen: <a href='http:\\www.fabian1998.de/kramkroae/login.php'>Zum Login</a>
-<p>
-Falls Sie Ihr Passwort vergessen haben sollten, klicken Sie bitte hier:
-<a href='http:\\www.fabian1998.de/kramkroae/index.php?screen=forgotpw'>Passwort vergessen ?</a>
 </body>
 </html>";
         $header = "From: Fabian1998 < noreply@fabian1998.de >\n";

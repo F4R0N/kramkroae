@@ -26,7 +26,8 @@ $allowedOfflinePages = array(
     "login",
     "registry",
     "terms",
-    "legNotice"
+    "legNotice",
+    "pwforgot"
 );
 
 ?>

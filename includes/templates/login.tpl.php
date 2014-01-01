@@ -10,7 +10,7 @@
                 </tr>
                 <tr id="subLogin">
                     <td>E-Mail merken: <input type="checkbox" name="rememberEmail" <?= $VARS["Checked"] ?>/></td>
-                    <td><a href="">Passwort vergessen?</a></td>
+                    <td><a href="index.php?screen=pwforgot">Passwort vergessen?</a></td>
                 </tr>
             </table>
         </form>
