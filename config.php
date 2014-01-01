@@ -13,7 +13,6 @@ $allowedOnlinePages = array(
     "homework",
     "overview",
     "infdev",
-    "message",
     "schedule",
     "hwhelper",
     "substitutions",

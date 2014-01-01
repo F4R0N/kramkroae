@@ -28,7 +28,6 @@
             </a>
             <nav class="links">
                 <a href="index.php?logout=true">Logout</a>
-                <a href="index.php?screen=message">Nachrichten (<?= $VARS["MessagesCount"] ?>)</a>
                 <a href="index.php?screen=settings">Einstellungen</a>
                 <a href="index.php?screen=list">Benutzerliste</a>
                 <a href="index.php?screen=infdev">Entwickler Infos</a>

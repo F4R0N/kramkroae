@@ -56,7 +56,6 @@ $tpl->addJS(array("path" => "js/mainmenu.js"));
 $tpl->assign("Title", "Startseite");
 $tpl->assign("FirstName", $user->getFirstName());
 $tpl->assign("LastName", $user->getLastName());
-$tpl->assign("MessagesCount", $user->getUnreadMessages());
 $profileImagePath = PATH_TO_PROFIL_IMAGES . $user->getID() . ".png";
 
 if (file_exists($profileImagePath)) {

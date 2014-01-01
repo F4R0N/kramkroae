@@ -118,20 +118,6 @@ class user {
         return count($this->getClassmates());
     }
     
-    function getUnreadMessages() {
-        $sql = "SELECT
-                    ID
-                FROM
-                    Conversations
-                WHERE
-                    Members LIKE '%;" . $this->ID . ";%'
-        ";
-        $result = $this->mysqli->query($sql);
-        $count = $result->num_rows;
-
-        return $count;
-    }
-    
     function hasRight($right){
         $sql = "SELECT 
                     * 
