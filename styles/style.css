@@ -47,6 +47,12 @@ a {
     margin-right: 10px;
     font-size: 18px;
 }
+
+#usermenu .links a#logout{	
+    float: right;
+    margin-right: 1.337em;
+}
+
 #usermenu .links a:hover{
     color: #BCDEFF;
 }
