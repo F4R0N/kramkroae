@@ -23,13 +23,11 @@
                         <table class="hwInfo">
                             <tr>
                                 <td><b>Fach</b></td> 
-                                <td><b>Datum</b></td>
                                 <td><b>Hausaufgabe</b></td>
                             </tr>
                             <?  for($i = 0; $i < $VARS["countHW"]; $i++){ ?>
                             <tr>
                                 <td><?= $VARS["hwSub"][$i] ?></td>
-                                <td><?= $VARS["hwEnd"][$i] ?></td>
                                 <td><?= $VARS["homework"][$i] ?></td>
                             </tr>
                             <? } ?>

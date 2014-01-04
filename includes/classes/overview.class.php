@@ -32,8 +32,7 @@ class overview {
         $data = array();
         $sql = "SELECT 
                     Homework,
-                    SubjectID,
-                    End
+                    SubjectID
                 FROM
                     Homeworks
                 LEFT JOIN
