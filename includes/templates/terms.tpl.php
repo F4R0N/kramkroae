@@ -1,5 +1,5 @@
 <div id="topBar">
-    <h2>Vertragsbedingungen</h2>
+    <h2>Vertragsbedingungen/Richtlinien</h2>
     <div id="backToLinks">
         <a href="index.php">Startseite</a>
         <a href="index.php?screen=registry&mode=user">Nutzerregistrierung</a>
@@ -7,51 +7,26 @@
     </div>
 </div>
 <section id="content">
-    <h3>1. Registrierung</h3>
-    1.1 Die Registrierung ist und bleibt vollkommen kostenlos.</br>
-    1.2 Es d&uuml;rgen keine falschen Daten angeben werden. Ansonsten kommt es zu einer L&ouml;schung des Accounts.</br>
-    1.3 Es darf nur sein eigenes Profil erstellt werden.</br>
-    1.4 Es darf sich nur registriert werden, wenn noch keine Mitgliedschaft bei uns vorliegt.</br>
-    1.5 Im Falle einer nicht vollst&auml;ndig abgeschlossenen Registrierung, versichern wir, dass wir die eingegebenen Daten nicht speichern.</br>
-    1.6 Falls die zur Registration angegebenen Daten nicht durch die Betreiber als akzeptabel angesehen werden, liegt diesen das Recht vor, die Daten zu &auml;ndern.</br>
-    1.7 Im Falle, dass Sie weder Sch&uuml;ler/Student noch Lehrkraft/Professor sind, ist es Ihnen verboten, sich zu registrieren.<br /> 
-    1.8 Eine Registration kann nur abgeschlossen werden, wenn diese Vertragsbedingungen akzeptiert werden.
-    </p>&nbsp;</p>
-
-    <h3>2. Pers&ouml;nliche Daten</h3>
-    2.1 Standardm&auml;&szlig;ig sind Vorname, Nachname, Klasse/Kurs und Bildungseinrichtung f&uuml;r jeden registrierten Benutzer sichtbar.</br>
-    2.2 Standardm&auml;&szlig;ig kann jeder aus derselben Klasse/Kurs die Uhrzeit und das Datum der letzten Aktivit&auml;t sehen.
-    </p>&nbsp;</p>
-
-    <h3>3. Sicherheit</h3>
-    Wir versuchen die Daten bestens zu sch&uuml;tzen, k&ouml;nnen dieses jedoch nicht garantieren.</br>
-    3.1 Geben Sie Ihr Passwort nicht weiter und lassen Sie keinen Fremden an Ihren Account heran.</br>
-    3.2 Greifen Sie nicht mit Viren/Trojanern/Bots/etc. die Daten unserer Seite an.</br>
-    3.3 Schleusen Sie keinen Code auf der gesamten Webseite ein. <br />
-    </p>&nbsp;</p>
-
-    <h3>4. Links</h3>
-    4.1 Es sind Links zu Internetseiten dritter Parteien oder Ressourcen enthalten.</br>
-    4.2 Es wird keine Verantwortung f&uuml;r den Inhalt, deren Richtigkeit, und &Auml;hnliches &uuml;bernommen.</br>
-    4.3 Der Benutzer &uuml;bernimmt v&ouml;llige und alleinige Verantwortung f&uuml;r m&ouml;gliche Risiken, Krankheiten, etc.
-    </p>&nbsp;</p>
-
-    <h3>5. Hochladen eines Profilbildes</h3>
-    5.1 Es d&uuml;rfen keine unzivilisierten Bilder hochgeladen werden.</br>
-    5.2 Falls 5.1 nicht eingehalten worden ist, besteht die Gefahr einer L&ouml;schung des Bildes.</br>
-    5.3 Nach dem Hochladen des Bildes, liegen die Rechte immernoch bei dem Besitzer des Accounts. Es wird keinen Anspruch auf die Rechte IHRES Bildes erhoben.</br>
-    </p>&nbsp;</p>
-
-    <h3>6. Funktionen und Spiele</h3>
-    6.1 Es sind Funktionen und Spiele vorhanden.<br />
-    6.2 Es ist verboten, sich selber T&auml;tschel hinzuzuf&uuml;gen.<br />
-    6.3 Es ist verboten, Mitglieder zu erpressen oder sie unfreiwillig dazu zu bringen, Sie zu t&auml;tscheln<br />
-    </p>&nbsp;</p>
-
-    <h3>7. Cookies</h3>
-    7.1 Cookies werden genutzt, um Ihnen die Nutzung zu vereinfachen.<br />
+    <h3>1. Registrierung als Sch&uuml;ler/Student</h3>
+    1.1) Die Registrierung ist und bleibt f&uuml;r Sie v&ouml;llig kostenlos.<br />
+    1.2) Sie m&uuml;ssen sich registrieren, um den vollen Umfang dieses Angebotes nutzen zu k&ouml;nnen.<br />
+    1.3) Ihr vollst&auml;ndiger Name wird in unserem Angebot genutzt, um innerhalb Ihrer Klasse eine gewisse Identit&auml;t zu gew&auml;hrleisten.<br />
+    1.4) Ihre E-Mail-Addresse ist erforderlich, da diese genutzt wird, um sich einzuloggen.<br />
+    1.5) Ein Passwort ist ihr Beitrag zur Sicherheit Ihres Accounts und der gesamten Website. <br />
+    1.6) Um Ihnen korrekte Hausaufgaben/Stundenpl&auml;ne/Termine/etc. darstellen zu k&ouml;nnen, benötigen wir Ihre Bildungseinrichtung bei der Sie angemeldet sind. <br />
+    1.7) Ihr Geschlecht wird zu Ihrem Vorteil f&uuml;r aussagekr&auml;ftige f&uuml;r Sie einsehbare Statistiken genutzt.<br />
+    1.8) Bitte akzeptieren Sie diese Richtlinien, da wir ansonsten nicht in der Lage sind Ihnen unseren Dienst zur Verf&uuml;gung zu stellen.
     
+    <h3>2. Registrierung als Bildungseinrichtung</h3>
+    2.1) Bei der Registrierung einer Bildungseinrichtung f&auml;llt eine monatliche Geb&uuml;hr von 25,- Euro an.<br />
+    2.2) Die ersten zwei Wochen k&ouml;nnen als Testphase genutzt werden und, um einen erfolgreichen Start in die geb&uuml;hrenpflichtige Phase zu garantieren.<br />
+    2.3) Als eine Bildungseinrichtung ist es m&ouml;glich eine unbegrenzte Anzahl von Klassen und Kursen anzulegen.<br />
+    2.4) Nach der Registrierung m&uuml;ssen Sie Ihre Unterrichtsf&auml;cher angeben.<br />
+    2.5) Die bei der Registrierung von Ihnen angegebenen Daten (au&szlig;er Passwort) sind &ouml;ffentlich einsehbar und k&ouml;nnen zus&auml;tzlich als Schulkontaktprofil genutzt werden.<br />
+    2.6) Bitte akzeptieren Sie diese Richtlinien, da wir ansonsten nicht in der Lage sind Ihnen unseren Dienst zur Verf&uuml;gung zu stellen.
+    
+    <h3>3. </h3>
     <div id="lastUpdate">
-        Letzte &Uuml;berarbeitung: 03. August 2013 23:30 - Neue Richtlinien wurden hinzugef&uuml;gt
+        Letzte &Uuml;berarbeitung: 02. M&auml;rz 2014 02:53 - Komplette &Uuml;berarbeitung der Richtlinien
     </div>
 </section>
