@@ -17,7 +17,8 @@ $allowedOnlinePages = array(
     "substitutions",
     "calendar",
     "settings",
-    "list",
+    "classList",
+    "schoolList",
     "terms",
     "legNotice",
     "profile"

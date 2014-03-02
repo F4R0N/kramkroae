@@ -28,7 +28,8 @@
             </a>
             <nav class="links">
                 <a href="index.php?screen=settings">Einstellungen</a>
-                <a href="index.php?screen=list">Benutzerliste</a>
+                <a href="index.php?screen=classList">Meine Klasse</a>
+                <a href="index.php?screen=schoolList">Meine Schule</a>
                 <a id="logout" href="index.php?logout=true">Logout</a>
             </nav>
         </nav>

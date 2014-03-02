@@ -125,8 +125,26 @@ class user {
 
         if ($result->num_rows !== 0) {
             return true;
+        }else{
+            return false;
         }
-        return false;
+    }
+    
+    function getClassesFromSchool(){
+        $sql = "SELECT 
+                    ClassName 
+                FROM 
+                    Classes 
+                WHERE
+                    SchoolID = '" . $this->SchoolID . "'
+                ORDER BY 
+                    RegistryDate DESC";
+        $result = $this->mysqli->query($sql);
+        
+        while ($obj = $result->fetch_object()) {
+            $Classes[] = $obj;
+        }
+        return $Classes;
     }
 
 }
