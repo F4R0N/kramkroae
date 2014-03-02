@@ -11,8 +11,7 @@
     <input type="text" id="name" name="lastName" placeholder="Nachname" value="<?= $VARS["lastName"]?>"required />
     <br />
 
-    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= $VARS["email"]?>" required/>
-    <input type="email" id="email" name="emailCheck" placeholder="E-Mail-Adresse wiederholen" value="<?= $VARS["emailCheck"]?>" required/>
+    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= $VARS["emailPlaceholder"]?>" required/>
     <br />
 
     <input type="password" id="password" name="password" placeholder="Passwort" required/>

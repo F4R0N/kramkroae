@@ -7,13 +7,14 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"]) || $_GET["mode"] == ""){
         if (!$registry->checkIfErrors()) {
             $registry->register();
         }else{
-            $tpl->assign("Errors", $registry->getErrors());
+            //$tpl->assign("Errors", $registry->getErrors());
             $tpl->assign("firstName", htmlentities($_POST["firstName"]));
             $tpl->assign("lastName", htmlentities($_POST["lastName"]));
             $tpl->assign("email", htmlentities($_POST["email"]));
-            $tpl->assign("emailCheck", htmlentities($_POST["emailCheck"]));
             
-            $tpl->addMainTemplate("errors.tpl.php");
+            $tpl->assign("emailPlaceholder", $registry->checkEmail());
+            
+            //$tpl->addMainTemplate("errors.tpl.php");
             if($_POST["gender"] == 1){
                 $tpl->assign("checkedOne", $registry->getCheckedGender(htmlentities($_POST["gender"])));
             }elseif($_POST["gender"] == 0){

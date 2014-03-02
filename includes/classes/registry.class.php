@@ -21,33 +21,30 @@ class registry {
     function __destruct() {
         $this->mysqli->close();
     }
-    
-    function getCheckedGender($gender){
-        if($gender == "0"){
+
+    function getCheckedGender($gender) {
+        if ($gender == "0") {
             return 'checked = "checked"';
-        }elseif($gender == "1"){
+        } elseif ($gender == "1") {
             return 'checked = "checked"';
         }
     }
-    
+
     function getErrors() {
         return $this->errors;
     }
+
     function checkIfErrors() {
-        $this->getRegistryValues();
-        $this->checkNames();
-        $this->checkPassword();
-        $this->checkEmail();
-        $this->checkGender();
-        $this->checkSchoolID();
-        $this->checkAcceptTerms();
-        if(count($this->errors)){
-            return true;
-        }else{
+        if ($this->getRegistryValues() == true && $this->checkNames() == false &&
+                $this->checkPassword() == false && $this->checkEmail() == false &&
+                $this->checkGender() == false && $this->checkSchoolID() == false &&
+                $this->checkAcceptTerms() == false) {
             return false;
+        }else{
+            return true;
         }
     }
-    
+
     function register() {
         $this->intoDatabase();
         $this->sendRegistryEmail();
@@ -58,27 +55,27 @@ class registry {
         $this->firstName = $this->mysqli->real_escape_string(trim($_POST["firstName"]));
         $this->lastName = $this->mysqli->real_escape_string(trim($_POST["lastName"]));
         $this->email = strtolower($this->mysqli->real_escape_string(trim($_POST["email"])));
-        $this->emailCheck = strtolower($this->mysqli->real_escape_string(trim($_POST["emailCheck"])));
         $this->password = $this->mysqli->real_escape_string(trim($_POST["password"]));
         $this->passwordCheck = $this->mysqli->real_escape_string(trim($_POST["passwordCheck"]));
         $this->gender = $this->mysqli->real_escape_string(trim($_POST["gender"]));
         $this->schoolID = $this->mysqli->real_escape_string(trim($_POST["schoolID"]));
         $this->acceptTerms = $this->mysqli->real_escape_string(trim($_POST["acceptTerms"]));
-        
+
         return true;
     }
 
     function checkNames() {
         if ($this->firstName == "") {
-            $this->errors[1] = "Bitte den Vornamen angeben!";
+            return "Bitte den Vornamen angeben!";
         } elseif (!ctype_alpha($this->firstName)) {
-            $this->errors[2] = "Bitte im Vornamen nur Buchstaben verwenden!";
+            return "Bitte im Vornamen nur Buchstaben verwenden!";
         } elseif ($this->lastName == "") {
-            $this->errors[3] = "Bitte den Nachnamen angeben!";
+            return "Bitte den Nachnamen angeben!";
         } elseif (!ctype_alpha($this->lastName)) {
-            $this->errors[4] = "Bitte im Nachnamen nur Buchstaben verwenden!";
+            return "Bitte im Nachnamen nur Buchstaben verwenden!";
+        } else {
+            return false;
         }
-        return true;
     }
 
     function checkEmail() {
@@ -91,46 +88,38 @@ class registry {
                ";
         $result = $this->mysqli->query($sql);
         $numberUser = $result->num_rows;
-        $sql = "SELECT 
-                    ID 
-                FROM 
-                    Schools 
-                WHERE 
-                    Email = '" . $this->email . "'
-               ";
-        $result = $this->mysqli->query($sql);
-        $numberSchool = $result->num_rows;
+
         if ($this->email == "") {
-            $this->errors[5] = "Bitte eine E-Mail-Adresse angeben!";
-        } elseif ($numberUser !== 0 || $numberSchool !== 0) {
-            $this->errors[6] = "Die E-Mail-Adresse wird bereits verwendet!<br />
-                                Bitte eine andere E-Mail-Adresse angeben!";
+            return "Bitte eine E-Mail-Adresse angeben!";
+        } elseif ($numberUser !== 0) {
+            return "Die E-Mail-Adresse wird bereits verwendet!";
         } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $this->errors[7] = "Bitte eine g&uuml;ltige E-Mail-Adresse angeben!";
-        } elseif ($this->email !== $this->emailCheck) {
-            $this->errors[8] = "Bitte eine korrekte E-Mail-Wiederholung angeben!";
+            return "Bitte eine g&uuml;ltige E-Mail-Adresse angeben!";
+        } else {
+            return false;
         }
-        return true;
     }
 
     function checkPassword() {
         if ($this->password !== $this->passwordCheck) {
-            $this->errors[9] = "Bitte eine korrekte Passwortwiederholung angeben!";
+            return "Bitte eine korrekte Passwortwiederholung angeben!";
         } elseif (strlen($this->password) < 6) {
-            $this->errors[10] = "Bitte ein mindestens 6-stelliges Passwort w&auml;hlen!";
+            return "Bitte ein mindestens 6-stelliges Passwort w&auml;hlen!";
         } elseif (ctype_alpha($this->password)) {
-            $this->errors[11] = "Bitte auch numerische Zahlen im Passwort verwenden!";
+            return "Bitte auch numerische Zahlen im Passwort verwenden!";
         } elseif (ctype_digit($this->password)) {
-            $this->errors[12] = "Bitte auch Buchstaben im Passwort verwenden!";
+            return "Bitte auch Buchstaben im Passwort verwenden!";
+        } else {
+            return false;
         }
-        return true;
     }
 
     function checkGender() {
         if ($this->gender < 0 || $this->gender > 1) {
-            $this->errors[13] = "Bitte ein gegebenes Geschlecht ausw&auml;hlen!";
+            return "Bitte ein gegebenes Geschlecht ausw&auml;hlen!";
+        } else {
+            return false;
         }
-        return true;
     }
 
     function checkSchoolID() {
@@ -138,17 +127,18 @@ class registry {
         $result = $this->mysqli->query($sql);
         $number = $result->num_rows;
         if ($number != 1) {
-            $this->errors[14] = "Diese Schule wurde noch nicht registriert!<br />
-                                Registriere <a href=''>HIER</a> eine neue Schule.";
+            return "Diese Schule wurde noch nicht registriert!";
+        } else {
+            return false;
         }
-        return true;
     }
 
     function checkAcceptTerms() {
         if ($this->acceptTerms != "1") {
-            $this->errors[15] = "Bitte den Vertragsbestimmungen zustimmen!";
+            return "Bitte den Vertragsbestimmungen zustimmen!";
+        } else {
+            return false;
         }
-        return true;
     }
 
     function intoDatabase() {
@@ -198,6 +188,7 @@ Hier k&ouml;nnen Sie sich sofort einloggen: <a href='http:\\www.fabian1998.de/kr
         header("LOCATION: index.php?screen=overview&email=$this->email");
         return true;
     }
- }
+
+}
 
 ?>
