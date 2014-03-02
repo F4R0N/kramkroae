@@ -101,3 +101,9 @@ input#name{
 #registryBottom button:active{
     box-shadow: 0px 0px 2px black;
 }
+#registryFailMessage{
+    color: red;
+    text-align: center;
+    margin-top: 0.69em;
+    margin-bottom: -1.42em;
+}

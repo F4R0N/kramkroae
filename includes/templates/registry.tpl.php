@@ -11,11 +11,11 @@
     <input type="text" id="name" name="lastName" placeholder="Nachname" value="<?= $VARS["lastName"]?>"required />
     <br />
 
-    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= $VARS["emailPlaceholder"]?>" required/>
+    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= $VARS["email"]?>" required/>
     <br />
 
-    <input type="password" id="password" name="password" placeholder="Passwort" required/>
-    <input type="password" id="password" name="passwordCheck" placeholder="Passwort wiederholen" required/>
+    <input type="password" id="password" name="password" placeholder="Passwort" title="mind. 6 Zeichen(Buchstaben+Zahlen)" required/>
+    <input type="password" id="password" name="passwordCheck" placeholder="Passwort wiederholen" title="Bitte Passwort wiederholen" required/>
     <br />
 
     <input type="text" name="schoolID" id="schoolID" placeholder="Bildungseinrichtung" required autocomplete="off"/>
@@ -32,6 +32,9 @@
         </label>
         <br />
         <button type="submit" name="registerSubmit" value="1">Registrieren</button>
+        <div id="registryFailMessage">
+            <?= $VARS["registryFailMessage"]?>
+        </div>
     </div>
 </form>
 <script>

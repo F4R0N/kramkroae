@@ -66,13 +66,13 @@ class registry {
 
     function checkNames() {
         if ($this->firstName == "") {
-            return "Bitte den Vornamen angeben!";
+            return true;
         } elseif (!ctype_alpha($this->firstName)) {
-            return "Bitte im Vornamen nur Buchstaben verwenden!";
+            return true;
         } elseif ($this->lastName == "") {
-            return "Bitte den Nachnamen angeben!";
+            return true;
         } elseif (!ctype_alpha($this->lastName)) {
-            return "Bitte im Nachnamen nur Buchstaben verwenden!";
+            return true;
         } else {
             return false;
         }
@@ -90,11 +90,11 @@ class registry {
         $numberUser = $result->num_rows;
 
         if ($this->email == "") {
-            return "Bitte eine E-Mail-Adresse angeben!";
+            return true;
         } elseif ($numberUser !== 0) {
-            return "Die E-Mail-Adresse wird bereits verwendet!";
+            return true;
         } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            return "Bitte eine g&uuml;ltige E-Mail-Adresse angeben!";
+            return true;
         } else {
             return false;
         }
@@ -102,13 +102,13 @@ class registry {
 
     function checkPassword() {
         if ($this->password !== $this->passwordCheck) {
-            return "Bitte eine korrekte Passwortwiederholung angeben!";
+            return true;
         } elseif (strlen($this->password) < 6) {
-            return "Bitte ein mindestens 6-stelliges Passwort w&auml;hlen!";
+            return true;
         } elseif (ctype_alpha($this->password)) {
-            return "Bitte auch numerische Zahlen im Passwort verwenden!";
+            return true;
         } elseif (ctype_digit($this->password)) {
-            return "Bitte auch Buchstaben im Passwort verwenden!";
+            return true;
         } else {
             return false;
         }
@@ -116,7 +116,7 @@ class registry {
 
     function checkGender() {
         if ($this->gender < 0 || $this->gender > 1) {
-            return "Bitte ein gegebenes Geschlecht ausw&auml;hlen!";
+            return true;
         } else {
             return false;
         }
@@ -127,7 +127,7 @@ class registry {
         $result = $this->mysqli->query($sql);
         $number = $result->num_rows;
         if ($number != 1) {
-            return "Diese Schule wurde noch nicht registriert!";
+            return true;
         } else {
             return false;
         }
@@ -135,7 +135,7 @@ class registry {
 
     function checkAcceptTerms() {
         if ($this->acceptTerms != "1") {
-            return "Bitte den Vertragsbestimmungen zustimmen!";
+            return true;
         } else {
             return false;
         }
