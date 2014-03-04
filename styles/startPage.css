@@ -46,9 +46,9 @@ table#timetable td{
 }
 
 table#timetable thead th{
-    background-color: lightblue;
-    color: black;
-    border-bottom: thin solid gray;
+    background-color: #1F88FF;
+    color: white;
+    border-bottom: thin solid #1F88FF;
     padding: 4px;
 }
 
