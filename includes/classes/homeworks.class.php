@@ -7,10 +7,29 @@ class homeworks {
     private $user;
     private $subjects;
     private $errors;
-
+    
     public function __construct($user) {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
         $this->user = $user;
+    }
+    
+    private function timestampToFormString($timestamp){
+        $tsArray = explode(" ", $timestamp);
+        $date = $tsArray[0];
+        $time = $tsArray[1];
+        
+        $dateArray = explode("-", $date);
+        $timeArray = explode(":", $time);
+        
+        $year = $dateArray[0];
+        $month = $dateArray[1];
+        $day = $dateArray[2];
+        
+        $hour = $timeArray[0];
+        $min = $timeArray[1];
+        
+        $string = $day . ". " . $month . ". " . $year . " " . $hour . ":" . $min;
+        return $string;
     }
 
     public function setHomeworks() {
@@ -53,18 +72,19 @@ class homeworks {
     public function getLastUpdate() {
         $sql = "
             SELECT
-                DATE_FORMAT( Updated, '%d.%m.%Y um %H:%i:%s Uhr') as Updated
+                Updated
             FROM
                 Homeworks
             WHERE
-                ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
-            ORDER BY 
-                Updated DESC 
-            LIMIT 0, 1
+                ClassID = '1'
+            ORDER BY
+            	Updated DESC
+            LIMIT
+            	0, 1
         ";
         $result = $this->mysqli->query($sql);
         $obj = $result->fetch_object();
-        return $obj->Updated;
+        return $this->timestampToFormString($obj->Updated);
     }
 
     public function getLastUpdaterID() {
