@@ -85,11 +85,11 @@ class registry {
     function checkNames() {
         if ($this->firstName == "") {
             return true;
-        } elseif (!ctype_alpha($this->checkUml($this->firstName))) { // Hier kommt Fehler wegen Umlaut
+        } elseif (!ctype_alpha($this->checkUml($this->firstName))) { 
             return true;
         } elseif ($this->lastName == "") {
             return true;
-        } elseif (!ctype_alpha($this->checkUml($this->lastName))) { // Hier kommt auch Fehler vor
+        } elseif (!ctype_alpha($this->checkUml($this->lastName))) {
             return true;
         } else {
             return false;
