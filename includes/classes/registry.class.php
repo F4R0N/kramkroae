@@ -64,15 +64,38 @@ class registry {
         return true;
     }
 
+    private function checkUml($word){
+	if(preg_match("/ä/", $word)){
+		return true;
+	}else if(preg_match("/ö/", $word)){
+		return true;
+	}else if(preg_match("/ü/", $word)){
+		return true;
+	}else{
+		return false;
+	}
+    }
+
+    private function changeUml($word){
+	$suchmuster = array('/ä/', '/ö/', '/ü/');
+	$ersetzungen = array('ae', 'oe', 'ue');
+	return preg_replace($suchmuster, $ersetzungen, $word);
+    }
+    
     function checkNames() {
         if ($this->firstName == "") {
             return true;
-        } elseif (!ctype_alpha($this->firstName)) {
+        } else if ($this->lastName == "") {
             return true;
-        } elseif ($this->lastName == "") {
-            return true;
-        } elseif (!ctype_alpha($this->lastName)) {
-            return true;
+        } else if ($this->checkUml($this->firstName)){ // Hier kommt auch Fehler vor
+            if (!ctype_alpha($this->changeUml($this->firstName))){
+                return true;
+            }
+            if($this->checkUml($this->lastName)){
+               if (!ctype_alpha($this->changeUml($this->lastName))){
+                   return true;
+                }
+            }
         } else {
             return false;
         }
