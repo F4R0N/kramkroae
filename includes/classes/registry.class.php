@@ -64,38 +64,33 @@ class registry {
         return true;
     }
 
-    private function checkUml($word){
+    function checkUml($word){
 	if(preg_match("/ä/", $word)){
-		return true;
+		$suchmuster = '/ä/';
+		$ersetzungen = 'ae';
+		return preg_replace($suchmuster, $ersetzungen, $word);
 	}else if(preg_match("/ö/", $word)){
-		return true;
+		$suchmuster = '/ö/';
+		$ersetzungen = 'oe';
+		return preg_replace($suchmuster, $ersetzungen, $word);
 	}else if(preg_match("/ü/", $word)){
-		return true;
+		$suchmuster = '/ü/';
+		$ersetzungen = 'ue';
+		return preg_replace($suchmuster, $ersetzungen, $word);
 	}else{
-		return false;
+		return $word;
 	}
-    }
-
-    private function changeUml($word){
-	$suchmuster = array('/ä/', '/ö/', '/ü/');
-	$ersetzungen = array('ae', 'oe', 'ue');
-	return preg_replace($suchmuster, $ersetzungen, $word);
-    }
+}
     
     function checkNames() {
         if ($this->firstName == "") {
             return true;
-        } else if ($this->lastName == "") {
+        } elseif (!ctype_alpha($this->checkUml($this->firstName))) { // Hier kommt Fehler wegen Umlaut
             return true;
-        } else if ($this->checkUml($this->firstName)){ // Hier kommt auch Fehler vor
-            if (!ctype_alpha($this->changeUml($this->firstName))){
-                return true;
-            }
-            if($this->checkUml($this->lastName)){
-               if (!ctype_alpha($this->changeUml($this->lastName))){
-                   return true;
-                }
-            }
+        } elseif ($this->lastName == "") {
+            return true;
+        } elseif (!ctype_alpha($this->checkUml($this->lastName))) { // Hier kommt auch Fehler vor
+            return true;
         } else {
             return false;
         }
