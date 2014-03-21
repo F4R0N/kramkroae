@@ -3,7 +3,7 @@ include_once 'classes/schedule.class.php';
 $schedule = new schedule($user);
 
 $tpl->addCss(array("name" => "schedule.css"));
-if($user->hasRight("Schedule")){
+if($user->hasRight("Schedule") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")){
     $tpl->assign("EditLink", "| <a href='?screen=schedule&mode=edit'>Bearbeiten</a>");
     if(isset($_GET["mode"]) && $_GET["mode"] == "edit"){
         $tpl->addMainTemplate("editSchedule.tpl.php");
@@ -24,7 +24,7 @@ if(!isset($_GET["mode"])){
         $tpl->assign("maxLesson", $schedule->getMaxLesson());
         $tpl->assign("maxDay", $schedule->getMaxDay());
     }else{
-        if($user->hasRight("Schedule")){
+        if($user->hasRight("Schedule") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")){
             $tpl->addMainTemplate("editSchedule.tpl.php");
         }else{
             $tpl->addMainTemplate("noSchedule.tpl.php");

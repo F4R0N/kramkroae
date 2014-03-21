@@ -6,7 +6,7 @@ $tpl->assign("Title", "Hausaufgaben");
 $tpl->addCss(array("name" => "hausaufgaben.css"));
 
 $homeworks = new homeworks($user);
-if ($user->hasRight("Homeworks")) {
+if ($user->hasRight("Homeworks") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")) {
     if ($_GET["mode"] == "edit" && $_POST["upload"]) {
         if (!$homeworks->insertHomework($_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
             $tpl->assign("Errors", $homeworks->getErrors());
@@ -25,11 +25,11 @@ if ($user->hasRight("Homeworks")) {
 
 $homeworks->setHomeworks();
 $tpl->assign("Weekdays", array('Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Sonnabend'));
-if ($user->hasRight("Homeworks")) {
+if ($user->hasRight("Homeworks") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")) {
     $tpl->assign("EditLink", "| <a href='?screen=homework&mode=edit'>Bearbeiten</a>");
 }
 
-if ($_GET["mode"] == "edit" && $user->hasRight("Homeworks")) {
+if ($_GET["mode"] == "edit" && ($user->hasRight("Homeworks")  || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin"))) {
     $homeworks->setSubjects();
 
     $tpl->addJS(array("path" => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"));

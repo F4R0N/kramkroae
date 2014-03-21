@@ -119,7 +119,6 @@ class user {
                     `Right` = 'God'
                 AND 
                     UserID = " . $this->ID . "
-                        
                 ";
         $result = $this->mysqli->query($sql);
 
