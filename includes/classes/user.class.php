@@ -4,7 +4,6 @@ class user {
 
     private $mysqli;
     private $ID;
-    private $Pats;
     private $FirstName;
     private $LastName;
     private $ClassID;
@@ -14,12 +13,11 @@ class user {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
         if ($ID !== 0) {
             $this->ID = $this->mysqli->real_escape_string($ID);
-            $result = $this->mysqli->query("SELECT FirstName, LastName, Pats, SchoolID, ClassID from Users WHERE ID = " . $this->ID . "");
+            $result = $this->mysqli->query("SELECT FirstName, LastName, SchoolID, ClassID from Users WHERE ID = " . $this->ID . "");
             $obj = $result->fetch_object();
 
             $this->FirstName = $obj->FirstName;
             $this->LastName = $obj->LastName;
-            $this->Pats = $obj->Pats;
             $this->SchoolID = $obj->SchoolID;
             $this->ClassID = $obj->ClassID;
         }
@@ -56,10 +54,6 @@ class user {
             $array[] = $obj;
         }
         return $array;
-    }
-
-    function getPats() {
-        return $this->Pats;
     }
 
     function getLastName() {
