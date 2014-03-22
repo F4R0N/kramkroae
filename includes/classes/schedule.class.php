@@ -78,6 +78,19 @@ class schedule {
         return $this->times;
     }
 
+    public function testGetTimes(){
+        $sql = "SELECT
+                    DATA
+                FROM
+                    SchedulesTime
+                WHERE
+                    ClassID = '" . $this->user->getClassID() . "'
+                ";
+        $result = $this->mysqli->query($sql);
+        $obj = $result->fetch_object();
+        return $obj;
+    }
+    
     public function getSchedule() {
         $sql = "
             SELECT 
@@ -107,7 +120,7 @@ class schedule {
     }
 
     public function editSchedule($lesson, $time, $subject) {
-
+        $this->testGetTimes();
         for ($i = 0; $i < count($lesson); $i++) {
             if($this->checkWhetherTimeUpdateOrInsert($_POST["time"]) == 0){
                 $this->updateScheduleLessonTime($lesson[$i], $time[$i]);
@@ -141,10 +154,13 @@ class schedule {
         $secCount = count($secTimes);
         if ($count == $secCount) {
             //echo "Updaten";
+            return 0;
         } else if ($count > $secCount) {
             //echo "Delete";
+            return 1;
         } else if ($count < $secCount) {
             //echo "Insert";
+            return 2;
         }
     }
 
