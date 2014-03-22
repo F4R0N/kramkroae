@@ -73,7 +73,7 @@ class schedule {
                 ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {
-            $this->times[$obj->LessonTime] = $obj;
+            $this->times[$obj->Lesson] = $obj;
         }
         return $this->times;
     }
@@ -141,13 +141,10 @@ class schedule {
         $secCount = count($secTimes);
         if ($count == $secCount) {
             //echo "Updaten";
-            return 0;
         } else if ($count > $secCount) {
             //echo "Delete";
-            return 1;
         } else if ($count < $secCount) {
             //echo "Insert";
-            return 2;
         }
     }
 
