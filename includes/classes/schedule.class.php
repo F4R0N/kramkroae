@@ -77,19 +77,6 @@ class schedule {
         }
         return $this->times;
     }
-
-    public function testGetTimes(){
-        $sql = "SELECT
-                    DATA
-                FROM
-                    SchedulesTime
-                WHERE
-                    ClassID = '" . $this->user->getClassID() . "'
-                ";
-        $result = $this->mysqli->query($sql);
-        $obj = $result->fetch_object();
-        return $obj;
-    }
     
     public function getSchedule() {
         $sql = "
@@ -120,28 +107,36 @@ class schedule {
     }
 
     public function editSchedule($lesson, $time, $subject) {
-        $this->testGetTimes();
-        for ($i = 0; $i < count($lesson); $i++) {
-            if($this->checkWhetherTimeUpdateOrInsert($_POST["time"]) == 0){
-                $this->updateScheduleLessonTime($lesson[$i], $time[$i]);
-            }else if($this->checkWhetherTimeUpdateOrInsert($_POST["time"]) == 1){
-                // Loeschen
-            }else if($this->checkWhetherTimeUpdateOrInsert($_POST["time"]) == 2){
-                // EInfuegen
-            }
+        $sql = "DELETE FROM SchedulesTimes WHERE ClassID = '" . $this->user->getClassID();
+        $result = $this->mysqli->query($sql);
+        
+        for($i = 0; $i <= 10; $i++){
+            $sql = "INSERT INTO 
+                        SchedulesTimes(
+                            ClassID, 
+                            Lesson, 
+                            LessonTime) 
+                    VALUES(
+                        '" . $this->user->getClassID() . "',
+                        '" . $lesson[$i] . "',
+                        '" . $time[$i] . "'
+                            )";
+            $this->mysqli->query($sql);
         }
+        
+        print_r($subject);
     }
 
     private function checkWhetherTimeUpdateOrInsert($postTime) {
         // aktuelle Time
         $times = array();
         for ($i = 1; $i <= 11; $i++) {
-            $time = $VARS["scheduleBody"][1][$i]->Time;
-            if ($time) {
+            if ($VARS["scheduleBody"][1][$i]->Time) {
                 array_push($times, $time);
             }
-            $firstCount = count($times);
         }
+        print_r($times);
+        $firstCount = count($times);
             
         // geänderte Time
         $secTimes = array();
@@ -152,16 +147,17 @@ class schedule {
             }
         }
         $secCount = count($secTimes);
-        if ($count == $secCount) {
+        if ($firstCount == $secCount) {
             //echo "Updaten";
             return 0;
-        } else if ($count > $secCount) {
+        } else if ($firstCount > $secCount) {
             //echo "Delete";
             return 1;
-        } else if ($count < $secCount) {
+        } else if ($firstCount < $secCount) {
             //echo "Insert";
             return 2;
         }
+        echo $secCount;
     }
 
     private function updateScheduleLessonTime($lesson, $time) {
@@ -169,7 +165,7 @@ class schedule {
                 UPDATE
                     SchedulesTimes
                 SET
-                    Time = '" . $time . "'
+                    LessonTime = '" . $time . "'
                 WHERE
                     Lesson = " . $lesson . "
                 AND
