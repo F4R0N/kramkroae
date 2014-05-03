@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody>
-        <? for($i = 0; $i < count($VARS["Classes"]); $i++){ ?>
+        <?php for($i = 0; $i < count($VARS["Classes"]); $i++){ ?>
             <tr>
                 <td>
                     <?= $i+1 ?>
@@ -16,6 +16,6 @@
                     <?= $VARS["Classes"][$i]->ClassName ?>
                 </td>
             </tr>
-        <? } ?>
+        <?php } ?>
     </tbody>
 </table>

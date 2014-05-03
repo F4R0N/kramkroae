@@ -1,9 +1,9 @@
 <h2>Fehler</h2>
 <?= count($VARS["Errors"])?> Fehler
-<? if(count($VARS["Errors"]) == 1){ ?>
+<?php if(count($VARS["Errors"]) == 1){ ?>
     ist
-<? }else{
-    ?> sind <?
+<?php }else{
+    ?> sind <?php
 } ?>aufgetreten:
 <ol>
 <?php foreach($VARS["Errors"] as $error): ?>

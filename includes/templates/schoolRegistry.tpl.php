@@ -27,9 +27,9 @@
     <div id="contactPC">
         <select name="state">
             <option value="0">Bundesland</option>
-            <?for($i = 0; $i < count($VARS["GStates"]); $i++){ ?>
+            <?php for($i = 0; $i < count($VARS["GStates"]); $i++){ ?>
                 <?= "<option value='" . $VARS["GStates"][$i]->ID . "'>" . $VARS["GStates"][$i]->State . "</option>" ?>
-            <? } ?>
+            <?php } ?>
         </select>
         <input type="text" id="town" name="town" placeholder="Stadt / Dorf"/>
         <input type="text" id="PC" name="postCode" placeholder="PLZ" />

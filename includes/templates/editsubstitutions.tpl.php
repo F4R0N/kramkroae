@@ -1,5 +1,5 @@
 <h2>Bearbeiten</h2>
-<? foreach ($VARS["Dates"] as $date): ?>
+<?php foreach ($VARS["Dates"] as $date): ?>
     <h3><?= $VARS["Weekdays"][$date[0]->DateDay] ?> der <?= htmlentities($date[0]->Date) ?></h3>
     <form action="" method="POST" accept-charset="UTF-8">
         <table cellspacing="1" cellpadding="10">
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <? foreach ($date as $substitution): ?>
+                <?php foreach ($date as $substitution): ?>
                     <tr>
                         <td><input style="width: 10em;" type="date" class="datepicker" name="date[]" value="<?= htmlentities(date("Y-m-d", strtotime($substitution->Date))); ?>"></td>
                         <td><input style="width: 2em;" type="text" name="lesson[]" value="<?= htmlentities($substitution->Lesson); ?>"></td> 
@@ -23,11 +23,11 @@
                         <td><input style="width: 6em;" type="text" name="substitute[]" value="<?= htmlentities($substitution->Substitute); ?>"></td>
                         <td><select name="subject[]">
                                 <?php foreach ($VARS["Subjects"] as $Subject): ?>
-                                    <? if ($Subject->Subject == $substitution->Subject): ?>
+                                    <?php if ($Subject->Subject == $substitution->Subject): ?>
                                         <option selected="selected" style="padding: 1em; background-color: <?= htmlentities($Subject->Background); ?>; color: <?= htmlentities($Subject->Color); ?>" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
-                                    <? else: ?>
+                                    <?php else: ?>
                                         <option style="padding: 1em; background-color: <?= htmlentities($Subject->Background); ?>; color: <?= htmlentities($Subject->Color); ?>" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
-                                    <? endif; ?>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </select></td>
                         <td>    
@@ -39,9 +39,9 @@
                         <td><textarea name="comments[]"><?= htmlentities($substitution->Comments); ?></textarea></td>
                         <td><a href="?screen=substitutions&mode=edit&delete=<?= $substitution->ID ?>">Löschen</a><input name="id[]" type="hidden" value="<?= $substitution->ID ?>"></td>
                     </tr>
-                <? endforeach; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
         <button type="submit" name="edit" value="true">Bearbeiten</button>
     </form>
-<? endforeach; ?>
+<?php endforeach; ?>

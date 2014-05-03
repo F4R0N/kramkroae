@@ -18,24 +18,24 @@
             <td>
                 <section id="homework">
                     <h3>Hausaufgaben</h3>
-                    <? if($VARS["countHW"] != 0){ ?>
+                    <?php if($VARS["countHW"] != 0){ ?>
                     <div class="hwCard">
                         <table class="hwInfo">
                             <tr>
                                 <td><b>Fach</b></td> 
                                 <td><b>Hausaufgabe</b></td>
                             </tr>
-                            <?  for($i = 0; $i < $VARS["countHW"]; $i++){ ?>
+                            <?php  for($i = 0; $i < $VARS["countHW"]; $i++){ ?>
                             <tr>
                                 <td><?= $VARS["hwSub"][$i] ?></td>
                                 <td><?= $VARS["homework"][$i] ?></td>
                             </tr>
-                            <? } ?>
+                            <?php } ?>
                         </table>
                     </div>
-                    <? }else{ ?>
+                    <?php }else{ ?>
                     <i>Es sind keine Hausaufgaben zu machen!</i>
-                    <? } ?>
+                    <?php } ?>
                 </section>
             </td>
             <td>

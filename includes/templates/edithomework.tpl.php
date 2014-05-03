@@ -9,16 +9,16 @@
         <th>&Auml;ndern</th>
         </thead>
         <tbody>
-            <? foreach ($VARS["Homeworks"] as $homework): ?>
+            <?php foreach ($VARS["Homeworks"] as $homework): ?>
                 <tr>
                     <td>
                         <select name="subject[]">
                             <?php foreach ($VARS["Subjects"] as $Subject): ?>
-                                <? if ($Subject->Subject == $homework->Subject): ?>
+                                <?php if ($Subject->Subject == $homework->Subject): ?>
                                     <option selected="selected" style="padding: 1em; background-color: <?= htmlentities($Subject->Background); ?>; color: <?= htmlentities($Subject->Color); ?>" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
-                                <? else: ?>
+                                <?php else: ?>
                                     <option style="padding: 1em; background-color: <?= htmlentities($Subject->Background); ?>; color: <?= htmlentities($Subject->Color); ?>" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
-                                <? endif; ?>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </td>
@@ -36,7 +36,7 @@
                         </a>
                     </td>
                 </tr>
-            <? endforeach; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>        
     <button type="submit" name="edit" value="true">&Auml;ndern</button>

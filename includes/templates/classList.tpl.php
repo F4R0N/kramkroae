@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody>
-        <? for($i = 0; $i < count($VARS["Cm"]); $i++){ ?>
+        <?php for($i = 0; $i < count($VARS["Cm"]); $i++){ ?>
             <tr>
                 <td>
                     <?= $i+1 ?>
@@ -16,6 +16,6 @@
                     <?= $VARS["Cm"][$i]->FirstName . " " . $VARS["Cm"][$i]->LastName ?>
                 </td>
             </tr>
-        <? } ?>
+        <?php } ?>
     </tbody>
 </table>
