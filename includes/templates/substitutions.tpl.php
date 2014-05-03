@@ -30,6 +30,8 @@
     </table>
 <?php endforeach; ?>
 <div id="lastUpdateMessage">
-    Zuletzt aktualisiert am <?= date("d.m.Y H:i",htmlentities($VARS["LastUpdate"])) ?> von 
-    <?= htmlentities($VARS["UpdatedBy"]->getFirstName()) ?> <?= htmlentities($VARS["UpdatedBy"]->getLastName()) ?>
+    Zuletzt aktualisiert am <?= date("d.m.Y",htmlentities($VARS["LastUpdate"])+7200) ?> um 
+    <?= date("H:i",htmlentities($VARS["LastUpdate"])+7200) ?> von 
+    <?= htmlentities($VARS["UpdatedBy"]->getFirstName()) ?> 
+    <?= htmlentities($VARS["UpdatedBy"]->getLastName()) ?>
 </div>

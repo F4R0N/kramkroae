@@ -181,10 +181,19 @@ class substitutions {
     }
 
     public function insertSubstitution($lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date) {
+        $validSubTypes = [1,2,3,4];
         if (!$this->isSubject($subjectID))
-            $this->errors[] = "Ungültiges Fach!";
+            $this->errors[] = "Ung&uuml;ltiges Fach!";
         if (!$this->isDate($date))
-            $this->errors[] = "Ungültiges Datum!";
+            $this->errors[] = "Ung&uuml;ltiges Datum!";
+        if (!in_array($typeID, $validSubTypes))
+            $this->errors[] = "Ung&uuml;ltige Art!";
+        if(!is_numeric($lesson))
+            $this->errors[] = "Ung&uuml;ltige Unterrichtsstunde!";
+        if(!ctype_alpha($teacher))
+            $this->errors[] = "Ung&uuml;ltige/r Lehrer/in!";
+        if(!ctype_alpha($substitute))
+            $this->errors[] = "Ung&uuml;ltige Vertretung!";
 
         if (count($this->errors) !== 0)
             return false;

@@ -5,8 +5,8 @@ table thead tr {
 }
 table{
     border-collapse: collapse;
+    margin-top: -0.69em;
 }
-
 #main #editLink{
     text-align: center;
     margin-top: -1em;
@@ -37,4 +37,48 @@ img#traurigFace:empty
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+table tbody td input, table tbody textarea{
+    padding: 1em;
+}
+
+#uplSubs input, #uplSubs select, #uplSubs textarea{
+    width: 35em;
+    padding:0.42em;
+    margin: 0.42em;
+}
+
+#uplSubs #inputLesson{
+    width: 4em;
+}
+#uplSubs #selectSubject{
+    padding:1em;
+    width: 13em;
+}
+#uplSubs #selectType{
+    padding:1em;
+    width: 20em;
+}
+#uplSubs #inputTeacher{
+    width: 18em;
+}
+#uplSubs #inputSub{
+    width: 18em;
+}
+#uplSubs #inputDate{
+    width: 18em;
+}
+#uplSubs #taInfo{
+    width: 33em;
+}
+#uplSubs #submitButton, #editSubs #submitButton{
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 0.73em;
+    background-color: #1D6AD3;
+    color: white;
+}
+#uplSubs #submitButton:active, #editSubs #submitButton:active{
+    color: #BCDEFF;
 }
