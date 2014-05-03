@@ -1,26 +1,18 @@
-<? 
+<?php
     print_r($VARS);
     echo "<br />";
     echo "<br/>";
 
     $times = array();
     for($i = 1; $i <= 11; $i++){
-<<<<<<< HEAD
-        $time = $VARS["scheduleBody"][1][$i]->Time;
-=======
         $time = $VARS["scheduleBody"][1][$i]->LessonTime;
->>>>>>> schedule
         if($time){ 
             array_push($times, $time);
         }
         $count = count($times);
     }
-<<<<<<< HEAD
-    echo $count;
-=======
     echo "1: " . $count;
     echo "<br/>";
->>>>>>> schedule
     
     $secTimes = array();
     $secTime = $_POST[time];
@@ -30,11 +22,7 @@
         }else{
         }
     }
-<<<<<<< HEAD
-    echo count($secTimes);
-=======
     echo "2: " . count($secTimes);
->>>>>>> schedule
     $secCount = count($secTimes);
     
     echo "<br />";
