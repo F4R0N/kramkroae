@@ -37,7 +37,7 @@
                                 <?php endforeach; ?>
                             </select></td>
                         <td><textarea name="comments[]"><?= htmlentities($substitution->Comments); ?></textarea></td>
-                        <td><a href="?screen=substitutions&mode=edit&delete=<?= $substitution->ID ?>"><img src="/images/theSubsDeleteCross.png"/></a><input name="id[]" type="hidden" value="<?= $substitution->ID ?>"></td>
+                        <td><a href="?screen=substitutions&mode=edit&delete=<?= $substitution->ID ?>"><img src="/images/deleteCross.png"/></a><input name="id[]" type="hidden" value="<?= $substitution->ID ?>"></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

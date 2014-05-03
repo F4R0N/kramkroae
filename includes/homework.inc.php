@@ -3,7 +3,7 @@
 include_once "classes/homeworks.class.php";
 
 $tpl->assign("Title", "Hausaufgaben");
-$tpl->addCss(array("name" => "hausaufgaben.css"));
+$tpl->addCss(array("name" => "homework.css"));
 
 $homeworks = new homeworks($user);
 if ($user->hasRight("Homeworks") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
@@ -26,7 +26,9 @@ if ($user->hasRight("Homeworks") || $user->hasRight("SchoolAdmin") || $user->has
 $homeworks->setHomeworks();
 $tpl->assign("Weekdays", array('Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Sonnabend'));
 if ($user->hasRight("Homeworks") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
-    $tpl->assign("EditLink", "| <a href='?screen=homework&mode=edit'>Bearbeiten</a>");
+    $tpl->assign("EditLink", "<a href='?screen=homework&mode=edit'>Bearbeiten</a>");
+}else{
+    $tpl->assign("EditLink", "");
 }
 
 if ($_GET["mode"] == "edit" && ($user->hasRight("Homeworks")  || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")|| $user->hasRight("God"))) {

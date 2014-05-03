@@ -1,29 +1,30 @@
-<h2>Hausaufgaben bearbeiten</h2>
+<h2>Bearbeiten</h2>
 
 <form action="" method="POST" accept-charset="UTF-8">
-    <table>
-        <thead>
-        <th>Fach</th>
-        <th>Hausaufgabe</th>
-        <th>Datum</th>
-        <th>&Auml;ndern</th>
-        </thead>
-        <tbody>
+    <table cellspacing="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <td>Fach</td>
+                    <td>Hausaufgabe</td>
+                    <td>Datum</td>
+                </tr>
+            </thead>
+            <tbody>
             <?php foreach ($VARS["Homeworks"] as $homework): ?>
                 <tr>
                     <td>
-                        <select name="subject[]">
+                        <select id="editSelectSubject" name="subject[]">
                             <?php foreach ($VARS["Subjects"] as $Subject): ?>
                                 <?php if ($Subject->Subject == $homework->Subject): ?>
-                                    <option selected="selected" style="padding: 1em; background-color: <?= htmlentities($Subject->Background); ?>; color: <?= htmlentities($Subject->Color); ?>" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
+                                    <option selected="selected" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
                                 <?php else: ?>
-                                    <option style="padding: 1em; background-color: <?= htmlentities($Subject->Background); ?>; color: <?= htmlentities($Subject->Color); ?>" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
+                                    <option name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </td>
                     <td>
-                        <textarea name="homework[]"><?= htmlentities($homework->Homework); ?></textarea>
+                        <textarea id="editTaHW" name="homework[]"><?= htmlentities($homework->Homework); ?></textarea>
                     </td>
                     <td>
                         Von: <input type="date" name="start[]" class="datepicker" value="<?= htmlentities(date("Y-m-d", strtotime($homework->Start))) ?>"><br /> 
@@ -32,12 +33,11 @@
                     <td>
                         <input type="hidden" name="id[]" value="<?= $homework->ID; ?>">
                         <a href="?screen=homework&mode=edit&delete=<?= htmlentities($homework->ID) ?>">
-                            L&ouml;schen
+                            <img src="/images/deleteCross.png" />
                         </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
-        </tbody>
     </table>        
-    <button type="submit" name="edit" value="true">&Auml;ndern</button>
+    <button id="editSubmitButton" type="submit" name="edit" value="true">&Auml;ndern</button>
 </form>
