@@ -1,6 +1,7 @@
 <?php
 
 class substitutions {
+
     private $errors;
     private $user;
     private $mysqli;
@@ -87,14 +88,16 @@ class substitutions {
     public function getLastUpdate() {
         $sql = "
             SELECT
-                DATE_FORMAT( Updated, '%d.%m.%Y um %H:%i:%s Uhr') as Updated
+                Updated
             FROM
                 Substitutions
             WHERE
                 ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
             ORDER BY 
-                Updated DESC 
-            LIMIT 0, 1
+                Updated DESC
+            LIMIT
+            	0,1
+
         ";
         $result = $this->mysqli->query($sql);
         $obj = $result->fetch_object();
@@ -176,12 +179,14 @@ class substitutions {
     public function getSubstitutionTypes() {
         return $this->types;
     }
-    
-    public function insertSubstitution($lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date){
-        if(!$this->isSubject($subjectID)) $this->errors[] = "Ungültiges Fach!";
-        if(!$this->isDate($date)) $this->errors[] = "Ungültiges Datum!";
-        
-        if(count($this->errors) !== 0)
+
+    public function insertSubstitution($lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date) {
+        if (!$this->isSubject($subjectID))
+            $this->errors[] = "Ungültiges Fach!";
+        if (!$this->isDate($date))
+            $this->errors[] = "Ungültiges Datum!";
+
+        if (count($this->errors) !== 0)
             return false;
         
         $sql = "
@@ -209,29 +214,33 @@ class substitutions {
                    '" . $this->mysqli->real_escape_string($substitute) . "',
                    '" . $this->mysqli->real_escape_string($typeID) . "',
                    '" . $this->mysqli->real_escape_string($comments) . "',
-                   NOW(),
+                   UNIX_TIMESTAMP(NOW()),
                    '" . $this->mysqli->real_escape_string($this->user->getID()) . "'
                );
         ";
-        $this->mysqli->query($sql);
-        return true;
+        if($this->mysqli->query($sql)){
+            return true;
+        }else{
+        }
     }
-    
-    public function updateSubstitutions($ID, $lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date){
-        for( $i = 0; $i < count($ID); $i++){
-           if(!$this->updateSubstitution($ID[$i], $lesson[$i], $teacher[$i], $substitute[$i], $subjectID[$i], $typeID[$i], $comments[$i], $date[$i])){
-               return false;
-           }
+
+    public function updateSubstitutions($ID, $lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date) {
+        for ($i = 0; $i < count($ID); $i++) {
+            if (!$this->updateSubstitution($ID[$i], $lesson[$i], $teacher[$i], $substitute[$i], $subjectID[$i], $typeID[$i], $comments[$i], $date[$i])) {
+                return false;
+            }
         }
         return true;
     }
-    
-    public function updateSubstitution($ID, $lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date){
-        if(!$this->isSubject($subjectID)) $this->errors[] = "Ungültiges Fach!";
-        if(!$this->isDate($date)) $this->errors[] = "Ungültiges Datum!";
-        if(count($this->errors) !== 0)
+
+    public function updateSubstitution($ID, $lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date) {
+        if (!$this->isSubject($subjectID))
+            $this->errors[] = "Ungültiges Fach!";
+        if (!$this->isDate($date))
+            $this->errors[] = "Ungültiges Datum!";
+        if (count($this->errors) !== 0)
             return false;
-        
+
         $sql = "
             UPDATE
                 Substitutions
@@ -246,7 +255,7 @@ class substitutions {
                 Substitute = '" . $this->mysqli->real_escape_string($substitute) . "',
                 TypeID = '" . $this->mysqli->real_escape_string($typeID) . "',
                 Comments = '" . $this->mysqli->real_escape_string($comments) . "',
-                Updated = NOW(),
+                Updated = UNIX_TIMESTAMP(NOW()),
                 UpdatedBy = '" . $this->mysqli->real_escape_string($this->user->getID()) . "'
             WHERE
                 ID = '" . $this->mysqli->real_escape_string($ID) . "'
@@ -254,23 +263,23 @@ class substitutions {
         $this->mysqli->query($sql);
         return true;
     }
+
     public function deleteSubstitution($id) {
         $sql = "
-            DELETE
-            FROM
+            DELETE FROM
                 Substitutions
             WHERE
                 ID = '" . $this->mysqli->real_escape_string($id) . "'
         ";
 
         $this->mysqli->query($sql);
-
         return true;
     }
 
-    public function getErrors(){
+    public function getErrors() {
         return $this->errors;
     }
+
 }
 
 // Jedes Date hat Array mit Substitutions-Objecten

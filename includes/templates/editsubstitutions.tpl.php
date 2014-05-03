@@ -1,3 +1,4 @@
+<h2>Bearbeiten</h2>
 <? foreach ($VARS["Dates"] as $date): ?>
     <h3><?= $VARS["Weekdays"][$date[0]->DateDay] ?> der <?= htmlentities($date[0]->Date) ?></h3>
     <form action="" method="POST" accept-charset="UTF-8">
@@ -41,6 +42,6 @@
                 <? endforeach; ?>
             </tbody>
         </table>
-        <button type="submit" name="edit" value="true">Hochladen</button>
+        <button type="submit" name="edit" value="true">Bearbeiten</button>
     </form>
 <? endforeach; ?>

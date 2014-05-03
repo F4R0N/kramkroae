@@ -7,7 +7,7 @@ $tpl->addCss(array("name" => "substitutions.css"));
 
 $substitution = new substitutions($user);
 
-if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")) {
+if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
     if ($_GET["mode"] == "edit" && $_POST["upload"]) {
         if (!$substitution->insertSubstitution($_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
             $tpl->assign("Errors", $substitution->getErrors());
@@ -30,11 +30,13 @@ $substitution->setSubstitutions();
 
 $tpl->assign("Weekdays", array('Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Sonnabend'));
 
-if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")) {
-    $tpl->assign("EditLink", "| <a href='?screen=substitutions&mode=edit'>Bearbeiten</a>");
+if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
+    $tpl->assign("EditLink", "<a href='?screen=substitutions&mode=edit'>Bearbeiten</a>");
+}else{
+    $tpl->assign("EditLink", "");
 }
 
-if ($_GET["mode"] == "edit" && $user->hasRight("Substitutions")) {
+if ($_GET["mode"] == "edit" && ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God"))) {
     $substitution->setSubjects();
     $substitution->setSubstitutionTypes();
 
