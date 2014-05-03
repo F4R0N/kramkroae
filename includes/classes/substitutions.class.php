@@ -218,12 +218,9 @@ class substitutions {
                    '" . $this->mysqli->real_escape_string($this->user->getID()) . "'
                );
         ";
-        echo "<br>1.2: Varibale sql erfolgreich erstellt";
         if($this->mysqli->query($sql)){
-            echo "<br>1.3: Theoretisch wikrlich inserted";
             return true;
         }else{
-            echo "<br>1.4: Query fehlgeschlagen";
         }
     }
 
@@ -258,13 +255,12 @@ class substitutions {
                 Substitute = '" . $this->mysqli->real_escape_string($substitute) . "',
                 TypeID = '" . $this->mysqli->real_escape_string($typeID) . "',
                 Comments = '" . $this->mysqli->real_escape_string($comments) . "',
-                Updated = NOW(),
+                Updated = UNIX_TIMESTAMP(NOW()),
                 UpdatedBy = '" . $this->mysqli->real_escape_string($this->user->getID()) . "'
             WHERE
                 ID = '" . $this->mysqli->real_escape_string($ID) . "'
         ";
         $this->mysqli->query($sql);
-        echo "1.5: mysqli ist fertig";
         return true;
     }
 

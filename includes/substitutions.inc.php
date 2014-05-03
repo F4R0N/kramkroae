@@ -8,24 +8,16 @@ $tpl->addCss(array("name" => "substitutions.css"));
 $substitution = new substitutions($user);
 
 if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
-    echo "1: User hat recht";
     if ($_GET["mode"] == "edit" && $_POST["upload"]) {
-        echo "2: user will uploaden";
         if (!$substitution->insertSubstitution($_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
-            echo "3: fehlgeschlagener upload";
             $tpl->assign("Errors", $substitution->getErrors());
             $tpl->addMainTemplate("errors.tpl.php");
-        }else{
-            echo "4: Theoretisch erfolgreicher insert";
         }
     } elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
-        echo "4: user will deleten";
       $substitution->deleteSubstitution($_GET["delete"]);
       header("LOCATION: ?screen=substitutions&mode=edit");
       } elseif ($_GET["mode"] == "edit" && $_POST["edit"]) {
-          echo "5: user will editieren";
         if (!$substitution->updateSubstitutions($_POST["id"], $_POST["lesson"], $_POST["teacher"], $_POST["substitute"], $_POST["subject"], $_POST["type"], $_POST["comments"], $_POST["date"])) {
-            echo "6: fehlgeschlagene editierung";
             $tpl->assign("Errors", $substitution->getErrors());
             $tpl->addMainTemplate("errors.tpl.php");
         }
@@ -45,7 +37,6 @@ if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user-
 }
 
 if ($_GET["mode"] == "edit" && ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God"))) {
-    echo "7: user will editieren und hat rechte";
     $substitution->setSubjects();
     $substitution->setSubstitutionTypes();
 
@@ -55,8 +46,6 @@ if ($_GET["mode"] == "edit" && ($user->hasRight("Substitutions") || $user->hasRi
     $tpl->addJS(array("path" => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"));
     $tpl->addJS(array("path" => "js/datepicker.js"));
     $tpl->addCSS(array("name" => "jquery-ui.css"));
-    
-    echo "8: alles ist gesetzt";
 
     if ($substitution->getCountOfDays() !== 0) {
         $tpl->assign("Dates", $substitution->getSubstitutions());
