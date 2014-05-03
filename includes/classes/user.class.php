@@ -110,8 +110,6 @@ class user {
                     RightProperties.RightID = Rights.ID
                 WHERE
                     `Right` = '" . $this->mysqli->real_escape_string($right) . "'
-                OR
-                    `Right` = 'God'
                 AND
                     UserID = " . $this->ID . "
                 ";

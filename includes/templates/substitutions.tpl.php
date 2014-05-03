@@ -1,7 +1,9 @@
 <h2>Vertretungsplan</h2>
-Zuletzt aktualisiert am <?= htmlentities($VARS["LastUpdate"]) ?> von <?= htmlentities($VARS["UpdatedBy"]->getFirstName()) ?> <?= htmlentities($VARS["UpdatedBy"]->getLastName()) ?> <?= $VARS["EditLink"]; ?>
+<div id="editLink">
+    <?= $VARS["EditLink"]; ?>
+</div>
 <? foreach ($VARS["Dates"] as $date): ?>
-<h3><?= $VARS["Weekdays"][$date[0]->DateDay] ?> der <?= htmlentities($date[0]->Date) ?></h3>
+<h3><?= $VARS["Weekdays"][$date[0]->DateDay] ?>, der <?= htmlentities($date[0]->Date) ?></h3>
     <table cellspacing="1" cellpadding="10">
         <thead>
             <tr>
@@ -27,3 +29,7 @@ Zuletzt aktualisiert am <?= htmlentities($VARS["LastUpdate"]) ?> von <?= htmlent
         </tbody>
     </table>
 <? endforeach; ?>
+<div id="lastUpdateMessage">
+    Zuletzt aktualisiert am <?= date("d.m.Y H:i",htmlentities($VARS["LastUpdate"])) ?> von 
+    <?= htmlentities($VARS["UpdatedBy"]->getFirstName()) ?> <?= htmlentities($VARS["UpdatedBy"]->getLastName()) ?>
+</div>

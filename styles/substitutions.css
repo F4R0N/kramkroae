@@ -1,7 +1,40 @@
-
-
 table thead tr {
     font-weight: bold;
     background-color: #1F88FF;
+    color: #F1F1FF;
+}
+table{
+    border-collapse: collapse;
 }
 
+#main #editLink{
+    text-align: center;
+    margin-top: -1em;
+}
+#main #editLink:active{
+    color: black;
+}
+#lastUpdateMessage{
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 1em;
+}
+
+img#traurigFace
+{
+    position: absolute;
+    max-width: 23%;
+    top: 10%;
+    left: 10%;
+}
+
+img#traurigFace:empty
+{
+    top: 50%;
+    left: 56%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
