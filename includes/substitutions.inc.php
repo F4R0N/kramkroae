@@ -7,7 +7,7 @@ $tpl->addCss(array("name" => "substitutions.css"));
 
 $substitution = new substitutions($user);
 
-if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")) {
+if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
     echo "1: User hat recht";
     if ($_GET["mode"] == "edit" && $_POST["upload"]) {
         echo "2: user will uploaden";
@@ -15,6 +15,8 @@ if ($user->hasRight("Substitutions") || $user->hasRight("SchoolAdmin") || $user-
             echo "3: fehlgeschlagener upload";
             $tpl->assign("Errors", $substitution->getErrors());
             $tpl->addMainTemplate("errors.tpl.php");
+        }else{
+            echo "4: Theoretisch erfolgreicher insert";
         }
     } elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
         echo "4: user will deleten";

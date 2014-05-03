@@ -188,7 +188,7 @@ class substitutions {
 
         if (count($this->errors) !== 0)
             return false;
-
+        
         $sql = "
             INSERT INTO
                 Substitutions(
@@ -214,12 +214,17 @@ class substitutions {
                    '" . $this->mysqli->real_escape_string($substitute) . "',
                    '" . $this->mysqli->real_escape_string($typeID) . "',
                    '" . $this->mysqli->real_escape_string($comments) . "',
-                   NOW(),
+                   UNIX_TIMESTAMP(NOW()),
                    '" . $this->mysqli->real_escape_string($this->user->getID()) . "'
                );
         ";
-        $this->mysqli->query($sql);
-        return true;
+        echo "<br>1.2: Varibale sql erfolgreich erstellt";
+        if($this->mysqli->query($sql)){
+            echo "<br>1.3: Theoretisch wikrlich inserted";
+            return true;
+        }else{
+            echo "<br>1.4: Query fehlgeschlagen";
+        }
     }
 
     public function updateSubstitutions($ID, $lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date) {
@@ -259,6 +264,7 @@ class substitutions {
                 ID = '" . $this->mysqli->real_escape_string($ID) . "'
         ";
         $this->mysqli->query($sql);
+        echo "1.5: mysqli ist fertig";
         return true;
     }
 
