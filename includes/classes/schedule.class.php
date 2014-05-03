@@ -1,6 +1,7 @@
 <?php
 
 class schedule {
+
     private $mysqli;
     private $user;
     private $schedule;
@@ -10,12 +11,12 @@ class schedule {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
         $this->user = $user;
     }
-    
+
     public function __destruct() {
         $this->mysqli->close();
     }
-    
-    public function getMaxDay(){
+
+    public function getMaxDay() {
         $sql = "SELECT 
                     MAX(Day) 
                 AS 
@@ -29,8 +30,8 @@ class schedule {
         $maxLesson = $result->fetch_object();
         return $maxLesson->Day;
     }
-    
-    public function checkScheduleAvail(){
+
+    public function checkScheduleAvail() {
         $sql = "SELECT 
                     ID 
                 FROM 
@@ -39,14 +40,14 @@ class schedule {
                     ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
                 ";
         $result = $this->mysqli->query($sql);
-        if($result->num_rows >= 1){
+        if ($result->num_rows >= 1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    public function getMaxLesson(){
+
+    public function getMaxLesson() {
         $sql = "SELECT 
                     MAX(Lesson) 
                 AS 
@@ -60,30 +61,30 @@ class schedule {
         $maxLesson = $result->fetch_object();
         return $maxLesson->Lesson;
     }
-    
-    public function getLessonsTime(){
-        $sql="SELECT
-                Lesson,
-                Time
-              FROM
-                SchedulesTimes
-              WHERE
-               ClassID = '" . $this->user->getClassID() . "'
-              ";
+
+    public function getLessonsTime() {
+        $sql = "SELECT
+                    Lesson,
+                    LessonTime
+                FROM
+                    SchedulesTimes
+                WHERE
+                    ClassID = '" . $this->user->getClassID() . "'
+                ";
         $result = $this->mysqli->query($sql);
-        while($obj = $result->fetch_object()){
-            $this->times[$obj->Lesson] = $obj;
+        while ($obj = $result->fetch_object()) {
+            $this->times[$obj->LessonTime] = $obj;
         }
         return $this->times;
     }
-    
-    public function getSchedule(){
+
+    public function getSchedule() {
         $sql = "
             SELECT 
                 Subject, 
                 Schedules.Lesson as 'Lesson', 
                 Day, 
-                SchedulesTimes.Time as 'Time' 
+                SchedulesTimes.LessonTime as 'LessonTime' 
             FROM 
                 Schedules 
             LEFT JOIN 
@@ -97,22 +98,60 @@ class schedule {
             WHERE
                 Schedules.ClassID = '" . $this->user->getClassID() . "'
                 ";
-     
+
         $result = $this->mysqli->query($sql);
-        while($obj = $result->fetch_object()){
+        while ($obj = $result->fetch_object()) {
             $this->schedule[$obj->Day][$obj->Lesson] = $obj;
         }
         return $this->schedule;
     }
-    
-    public function editSchedule($lesson, $time, $subject){
-      
-        for($i = 0; $i < count($lesson); $i++){
-            $this->updateScheduleLessonTime($lesson[$i], $time[$i]);
+
+    public function editSchedule($lesson, $time, $subject) {
+
+        for ($i = 0; $i < count($lesson); $i++) {
+            if($this->checkWhetherTimeUpdateOrInsert($_POST["time"]) == 0){
+                $this->updateScheduleLessonTime($lesson[$i], $time[$i]);
+            }else if($this->checkWhetherTimeUpdateOrInsert($_POST["time"]) == 1){
+                // Loeschen
+            }else if($this->checkWhetherTimeUpdateOrInsert($_POST["time"]) == 2){
+                // EInfuegen
+            }
         }
     }
-    
-    private function updateScheduleLessonTime($lesson, $time){
+
+    private function checkWhetherTimeUpdateOrInsert($postTime) {
+        // aktuelle Time
+        $times = array();
+        for ($i = 1; $i <= 11; $i++) {
+            $time = $VARS["scheduleBody"][1][$i]->Time;
+            if ($time) {
+                array_push($times, $time);
+            }
+            $firstCount = count($times);
+        }
+            
+        // geänderte Time
+        $secTimes = array();
+        $secTime = $postTime;
+        for ($i = 0; $i <= 10; $i++) {
+            if ($secTime[$i]) {
+                array_push($secTimes, $secTime[$i]);
+            }
+        }
+        $secCount = count($secTimes);
+        if ($count == $secCount) {
+            //echo "Updaten";
+            return 0;
+        } else if ($count > $secCount) {
+            //echo "Delete";
+            return 1;
+        } else if ($count < $secCount) {
+            //echo "Insert";
+            return 2;
+        }
+    }
+
+    private function updateScheduleLessonTime($lesson, $time) {
         $sql = "
                 UPDATE
                     SchedulesTimes
@@ -125,9 +164,9 @@ class schedule {
                 ";
 
         $this->mysqli->query($sql);
-    }    
-    
-    private function updateScheduleSubjects($subID, $lesson, $day){
+    }
+
+    private function updateScheduleSubjects($subID, $lesson, $day) {
         $sql = "
                 UPDATE
                     Schedules
@@ -142,12 +181,12 @@ class schedule {
                 AND
                    ClassID = " . $this->user->getClassID() . "
                 ";
-
+        die("<pre>$sql</pre>");
         $this->mysqli->query($sql);
     }
-    
-    public function intoDatabase(){
-            $sql = "INSERT INTO 
+
+    public function intoDatabase() {
+        $sql = "INSERT INTO 
                         Schedules(
                            ClassID,
                            Day,
@@ -155,18 +194,18 @@ class schedule {
                            SubjectID
                         ) 
                     VALUES(
-                        '". $this->user->getClassID() . "',
+                        '" . $this->user->getClassID() . "',
                     )";
-            $result = $this->mysqli->query($sql);
-            if($result){
-                return true;
-            }else{
-                return false;
-            }
+        $result = $this->mysqli->query($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     function getScheduleThead() {
-        $scheduleThead[] = array("Stunde", "Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag");
+        $scheduleThead[] = array("Stunde", "Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag");
         return $scheduleThead;
     }
 
