@@ -38,7 +38,7 @@ class calendar {
         $countOfLastMonthDays = $this->getLastMonth()->getCountOfDays();
 
         for ($monthDay = 1; $monthDay <= $firstDayOfThisMonth; $monthDay++) {
-            $this->calendar[$monthDay] = (object) array('Day' => $monthDay + $countOfLastMonthDays - $firstDayOfThisMonth, 'Month' => $this->getThisMonth()->getMonth(), 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
+            $this->calendar[$monthDay] = (object) array('Day' => $monthDay + $countOfLastMonthDays - $firstDayOfThisMonth, 'Month' => $this->getLastMonth()->getMonth(), 'Year' => $this->getLastMonth()->getYear(), 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
         }
     }
 
@@ -47,7 +47,7 @@ class calendar {
         $countOfThisMonthDays = $this->getThisMonth()->getCountOfDays();
 
         for ($monthDay = 1; $monthDay <= $countOfThisMonthDays; $monthDay++) {
-            $this->calendar[$firstDayOfThisMonth + $monthDay] = (object) array('Day' => $monthDay, 'Month' => $this->getThisMonth()->getMonth(), 'Title' => array(), 'Information' => array(), 'Style' => array('thisMonth'));
+            $this->calendar[$firstDayOfThisMonth + $monthDay] = (object) array('Day' => $monthDay, 'Month' => $this->getThisMonth()->getMonth(), 'Year' => $this->getThisMonth()->getYear(), 'Title' => array(), 'Information' => array(), 'Style' => array('thisMonth'));
         }
     }
 
@@ -60,7 +60,7 @@ class calendar {
         $rows = ceil($restDays / 7);
 
         for ($monthDay = 1; $monthDay <= ($rows * 7) - $restDays; $monthDay++) {
-            $this->calendar[$monthDay + $restDays] = (object) array('Day' => $monthDay, 'Month' => $this->getThisMonth()->getMonth(), 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
+            $this->calendar[$monthDay + $restDays] = (object) array('Day' => $monthDay, 'Month' => $this->getNextMonth()->getMonth(), 'Year' => $this->getNextMonth()->getYear(), 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
         }
     }
 
@@ -84,7 +84,7 @@ class calendar {
             $date = explode("-", $event->Date);
             for ( $x = 0; $x <= count($this->calendar); $x ++){
           
-                if( $date[2] == $this->calendar[$x]->Day && $date[1] == $this->calendar[$x]->Month){
+                if( $date[2] == $this->calendar[$x]->Day && $date[1] == $this->calendar[$x]->Month && $date[0] == $this->calendar[$x]->Year){
                         $this->calendar[$x]->Title[] = $event->Title;
                         $this->calendar[$x]->Information[] = $event->Information;
                         if (strlen($event->Style) !== 0){
