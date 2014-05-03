@@ -38,7 +38,7 @@ class calendar {
         $countOfLastMonthDays = $this->getLastMonth()->getCountOfDays();
 
         for ($monthDay = 1; $monthDay <= $firstDayOfThisMonth; $monthDay++) {
-            $this->calendar[$monthDay] = (object) array('Day' => $monthDay + $countOfLastMonthDays - $firstDayOfThisMonth, 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
+            $this->calendar[$monthDay] = (object) array('Day' => $monthDay + $countOfLastMonthDays - $firstDayOfThisMonth, 'Month' => $this->getThisMonth()->getMonth(), 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
         }
     }
 
@@ -47,7 +47,7 @@ class calendar {
         $countOfThisMonthDays = $this->getThisMonth()->getCountOfDays();
 
         for ($monthDay = 1; $monthDay <= $countOfThisMonthDays; $monthDay++) {
-            $this->calendar[$firstDayOfThisMonth + $monthDay] = (object) array('Day' => $monthDay, 'Title' => array(), 'Information' => array(), 'Style' => array('thisMonth'));
+            $this->calendar[$firstDayOfThisMonth + $monthDay] = (object) array('Day' => $monthDay, 'Month' => $this->getThisMonth()->getMonth(), 'Title' => array(), 'Information' => array(), 'Style' => array('thisMonth'));
         }
     }
 
@@ -60,7 +60,7 @@ class calendar {
         $rows = ceil($restDays / 7);
 
         for ($monthDay = 1; $monthDay <= ($rows * 7) - $restDays; $monthDay++) {
-            $this->calendar[$monthDay + $restDays] = (object) array('Day' => $monthDay, 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
+            $this->calendar[$monthDay + $restDays] = (object) array('Day' => $monthDay, 'Month' => $this->getThisMonth()->getMonth(), 'Title' => array(), 'Information' => array(), 'Style' => array('otherMonth'));
         }
     }
 
@@ -81,61 +81,24 @@ class calendar {
         $this->getEvents();
 
         foreach ($this->events as $event) {
-
-            $start = explode('-', $event->Start);
-            $end = explode('-', $event->End);
-            if (count($end) == 1) {
-                $end = $start;
+            $date = explode("-", $event->Date);
+            for ( $x = 0; $x <= count($this->calendar); $x ++){
+          
+                if( $date[2] == $this->calendar[$x]->Day && $date[1] == $this->calendar[$x]->Month){
+                        $this->calendar[$x]->Title[] = $event->Title;
+                        $this->calendar[$x]->Information[] = $event->Information;
+                        if (strlen($event->Style) !== 0){
+                            $style = $event->Style;
+                        }
+                        else {
+                            $style = 'termin_data_event';
+                        }
+                        $this->calendar[$x]->Style[] = $style; 
+                }
             }
-
-            /* if (
-                    $start[1] == $this->getLastMonth()->getMonth() &&
-                    $end[1] == $this->getLastMonth()->getMonth() &&
-                    $start[0] == $this->getLastMonth()->getYear() &&
-                    $end[0] == $this->getLastMonth()->getYear() &&
-                    $end[2] > $this->getLastMonth()->getCountOfDays() - $this->getThisMonth()->getFirstDay() &&
-                    $end[2] < $this->getLastMonth()->getCountOfDays()
-            ) {
-                $this->setEventsForMonth($event, $start, $end, 0);
-            }*/
-            if ($start[1] == $this->getThisMonth()->getMonth() &&
-                    $end[1] == $this->getThisMonth()->getMonth() &&
-                    $start[0] == $this->getThisMonth()->getYear() &&
-                    $end[0] == $this->getThisMonth()->getYear()
-            ) {
-                $this->setEventsForMonth($event, $start, $end, $this->getThisMonth()->getFirstDay());
-            }
-            /*
-            elseif (strtotime($event->Start) < $this->thisMonth->getTimestamp() && strtotime($event->End) > $this->thisMonth->getTimestamp())
-            {
-                $this->setEventsForMonth($event, $start, $end, $this->getThisMonth()->getFirstDay());
-            }elseif ( strtotime($event->Start) < $this->thisMonth->getTimestamp() && strtotime($event->End) > $this->thisMonth->getTimestamp() ) {
-                $this->setEventsForMonth($event, $start, $end, $this->getThisMonth()->getFirstDay());
-            }*/
-            /*
-            if ($start[1] == $this->getNextMonth()->getMonth() &&
-                    $end[1] == $this->getNextMonth()->getMonth() &&
-                    $start[0] == $this->getNextMonth()->getYear() &&
-                    $end[0] == $this->getNextMonth()->getYear() &&
-                    $end[2] < (($this->getThisMonth()->getCountOfDays() + $this->getThisMonth()->getFirstDay()) % 7)
-            ) {
-                $this->setEventsForMonth($event, $start, $end, $start, $end, $this->getThisMonth()->getFirstDay() + $this->getThisMonth()->getCountOfDays());
-            }
-             */
         }
     }
 
-    private function setEventsForMonth($event, $start, $end, $puffer) {
-        for ($day = $start[2]; $day <= $end[2]; $day++) {
-            $this->calendar[($puffer + $day)]->Title[] = $event->Title;
-            $this->calendar[($puffer + $day)]->Information[] = $event->Information;
-            if (strlen($event->Style) !== 0)
-                $style = $event->Style;
-            else
-                $style = 'termin_data_event';
-            $this->calendar[($puffer + $day)]->Style[] = $style;
-        }
-    }
 
     private function getEvents() {
         $sql = "
@@ -150,18 +113,27 @@ class calendar {
                     CLassID = 0
                 AND
                     SchoolID = '" . $this->user->getSchoolID() . "'
-                    )
+                )
+            AND
+                `Start` >= '" . $this->lastMonth->getYear() . "-" . $this->lastMonth->getMonth() . "-" . $this->lastMonth->getFirstDay() . "'
+            AND   
+                `End` <= '" . $this->nextMonth->getYear() . "-" . $this->nextMonth->getMonth() . "-" . $this->nextMonth->getCountOfDays() . "'
         ";
 
         $result = $this->mysqli->query($sql);
 
         while ($obj = $result->fetch_object()) {
-            $this->events[] = $obj;
+            $date = $obj->Start;
+            while ( $obj->End >= $date ){
+                    $obj->Date = $date;
+                    $this->events[] = (object) array("ID" => $obj->ID, "Date" => $date, "Title" => $obj->Title, "Information" => $obj->Information);
+                    $date = date("Y-m-d", strtotime("next day", strtotime($date)));
+            }
         }
     }
 
     private function setToday() {
-        $this->events[] = (object) array('Start' => date('Y') . '-' . date('n') . '-' . date('d'), 'Style' => 'heute');
+        $this->events[] = (object) array('Date' => date('Y') . '-' . date('n') . '-' . date('d'), 'Style' => 'heute');
     }
 
 }
