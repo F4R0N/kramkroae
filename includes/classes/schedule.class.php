@@ -123,8 +123,6 @@ class schedule {
                             )";
             $this->mysqli->query($sql);
         }
-        
-        print_r($subject);
     }
 
     private function checkWhetherTimeUpdateOrInsert($postTime) {

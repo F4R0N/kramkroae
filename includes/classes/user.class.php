@@ -29,15 +29,16 @@ class user {
 
     function logout() {
         session_destroy();
+        setcookie("PHPSESSID", 0, time() - 60);
         header("LOCATION: /index.php?screen=login");
     }
 
     function getLoggedLogins() {
         /**
          * @return array with objects of logged logins( IP, Time, Successed )
-         * 
-         * 
-         *  
+         *
+         *
+         *
          * */
         $result = $this->mysqli->query("
             SELECT
@@ -99,19 +100,19 @@ class user {
     }
 
     function hasRight($right) {
-        $sql = "SELECT 
-                    * 
-                FROM 
-                    RightProperties 
-                LEFT JOIN 
-                    Rights 
-                ON 
+        $sql = "SELECT
+                    *
+                FROM
+                    RightProperties
+                LEFT JOIN
+                    Rights
+                ON
                     RightProperties.RightID = Rights.ID
-                WHERE 
+                WHERE
                     `Right` = '" . $this->mysqli->real_escape_string($right) . "'
                 OR
                     `Right` = 'God'
-                AND 
+                AND
                     UserID = " . $this->ID . "
                 ";
         $result = $this->mysqli->query($sql);
@@ -122,18 +123,18 @@ class user {
             return false;
         }
     }
-    
+
     function getClassesFromSchool(){
-        $sql = "SELECT 
-                    ClassName 
-                FROM 
-                    Classes 
+        $sql = "SELECT
+                    ClassName
+                FROM
+                    Classes
                 WHERE
                     SchoolID = '" . $this->SchoolID . "'
-                ORDER BY 
+                ORDER BY
                     RegistryDate DESC";
         $result = $this->mysqli->query($sql);
-        
+
         while ($obj = $result->fetch_object()) {
             $Classes[] = $obj;
         }
