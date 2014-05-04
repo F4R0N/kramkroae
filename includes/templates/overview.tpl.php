@@ -28,7 +28,7 @@
                             <?php  for($i = 0; $i < $VARS["countHW"]; $i++){ ?>
                             <tr>
                                 <td><?= $VARS["hwSub"][$i] ?></td>
-                                <td><?= $VARS["homework"][$i] ?></td>
+                                <td><?= nl2br($VARS["homework"][$i]) ?></td>
                             </tr>
                             <?php } ?>
                         </table>
@@ -41,7 +41,7 @@
             <td>
                 <section id="subjects">
                     <h3>Stundenplan</h3>
-                    <table id="timetable">
+                    <table class="timetable">
                         <thead>
                         <th>Stunde</th>
                         <th>Fach</th>

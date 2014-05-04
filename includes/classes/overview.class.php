@@ -43,8 +43,11 @@ class overview {
                     ClassID = '1'
                 AND
                     Display = 1
-                AND 
-                    End = CURDATE() + INTERVAL 1 DAY";
+                AND
+                    End >= UNIX_TIMESTAMP(NOW())
+                AND
+                    End < UNIX_TIMESTAMP(NOW()) + 86400
+                 ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {
             array_push($data, $obj);

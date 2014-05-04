@@ -38,7 +38,6 @@ if ($_GET["logout"]) {
 
 $normal["name"] = "style.css";
 $tpl->addCss($normal);
-
 $handheld["name"] = "handheld.css";
 $handheld["media"] = "handheld";
 $tpl->addCss($handheld);
