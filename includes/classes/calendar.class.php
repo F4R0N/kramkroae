@@ -211,9 +211,11 @@ class calendar {
                     Start,
                     End,
                     ClassID,
+                    SchoolID,
                     UpdatedBy,
                     Updated,
-                    Display
+                    Display,
+                    style
                 )
                 VALUES(
                     '" . trim($this->mysqli->real_escape_string($title)) . "',
@@ -221,9 +223,11 @@ class calendar {
                     '" . $this->mysqli->real_escape_string($start) . "',
                     '" . $this->mysqli->real_escape_string($end) . "',
                     '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "',
+                    '" . $this->mysqli->real_escape_string($this->user->getSchoolID()) . "',
                     '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
                     UNIX_TIMESTAMP(NOW()),
-                    1
+                    1,
+                    ''
                 );
         ";
         $this->mysqli->query($sql);
