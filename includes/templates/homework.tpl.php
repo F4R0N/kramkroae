@@ -2,30 +2,25 @@
 <div id="editLink">
     <?= $VARS["EditLink"]; ?>
 </div>
-
-<?php foreach ($VARS["Homeworks"] as $homework): ?>
-    <div id="tableHWSubject">
-        <table>
-            <tbody>
-                <tr id="firstTR">
-                    <td id="subject"><?= htmlentities($homework->Subject); ?></td>
-                    <td></td>
-                </tr>
-                <tr id="secTR">
-                    <td><?= htmlentities($VARS["Weekdays"][$homework->StartDay]); ?>, dem <?= htmlentities($homework->Start); ?> -></td>
-                    <td><?= htmlentities($VARS["Weekdays"][$homework->EndDay]); ?>, dem <?= htmlentities($homework->End); ?></td>
-                </tr>
-                <tr id="thirdTR">
-                    <td><?= nl2br(htmlentities($homework->Homework)); ?></td>
-                </tr>
-            </tbody>
-        </table>
+<div id="allCards">
+    <?php foreach ($VARS["Homeworks"] as $homework): ?>
+        <div id="hwCard">
+            <div id="firstDiv">
+                <?= htmlentities($homework->Subject); ?>
+            </div>
+            <div id="secDiv">
+                <?= htmlentities($VARS["Weekdays"][$homework->StartDay]); ?> - <?= htmlentities($homework->Start); ?>
+                &rarr;
+                <?= htmlentities($VARS["Weekdays"][$homework->EndDay]); ?> - <?= htmlentities($homework->End); ?>
+            </div>
+            <div id="thirdDiv">
+                <?= nl2br(htmlentities($homework->Homework)); ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <div id="lastUpdateMessage">
+        Zuletzt aktualisiert am <?= htmlentities($VARS["LastUpdate"]) ?> von 
+        <?= htmlentities($VARS["UpdatedBy"]->getFirstName()) ?> 
+        <?= htmlentities($VARS["UpdatedBy"]->getLastName()) ?>
     </div>
-<?php endforeach; ?>
-
-
-<div id="lastUpdateMessage">
-    Zuletzt aktualisiert am <?= htmlentities($VARS["LastUpdate"]) ?> von 
-    <?= htmlentities($VARS["UpdatedBy"]->getFirstName()) ?> 
-    <?= htmlentities($VARS["UpdatedBy"]->getLastName()) ?>
 </div>

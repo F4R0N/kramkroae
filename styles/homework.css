@@ -15,35 +15,6 @@ table{
     color: black;
 }
 
-table td{
-    width: 15em;
-}
-table #firstTR td{
-    padding-left: 0.42em;
-    padding-bottom: 0.69em; 
-    padding-top: 0.69em;
-    background-color: blue;
-    color: white;
-}
-
-table #secTR{
-    
-}
-
-table thirdTR{
-    
-}
-
-table td#subject{
-    font-weight: bold;
-}
-
-#tableHWSubject{
-    border: thin solid lightblue;
-    background-color: lightblue;
-    max-width: 30em;
-}
-
 #main #editLink{
     text-align: center;
     margin-top: -1em;
@@ -56,6 +27,7 @@ table td#subject{
     font-style: italic;
     font-size: 12px;
     margin-top: 1em;
+    clear: left;
 }
 
 textarea{
@@ -109,4 +81,35 @@ img#happyFace:empty
 }
 #uplTaHW{
     width: 30em;
+}
+
+#hwCard{
+    border: thin solid black;
+    box-shadow: 2px 0px 10px;
+    width: 30em;
+    height: 15em;
+    margin: 1em;
+    float: left;
+}
+#hwCard #firstDiv{
+    color: #1D6AD3;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-weight: bold;
+    background-color: #E8E7FB;
+}
+#hwCard #secDiv{
+    padding: 0.5em;
+    text-align: center;
+    border-bottom: thin solid black;
+    background-color: #E8E7FB;
+}
+#hwCard #thirdDiv{
+    padding: 0.5em;
+}
+#allCards{
+    display: table;
+    margin-left: 3em;
+    margin-top: 0.5em;
 }
