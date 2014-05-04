@@ -77,3 +77,12 @@ a {
     padding: 0.42em;
 }
 
+.popUps .Date {
+    font-style: italic;
+    margin-top: -1em;
+    margin-bottom: 1em;
+}
+
+#addEvent:target {
+    display: block;
+}

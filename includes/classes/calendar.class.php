@@ -9,6 +9,7 @@ class calendar {
     private $nextMonth;
     private $calendar;
     private $events;
+    private $errors;
 
     public function __construct($user, $month, $year) {
         $timestamp = mktime(0, 0, 0, $month, 1, $year);
@@ -88,6 +89,8 @@ class calendar {
                         $this->calendar[$x]->Title[] = $event->Title;
                         $this->calendar[$x]->Information[] = $event->Information;
                         $this->calendar[$x]->ID[] = $event->ID;
+                        $this->calendar[$x]->Start[] = $event->Start;
+                        $this->calendar[$x]->End[] = $event->End;
                         if (strlen($event->Style) !== 0){
                             $style = $event->Style;
                         }
@@ -108,6 +111,8 @@ class calendar {
             FROM
                 Events
             WHERE
+                `Display` =1
+            AND
                 ClassID = '" . $this->user->getClassID() . "'
             OR
                ( 
@@ -119,7 +124,8 @@ class calendar {
                 `Start` >= '" . $this->lastMonth->getYear() . "-" . $this->lastMonth->getMonth() . "-" . $this->lastMonth->getFirstDay() . "'
             AND   
                 `End` <= '" . $this->nextMonth->getYear() . "-" . $this->nextMonth->getMonth() . "-" . $this->nextMonth->getCountOfDays() . "'
-        ";
+
+";
 
         $result = $this->mysqli->query($sql);
 
@@ -127,7 +133,7 @@ class calendar {
             $date = $obj->Start;
             while ( $obj->End >= $date ){
                     $obj->Date = $date;
-                    $this->events[] = (object) array("ID" => $obj->ID, "Date" => $date, "Title" => $obj->Title, "Information" => $obj->Information);
+                    $this->events[] = (object) array("ID" => $obj->ID, "Start" => $obj->Start, "End" => $obj->End, "Date" => $date, "Title" => $obj->Title, "Information" => $obj->Information);
                     $date = date("Y-m-d", strtotime("next day", strtotime($date)));
             }
         }
@@ -136,7 +142,105 @@ class calendar {
     private function setToday() {
         $this->events[] = (object) array('Date' => date('Y') . '-' . date('n') . '-' . date('d'), 'Style' => 'heute');
     }
+    
+    // EDIT FUNCTIONS
+    
+    public function deleteEvent($id) {
+        $sql = "
+            Update
+                Events
+            SET
+                Display = 0
+            WHERE
+                ID = '" . $this->mysqli->real_escape_string($id) . "'
+        ";
 
+        $this->mysqli->query($sql);
+
+        return true;
+    }
+    
+    public function editEvent($id, $title, $info, $start, $end) {
+        $this->errors = array();
+        if (!$this->isDate($start) || !$this->isDate($end))
+            $this->errors[] = "Ungültiges Datum!";
+        if (strlen($title) <= 1)
+            $this->errors[] = "Title darf nicht leer sein!";
+        if (strlen($info) <= 1)
+            $this->errors[] = "Information darf nicht leer sein!";
+
+        if (count($this->errors) !== 0)
+            return false;
+
+        $sql = "
+            UPDATE
+                Events
+            SET
+                Title = '" . trim($this->mysqli->real_escape_string($title)) . "',
+                Information = '" . $this->mysqli->real_escape_string($info) . "',
+                Start = '" . $this->mysqli->real_escape_string($start) . "',
+                End = '" . $this->mysqli->real_escape_string($end) . "',
+                UpdatedBy = '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
+                Updated = UNIX_TIMESTAMP(NOW())
+            WHERE
+                ID = '" . $this->mysqli->real_escape_string($id) . "'
+        ";
+        print_r($sql);
+        $this->mysqli->query($sql);
+        return true;
+    }
+    
+    public function addEvent($title, $info, $start, $end) {
+        $this->errors = array();
+
+        if (!$this->isDate($start) || !$this->isDate($end))
+            $this->errors[] = "Ungültiges Datum!";
+        if (strlen($title) <= 1)
+            $this->errors[] = "Titel darf nicht leer sein!";
+        if (strlen($info) <= 1)
+            $this->errors[] = "Information darf nicht leer sein!";
+
+        if (count($this->errors) !== 0)
+            return false;
+
+        $sql = "
+            INSERT INTO
+                Events(
+                    Title,
+                    Information,
+                    Start,
+                    End,
+                    ClassID,
+                    UpdatedBy,
+                    Updated,
+                    Display
+                )
+                VALUES(
+                    '" . trim($this->mysqli->real_escape_string($title)) . "',
+                    '" . trim($this->mysqli->real_escape_string($info)) . "',
+                    '" . $this->mysqli->real_escape_string($start) . "',
+                    '" . $this->mysqli->real_escape_string($end) . "',
+                    '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "',
+                    '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
+                    UNIX_TIMESTAMP(NOW()),
+                    1
+                );
+        ";
+        $this->mysqli->query($sql);
+
+        return true;
+    }
+    
+    private function isDate($date) {
+        $tmpDate = date_parse($date);
+        if (checkdate($tmpDate["month"], $tmpDate["day"], $tmpDate["year"])) {
+            return true;
+        }
+    }
+
+    public function getErrors() {
+        return $this->errors;
+    }
 }
 
 ?>

@@ -36,24 +36,30 @@ if ((checkdate($_GET["month"], 1, $_GET["year"]))) {
     $calendar = new calendar($user, date('n'), date('Y'));
 }
 
-
-
-/*
-//Ereignisse in Kalender eintragen
-
-$ereignisse = array(array('tag' => 2, 'monat' => 3, 'info_short' => "Englisch-Arbeit", 'info_long' => 'M�ndliche Arbeit', 'style' => ''), array('tag' => 2, 'monat' => 3, 'info_short' => "Deutsch-Arbeit", 'info_long' => 'Schriftliche Arbeit', 'style' => ''));
-$ereignisse[] = array('tag' => date('j'), 'monat' => date('n'), 'style' => 'heute');
-
-foreach ($ereignisse as $ereigniss) {
-    if ($ereigniss['monat'] == $dieser_monat->monat) {
-        $kalender[($dieser_monat->erster_tag + $ereigniss['tag'])]['info_short'] .= $ereigniss['info_short'] . '<br>';
-        if ($ereigniss['style'] != '')
-            $style = $ereigniss['style'];
-        else
-            $style = 'termin_data_event';
-        $kalender[($dieser_monat->erster_tag + $ereigniss['tag'])]['style'] .= ' ' . $style;
+if ($user->hasRight("Events") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
+    if ($_GET["mode"] == "edit" && $_POST["upload"]) {
+        if (!$calendar->addEvent($_POST["Title"], $_POST["Information"], $_POST["Start"], $_POST["End"])) {
+            $tpl->assign("Errors", $calendar->getErrors());
+            $tpl->addMainTemplate("errors.tpl.php");
+        }
+    } elseif ($_GET["mode"] == "edit" && is_numeric($_GET["delete"])) {
+        $calendar->deleteEvent($_GET["delete"]);
+        header("LOCATION: ?screen=calendar");
+    } elseif ($_GET["mode"] == "edit" && $_POST["edit"]) {
+        if (!$calendar->editEvent($_POST["ID"], $_POST["Title"], $_POST["Information"], $_POST["Start"], $_POST["End"])) {
+            $tpl->assign("Errors", $calendar->getErrors());
+            $tpl->addMainTemplate("errors.tpl.php");
+        }
     }
-}*/
+}
+
+if ($user->hasRight("Events") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
+    $tpl->assign("editRight", True);
+}
+
+$tpl->addJS(array("path" => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"));
+$tpl->addJS(array("path" => "js/datepicker.js"));
+$tpl->addCSS(array("name" => "jquery-ui.css"));
 
 $tpl->assign("Title", "Kalendar");
 $tpl->assign("calendar", $calendar->getCalendar());
