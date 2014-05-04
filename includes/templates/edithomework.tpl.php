@@ -27,8 +27,8 @@
                         <textarea id="editTaHW" name="homework[]"><?= htmlentities($homework->Homework); ?></textarea>
                     </td>
                     <td>
-                        Von: <input type="date" name="start[]" class="datepicker" value="<?= htmlentities(date("Y-m-d", strtotime($homework->Start))) ?>"><br /> 
-                        Bis: <input type="date" name="end[]" class="datepicker" value="<?= htmlentities(date("Y-m-d", strtotime($homework->End))) ?>">
+                        Von: <input type="date" name="start[]" class="datepicker" value="<?= htmlentities(date("Y-m-d", $homework->Start)) ?>"><br /> 
+                        Bis: <input type="date" name="end[]" class="datepicker" value="<?= htmlentities(date("Y-m-d", $homework->End)) ?>">
                     </td>
                     <td>
                         <input type="hidden" name="id[]" value="<?= $homework->ID; ?>">

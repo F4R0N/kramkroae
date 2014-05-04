@@ -9,9 +9,9 @@
                 <?= htmlentities($homework->Subject); ?>
             </div>
             <div id="secDiv">
-                <?= htmlentities($VARS["Weekdays"][$homework->StartDay]); ?> - <?= htmlentities($homework->Start); ?>
+                <?= date("d.m.Y", htmlentities($homework->Start)); ?>
                 &rarr;
-                <?= htmlentities($VARS["Weekdays"][$homework->EndDay]); ?> - <?= htmlentities($homework->End); ?>
+                <?= date("d.m.Y", htmlentities($homework->End)); ?>
             </div>
             <div id="thirdDiv">
                 <?= nl2br(htmlentities($homework->Homework)); ?>
@@ -19,7 +19,7 @@
         </div>
     <?php endforeach; ?>
     <div id="lastUpdateMessage">
-        Zuletzt aktualisiert am <?= htmlentities($VARS["LastUpdate"]) ?> von 
+        Zuletzt aktualisiert: <?= htmlentities($VARS["LastUpdate"]) ?> von 
         <?= htmlentities($VARS["UpdatedBy"]->getFirstName()) ?> 
         <?= htmlentities($VARS["UpdatedBy"]->getLastName()) ?>
     </div>

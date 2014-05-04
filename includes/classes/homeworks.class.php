@@ -7,29 +7,22 @@ class homeworks {
     private $user;
     private $subjects;
     private $errors;
-    
+
     public function __construct($user) {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
         $this->user = $user;
     }
-    
-    private function timestampToFormString($timestamp){
-        $tsArray = explode(" ", $timestamp);
-        $date = $tsArray[0];
-        $time = $tsArray[1];
-        
-        $dateArray = explode("-", $date);
-        $timeArray = explode(":", $time);
-        
-        $year = $dateArray[0];
-        $month = $dateArray[1];
-        $day = $dateArray[2];
-        
-        $hour = $timeArray[0];
-        $min = $timeArray[1];
-        
-        $string = $day . ". " . $month . ". " . $year . " " . $hour . ":" . $min;
-        return $string;
+
+    private function unixToFormatDate($unixTS) {
+        return date("d.m.Y H:i", $unixTS);
+    }
+
+    private function timestampToUnixTS($timestamp) {
+        $tsArray = explode("-", $timestamp);
+        $year = $tsArray[0];
+        $month = $tsArray[1];
+        $day = $tsArray[2];
+        return mktime(0, 0, 0, $month, $day, $year);
     }
 
     public function setHomeworks() {
@@ -37,10 +30,8 @@ class homeworks {
             SELECT 
                 Homeworks.ID,
                 Homework,
-                DATE_FORMAT( Start, '%d.%m.%Y') as Start,
-                DATE_FORMAT(Start, '%w') as StartDay,
-                DATE_FORMAT( `End`, '%d.%m.%Y' ) as End,
-                DATE_FORMAT(End, '%w') as EndDay,
+                Start,
+                End,
                 Subject
             FROM 
                 Homeworks 
@@ -51,7 +42,7 @@ class homeworks {
             WHERE
                 ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
             AND 
-                End > Now()
+                End > UNIX_TIMESTAMP(NOW())
             AND
                 Display = 1
         ";
@@ -84,7 +75,7 @@ class homeworks {
         ";
         $result = $this->mysqli->query($sql);
         $obj = $result->fetch_object();
-        return $this->timestampToFormString($obj->Updated);
+        return $this->unixToFormatDate($obj->Updated);
     }
 
     public function getLastUpdaterID() {
@@ -133,12 +124,12 @@ class homeworks {
                 )
                 VALUES(
                     '" . trim($this->mysqli->real_escape_string($homework)) . "',
-                    '" . $this->mysqli->real_escape_string($start) . "',
-                    '" . $this->mysqli->real_escape_string($end) . "',
+                    '" . $this->timestampToUnixTS($this->mysqli->real_escape_string($start)) . "',
+                    '" . $this->timestampToUnixTS($this->mysqli->real_escape_string($end)) . "',
                     '" . $this->mysqli->real_escape_string($subjectID) . "',
                     '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "',
                     '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
-                    NOW(),
+                    UNIX_TIMESTAMP(NOW()),
                     1
                 );
         ";
@@ -188,10 +179,10 @@ class homeworks {
             SET
                 Homework = '" . trim($this->mysqli->real_escape_string($homework)) . "',
                 SubjectID = '" . $this->mysqli->real_escape_string($subjectID) . "',
-                Start = '" . $this->mysqli->real_escape_string($start) . "',
-                End = '" . $this->mysqli->real_escape_string($end) . "',
+                Start = '" . $this->timestampToUnixTS($this->mysqli->real_escape_string($start)) . "',
+                End = '" . $this->timestampToUnixTS($this->mysqli->real_escape_string($end)) . "',
                 UpdatedBy = '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
-                Updated = NOW()
+                Updated = UNIX_TIMESTAMP(NOW())
             WHERE
                 ID = '" . $this->mysqli->real_escape_string($id) . "'
         ";

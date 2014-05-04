@@ -34,27 +34,42 @@ section:hover{
     box-shadow: 0px 0px 2px blue;
 }
 
-table#timetable {
+table.timetable {
     border-collapse: collapse;
     margin: 0 auto;
 }
 
-table#timetable td{
+table.timetable td{
     padding: 8px;
     height: 1em;
     width: 7em;
 }
 
-table#timetable thead th{
+table.timetable thead th{
     background-color: #1F88FF;
     color: white;
     border-bottom: thin solid #1F88FF;
     padding: 4px;
 }
 
-table#timetable tr {
+table.timetable tr {
     text-align: center;
 }
-div.hwCard{
-    border: thin solid black;
+
+.timetable > tbody > tr:nth-child(odd) > td,
+.timetable > tbody > tr:nth-child(odd) > th {
+    background-color: #f9f9f9;
+}
+
+.hwInfo > tbody > tr:nth-child(odd) > td,
+.hwInfo > tbody > tr:nth-child(odd) > th {
+    background-color: #f9f9f9;
+}
+.hwInfo > tbody > tr > td:nth-child(1){
+    width: 7em;
+    padding: 0.5em;
+}
+.hwInfo > tbody > tr > td:nth-child(2){
+    width: 23em;
+    padding: 0.5em;
 }
