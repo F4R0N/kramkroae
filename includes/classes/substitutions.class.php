@@ -192,7 +192,7 @@ class substitutions {
             $this->errors[] = "Ung&uuml;ltige Unterrichtsstunde!";
         if(!ctype_alpha($teacher))
             $this->errors[] = "Ung&uuml;ltige/r Lehrer/in!";
-        if(!ctype_alpha($substitute))
+        if(!ctype_alpha($substitute) && $substitute != "" && $substitute != "/")
             $this->errors[] = "Ung&uuml;ltige Vertretung!";
 
         if (count($this->errors) !== 0)

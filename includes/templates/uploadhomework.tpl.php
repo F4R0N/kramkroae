@@ -1,16 +1,17 @@
-<h2>Hausaufgaben hinzuf&uuml;gen</h2>
-<a href="?screen=homework">Zur&uuml;ck zu den Hausaufgaben</a>
+<h2>Hinzuf&uuml;gen</h2>
 <form action="" method="POST" accept-charset="UTF-8">
-    Fach:
-    <select name="subject">
+    <select name="subject" id="uplSelectSubject">
+        <option name="subjectID" value="<?= htmlentities($Subject->ID); ?>"> -- Fach -- </option>
         <?php foreach ($VARS["Subjects"] as $Subject): ?>
-        <option style="padding: 1em; background-color: <?= htmlentities($Subject->Background); ?>; color: <?= htmlentities($Subject->Color); ?>" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
+        <option name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
         <?php endforeach; ?>
     </select>
-    Von: <input type="date" class="datepicker" name="start" value="<?= date("Y-m-d"); ?>" placeholder="Datum: YYYY-MM-DD">
-    Bis : <input type="date" class="datepicker" name="end" placeholder="Datum: YYYY-MM-DD">
-    <textarea name="homework" placeholder="Hausaufgaben"></textarea>
-    <button type="submit" name="upload" value="true">
-        Hausaufgabe eintragen
+    <br/>
+    <textarea id="uplTaHW" name="homework" placeholder="Hausaufgaben"></textarea>
+    <br />
+    <input type="date" class="datepicker" name="start" value="<?= date("Y-m-d"); ?>" placeholder="Von: YYYY-MM-DD">
+    <input type="date" class="datepicker" name="end" placeholder="Bis: YYYY-MM-DD">
+    <button id="uplSubmitButton" type="submit" name="upload" value="true">
+        Eintragen
     </button>
 </form>

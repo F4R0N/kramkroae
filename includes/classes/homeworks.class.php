@@ -76,11 +76,11 @@ class homeworks {
             FROM
                 Homeworks
             WHERE
-                ClassID = '1'
+                ClassID = '" . $this->mysqli->real_escape_string($this->user->getClassID()) . "'
             ORDER BY
             	Updated DESC
             LIMIT
-            	0, 1
+            	0,1
         ";
         $result = $this->mysqli->query($sql);
         $obj = $result->fetch_object();

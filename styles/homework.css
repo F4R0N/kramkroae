@@ -1,0 +1,115 @@
+table thead tr {
+    font-weight: bold;
+    background-color: #1F88FF;
+    color: #F1F1FF;
+}
+table{
+    border-collapse: collapse;
+    
+}
+#main #editLink{
+    text-align: center;
+    margin-top: -1em;
+}
+#main #editLink:active{
+    color: black;
+}
+
+#main #editLink{
+    text-align: center;
+    margin-top: -1em;
+}
+#main #editLink:active{
+    color: black;
+}
+
+#lastUpdateMessage{
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 1em;
+    clear: left;
+}
+
+textarea{
+    width: 40em;
+    height: 5em;
+    padding: 1em;
+}
+
+img#happyFace
+{
+    position: absolute;
+    max-width: 23%;
+    top: 10%;
+    left: 10%;
+}
+
+img#happyFace:empty
+{
+    top: 50%;
+    left: 56%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#uplSubmitButton, #editSubmitButton{
+    padding: 1em;
+    border-radius: 10px;
+    font-size: 0.73em;
+    background-color: #1D6AD3;
+    color: white;
+}
+#uplSubmitButton:active, #editSubmitButton:active{
+    color: #BCDEFF;
+}
+
+.datepicker{
+    padding: 0.69em;
+    margin: 0.42em;
+    width: 11.5em;
+}
+
+#editSelectSubject{
+    padding: 1em;
+}
+
+#uplSelectSubject{
+    padding: 1em;
+}
+#uplTaHW{
+    width: 30em;
+}
+
+#hwCard{
+    border: thin solid black;
+    box-shadow: 2px 0px 10px;
+    width: 30em;
+    height: 15em;
+    margin: 1em;
+    float: left;
+}
+#hwCard #firstDiv{
+    color: #1D6AD3;
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    text-align: center;
+    font-weight: bold;
+    background-color: #E8E7FB;
+}
+#hwCard #secDiv{
+    padding: 0.5em;
+    text-align: center;
+    border-bottom: thin solid black;
+    background-color: #E8E7FB;
+}
+#hwCard #thirdDiv{
+    padding: 0.5em;
+}
+#allCards{
+    display: table;
+    margin-left: 3em;
+    margin-top: 0.5em;
+}
