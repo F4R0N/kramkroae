@@ -55,6 +55,7 @@ foreach ($ereignisse as $ereigniss) {
     }
 }*/
 
+$tpl->assign("Title", "Kalendar");
 $tpl->assign("calendar", $calendar->getCalendar());
 
 $tpl->assign("lastMonth", $calendar->getLastMonth()->getMonth());

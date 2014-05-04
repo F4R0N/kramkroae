@@ -3,6 +3,10 @@ a {
     text-decoration: none;
 }
 
+.otherMonth {
+    background-color: #EEE;
+}
+
 .termin_data {
     position: relative;
     background-color: white;
@@ -22,7 +26,6 @@ a {
 
 .termin_data_info_short {
     color: rgb(230,255,255);
-    position: absolute;
 }
 
 .termin_data_event {
@@ -38,9 +41,7 @@ a {
     padding: 0.2em 1.5em;
     width: 4.5em;
 }
-.otherMonth {
-    background-color: #EEE;
-}
+
 .monat_wahl_vorher {
     font-size: 1.4em;
 }
@@ -48,3 +49,31 @@ a {
     float: right;
     font-size: 1.4em;
 }
+
+
+.popUps {
+    display: none;
+    position: fixed;
+    background-color: white;
+    color: black;
+    top: 5em;
+    left: 5em;
+    right: 5em;
+    bottom: 5em;
+    border-radius: 15px;
+    z-index: 12;
+    border: thin solid black;
+    border-top: none;
+}
+
+.popUps a{
+    color: white;
+    text-decoration: none;
+    background-color: #1D6AD3;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    padding: 0.42em;
+}
+

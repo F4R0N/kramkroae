@@ -87,6 +87,7 @@ class calendar {
                 if( $date[2] == $this->calendar[$x]->Day && $date[1] == $this->calendar[$x]->Month && $date[0] == $this->calendar[$x]->Year){
                         $this->calendar[$x]->Title[] = $event->Title;
                         $this->calendar[$x]->Information[] = $event->Information;
+                        $this->calendar[$x]->ID[] = $event->ID;
                         if (strlen($event->Style) !== 0){
                             $style = $event->Style;
                         }

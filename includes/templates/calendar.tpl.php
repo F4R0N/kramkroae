@@ -19,14 +19,27 @@
                 ?>
 
                 <td class="termin_data <?php foreach( $VARS["calendar"][$day]->Style as $class ): ?>  <?= $class ?><?php endforeach; ?>">
-                    <div class="termin_data_info_short">
-                        <?php foreach($VARS["calendar"][$day]->Title as $title): ?>
-                        <div class="Title">
-                            <?= $title ?>
+                    <?php for($i = 0; $i <= count($VARS["calendar"][$day]->Title); $i ++): ?>
+                        <div class="termin_data_info_short">
+
+                            <div class="Title">
+                                <a href="#info<?= $VARS["calendar"][$day]->ID[$i] ?>"> <?= $VARS["calendar"][$day]->Title[$i] ?></a>
+                            </div>
+
                         </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <div class="termin_data_number">
+                        <div class="popUps" id="info<?= $VARS["calendar"][$day]->ID[$i] ?>">
+                            <a href="#nonsense">⬅ Zur&uuml;ck</a>
+                            <div class="Information">
+                                <?= $VARS["calendar"][$day]->Information[$i] ?>
+                            </div>
+                        </div>
+                        <style>
+                           #info<?= $VARS["calendar"][$day]->ID[$i] ?>:target {
+                                display: block;
+                            }
+                        </style>
+                    <?php endfor; ?>
+                   <div class="termin_data_number">
                         <?= $VARS["calendar"][$day]->Day ?>
                     </div>
                 </td>
