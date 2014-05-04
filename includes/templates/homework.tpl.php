@@ -4,19 +4,23 @@
 </div>
 
 <?php foreach ($VARS["Homeworks"] as $homework): ?>
-<table id="tableHWSubject">
-    <tr id="firstTR">
-        <td id="subject"><?= htmlentities($homework->Subject); ?></td>
-    </tr>
-    <tr>
-        <td><?= htmlentities($VARS["Weekdays"][$homework->StartDay]); ?>, dem <?= htmlentities($homework->Start); ?></td>
-        <td>-></td>
-        <td><?= htmlentities($VARS["Weekdays"][$homework->EndDay]); ?>, dem <?= htmlentities($homework->End); ?></td>
-    </tr>
-    <tr>
-        <td><?= nl2br(htmlentities($homework->Homework)); ?></td>
-    </tr>
-</table>
+    <div id="tableHWSubject">
+        <table>
+            <tbody>
+                <tr id="firstTR">
+                    <td id="subject"><?= htmlentities($homework->Subject); ?></td>
+                    <td></td>
+                </tr>
+                <tr id="secTR">
+                    <td><?= htmlentities($VARS["Weekdays"][$homework->StartDay]); ?>, dem <?= htmlentities($homework->Start); ?> -></td>
+                    <td><?= htmlentities($VARS["Weekdays"][$homework->EndDay]); ?>, dem <?= htmlentities($homework->End); ?></td>
+                </tr>
+                <tr id="thirdTR">
+                    <td><?= nl2br(htmlentities($homework->Homework)); ?></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 <?php endforeach; ?>
 
 

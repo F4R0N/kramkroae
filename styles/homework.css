@@ -5,7 +5,7 @@ table thead tr {
 }
 table{
     border-collapse: collapse;
-    margin-top: -0.69em;
+    
 }
 #main #editLink{
     text-align: center;
@@ -14,13 +14,34 @@ table{
 #main #editLink:active{
     color: black;
 }
-table #firstTR{
-    display: block;
-    border-bottom: 2px solid blue;
-    margin-top: 2em;
+
+table td{
+    width: 15em;
 }
+table #firstTR td{
+    padding-left: 0.42em;
+    padding-bottom: 0.69em; 
+    padding-top: 0.69em;
+    background-color: blue;
+    color: white;
+}
+
+table #secTR{
+    
+}
+
+table thirdTR{
+    
+}
+
 table td#subject{
     font-weight: bold;
+}
+
+#tableHWSubject{
+    border: thin solid lightblue;
+    background-color: lightblue;
+    max-width: 30em;
 }
 
 #main #editLink{
