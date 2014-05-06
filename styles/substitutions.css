@@ -82,3 +82,21 @@ table tbody td input, table tbody textarea{
 #uplSubs #submitButton:active, #editSubs #submitButton:active{
     color: #BCDEFF;
 }
+#editSelectSubject{
+    padding: 1em;
+}
+#editSelectType{
+    padding:1em;
+}
+#editInputLesson{
+    width: 2em;
+}
+#editInputTeacher{
+    width: 6em;
+}
+#editInputSub{
+    width: 6em;
+}
+.datepicker{
+    width: 11em;
+}

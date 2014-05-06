@@ -66,14 +66,14 @@ img#happyFace:empty
     color: #BCDEFF;
 }
 
+#editSelectSubject{
+    padding: 1em;
+}
+
 .datepicker{
     padding: 0.69em;
     margin: 0.42em;
-    width: 11.5em;
-}
-
-#editSelectSubject{
-    padding: 1em;
+    width: 11em;
 }
 
 #uplSelectSubject{

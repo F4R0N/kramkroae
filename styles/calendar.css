@@ -43,13 +43,27 @@ a {
 }
 
 .monat_wahl_vorher {
-    font-size: 1.4em;
+    font-size: 1.23em;
+    width: 10em;
+    background-color: lime;
+    padding: 0.23em;
+    border-radius: 10px;
 }
 .monat_wahl_weiter {
-    float: right;
-    font-size: 1.4em;
+    font-size: 1.23em;
+    width: 10em;
+    background-color: lime;
+    padding: 0.23em;
+    border-radius: 10px;
+}
+#header{
+    text-align: center;
+    margin-bottom: 1em;
 }
 
+#header b#headline{
+    font-size: 1.69em;
+}
 
 .popUps {
     display: none;

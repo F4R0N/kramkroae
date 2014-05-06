@@ -1,9 +1,10 @@
-
-<h2><?= $VARS["month"][$VARS["thisMonth"] -1] ?>  <?= $VARS["thisYear"] ?></h2>
-<div style="width: 100%">
+<div id="header">
     <a class="monat_wahl_vorher" href="?screen=calendar&month=<?= $VARS["lastMonth"] ?>&year=<?= $VARS["lastYear"] ?>"><?= $VARS["month"][$VARS["lastMonth"] -1] ?></a>
-    <a class="monat_wahl_weiter" href="?screen=calendar&month=&month=<?= $VARS["nextMonth"] ?>&year=<?= $VARS["nextYear"] ?>"><?= $VARS["month"][$VARS["nextMonth"] -1] ?></a></div>
-
+    <b id="headline"><?= $VARS["month"][$VARS["thisMonth"] -1] ?>  <?= $VARS["thisYear"] ?></b>
+    <a class="monat_wahl_weiter" href="?screen=calendar&month=&month=<?= $VARS["nextMonth"] ?>&year=<?= $VARS["nextYear"] ?>"><?= $VARS["month"][$VARS["nextMonth"] -1] ?></a>
+    <br />
+    <a id="linkAddEvent" href="#addEvent">Termin hinzuf&uuml;gen</a>
+</div>
 <table cellspacing="10" border="2" align="center">
     <tr>
         <?php foreach ($VARS["days"] as $day): ?>
@@ -84,4 +85,3 @@
     </form>
 </div>
 <?php endif; ?>
-<a href="#addEvent"> Termin hinzuf&uuml;gen </a>

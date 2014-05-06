@@ -17,11 +17,11 @@
             <tbody>
                 <?php foreach ($date as $substitution): ?>
                     <tr>
-                        <td><input style="width: 10em;" type="date" class="datepicker" name="date[]" value="<?= htmlentities(date("Y-m-d", strtotime($substitution->Date))); ?>"></td>
-                        <td><input style="width: 2em;" type="text" name="lesson[]" value="<?= htmlentities($substitution->Lesson); ?>"></td> 
-                        <td><input style="width: 6em;" type="text" name="teacher[]" value="<?= htmlentities($substitution->Teacher); ?>"></td>
-                        <td><input style="width: 6em;" type="text" name="substitute[]" value="<?= htmlentities($substitution->Substitute); ?>"></td>
-                        <td><select name="subject[]" style="padding:1em;">
+                        <td><input type="date" class="datepicker" name="date[]" value="<?= htmlentities(date("Y-m-d", strtotime($substitution->Date))); ?>"></td>
+                        <td><input id="editInputLesson" type="text" name="lesson[]" value="<?= htmlentities($substitution->Lesson); ?>"></td> 
+                        <td><input id="editInputTeacher" type="text" name="teacher[]" value="<?= htmlentities($substitution->Teacher); ?>"></td>
+                        <td><input id="editInputSub" type="text" name="substitute[]" value="<?= htmlentities($substitution->Substitute); ?>"></td>
+                        <td><select id="editSelectSubject" name="subject[]">
                                 <?php foreach ($VARS["Subjects"] as $Subject): ?>
                                     <?php if ($Subject->Subject == $substitution->Subject): ?>
                                         <option selected="selected" name="subjectID" value="<?= htmlentities($Subject->ID); ?>"><?= htmlentities($Subject->Subject) ?></option>
@@ -31,12 +31,12 @@
                                 <?php endforeach; ?>
                             </select></td>
                         <td>    
-                            <select name="type[]" style="padding:1em;">
+                            <select id="editSelectType" name="type[]">
                                 <?php foreach ($VARS["Types"] as $Type): ?>
                                     <option name="type" value="<?= htmlentities($Type->ID); ?>"><?= htmlentities($Type->Type) ?></option>
                                 <?php endforeach; ?>
                             </select></td>
-                        <td><textarea name="comments[]"><?= htmlentities($substitution->Comments); ?></textarea></td>
+                        <td><textarea id="editTaCommOnSub" name="comments[]"><?= htmlentities($substitution->Comments); ?></textarea></td>
                         <td><a href="?screen=substitutions&mode=edit&delete=<?= $substitution->ID ?>"><img src="/images/deleteCross.png"/></a><input name="id[]" type="hidden" value="<?= $substitution->ID ?>"></td>
                     </tr>
                 <?php endforeach; ?>

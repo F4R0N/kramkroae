@@ -86,7 +86,7 @@ class user {
                 WHERE
                     ClassID = '" . $this->ClassID . "'
                 ORDER BY
-                    RegistryDate DESC
+                    RegistryDate ASC
                 ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {

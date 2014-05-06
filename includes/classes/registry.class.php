@@ -163,14 +163,13 @@ class registry {
         $password = explode("$", crypt($this->password, PASSWORD_SALT));
         $password = $password[4];
         $sql = "INSERT INTO
-                    Users (FirstName, LastName, Email, Password, Gender, Pats, SchoolID, ClassID, AcceptTerms, RegistryDate)
+                    Users (FirstName, LastName, Email, Password, Gender, SchoolID, ClassID, AcceptTerms, RegistryDate)
                 VALUES
                     ('" . $this->mysqli->real_escape_string(ucfirst($this->firstName)) . "',
                     '" . $this->mysqli->real_escape_string(ucfirst($this->lastName)) . "',
                     '" . $this->mysqli->real_escape_string($this->email) . "',
                     '" . $this->mysqli->real_escape_string($password) . "',
                     '" . $this->mysqli->real_escape_string($this->gender) . "',
-                    '0',
                     '" . $this->mysqli->real_escape_string($this->schoolID) . "',
                     '1',
                     '" . $this->mysqli->real_escape_string($this->acceptTerms) . "',

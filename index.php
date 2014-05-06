@@ -8,7 +8,7 @@ require_once "includes/classes/template.class.php";
 require_once "includes/classes/user.class.php";
 
 // Vielleicht doch User-angepasst 
-date_default_timezone_set('UTC');
+date_default_timezone_set("UTC");
 
 $tpl = new template();
 
