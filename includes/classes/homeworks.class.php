@@ -45,6 +45,8 @@ class homeworks {
                 End > UNIX_TIMESTAMP(NOW())
             AND
                 Display = 1
+            ORDER BY
+                END ASC
         ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {

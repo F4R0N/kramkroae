@@ -15,8 +15,8 @@ if (count($overview->getTmrwHomeworks()) >= 1) {
     $homes = array();
 
     foreach ($overview->getTmrwHomeworks() as $theHW) {
-        $subID = $overview->getSubjectByID($theHW->SubjectID);
-        $homework = $theHW->Homework;
+        $subID = htmlentities($overview->getSubjectByID($theHW->SubjectID));
+        $homework = htmlentities($theHW->Homework);
 
         array_push($Subs, $subID);
         array_push($homes, $homework);
