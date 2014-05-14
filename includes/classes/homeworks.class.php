@@ -77,7 +77,7 @@ class homeworks {
         ";
         $result = $this->mysqli->query($sql);
         $obj = $result->fetch_object();
-        return $this->unixToFormatDate($obj->Updated);
+        return $this->unixToFormatDate($obj->Updated+7200);
     }
 
     public function getLastUpdaterID() {
