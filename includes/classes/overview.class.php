@@ -55,24 +55,27 @@ class overview {
         return $data;
     }
 
-    public function getTmrwEvents() {
+    public function getNextEvents() {
+        $events = array();
         $sql = "SELECT
-                        Title,
-                        End
-                    FROM
-                        Events
-                    WHERE
-                        CURDATE() + 1
-                    BETWEEN
-                        Start
-                    AND
-                        End
-                    OR
-                        Start = CURDATE() + 1
-                    OR 
-                        End = CURDATE() + 1";
+                    Title,
+                    Start,
+                    End
+                FROM
+                    Events
+                WHERE
+                    Display = 1
+                AND
+                    END
+                BETWEEN
+                    CURDATE() + 1
+                AND 
+                    CURDATE() + 7";
         $result = $this->mysqli->query($sql);
-        return $result->fetch_object;
+        while ($obj = $result->fetch_object()) {
+            array_push($events, $obj);
+        }
+        return $events;
     }
 
     public function getTmrwSchedule() {

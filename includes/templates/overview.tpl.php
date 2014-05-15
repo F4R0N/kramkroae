@@ -5,14 +5,33 @@
             <td>
                 <section id="dates">
                     <h3>Termine</h3>
-                    <table class="dateTable">
-                        <tbody>
+                    <?php if($VARS["countEvents"] != 0){ ?>
+                        <table class="dateTable">
+                            <?php  for($i = 0; $i < $VARS["countEvents"]; $i++){ 
+                                $start = $VARS["nextEvents"][$i]->Start;
+                                $end = $VARS["nextEvents"][$i]->End;
+                                $title = $VARS["nextEvents"][$i]->Title;
+                            ?>
                             <tr>
-                                <td>23.3.37 - 3 Tage</td>
-                                <td>F98 kommt raus!</td>
+                                <?php
+                                    if($start == $end){
+                                        ?>
+                                        <td><?= $VARS["nextEvents"][$i]->Start ?></td>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <td><?= $VARS["nextEvents"][$i]->Start ?></td>
+                                        <td><?= $VARS["nextEvents"][$i]->End ?></td>
+                                        <?php
+                                    }
+                                ?>
+                                <td><?= $VARS["nextEvents"][$i]->Title ?></td>
                             </tr>
-                        </tbody>
-                    </table>
+                            <?php } ?>
+                        </table>
+                    <?php }else{ ?>
+                    <i>Es liegen keine Termine an!</i>
+                    <?php } ?>
                 </section>
             </td>
             <td>
