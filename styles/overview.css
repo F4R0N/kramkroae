@@ -3,23 +3,25 @@ html, body {
     margin: 0;
 }
 
+#all{
+    margin: 0 auto;
+}
+
 section{
     background-color: white;
     border: thin solid black;
     padding: 1em;
-    height: 40em;
+    margin: 1em;
+    box-shadow: 0px 0px 13px black;
 }
 
 section h3{
     text-align: center;
 }
 
-section#dates{
-    width: 16em;
-}
-
-section#homework{
-    width: 36em;
+section#dates, section#homework{
+    width: 40em;
+    min-height: 5em;
 }
 
 section#subjects {
@@ -28,10 +30,6 @@ section#subjects {
 
 section h3{
     margin-top: -0.2em;
-}
-
-section:hover{
-    box-shadow: 0px 0px 2px blue;
 }
 
 table.timetable {

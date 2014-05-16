@@ -31,5 +31,5 @@ if (count($overview->getTmrwHomeworks()) >= 1) {
 }
 
 $tpl->addMainTemplate("overview.tpl.php");
-$tpl->addCss(array("name" => "startPage.css"));
+$tpl->addCss(array("name" => "overview.css"));
 ?>
