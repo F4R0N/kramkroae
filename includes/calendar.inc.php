@@ -57,10 +57,6 @@ if ($user->hasRight("Events") || $user->hasRight("SchoolAdmin") || $user->hasRig
     $tpl->assign("editRight", True);
 }
 
-$tpl->addJS(array("path" => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"));
-$tpl->addJS(array("path" => "js/datepicker.js"));
-$tpl->addCSS(array("name" => "jquery-ui.css"));
-
 $tpl->assign("Title", "Kalendar");
 $tpl->assign("calendar", $calendar->getCalendar());
 

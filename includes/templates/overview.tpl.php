@@ -1,4 +1,4 @@
-<h2>Der Check</h2>
+<h2>Dr. Checka</h2>
 <article>
     <table id="all">
         <tr>
@@ -7,7 +7,8 @@
                     <tr>
                         <td>
                             <section id="homework">
-                                <h3>Hausaufgaben</h3>
+                                <!-- sinnloser Kommentar Nr. 1 -->
+                                <h3>Hausaufgaben zu morgen</h3>
                                 <?php if ($VARS["countHW"] != 0) { ?>
                                     <div class="hwCard">
                                         <table class="hwInfo">
@@ -32,7 +33,7 @@
                     <tr>
                         <td>
                             <section id="dates">
-                                <h3>Termine</h3>
+                                <h3>anstehende Termine</h3>
                                 <?php if ($VARS["countEvents"] != 0) { ?>
                                     <table class="dateTable">
                                         <?php

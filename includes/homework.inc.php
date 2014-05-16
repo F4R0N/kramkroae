@@ -34,10 +34,6 @@ if ($user->hasRight("Homeworks") || $user->hasRight("SchoolAdmin") || $user->has
 if ($_GET["mode"] == "edit" && ($user->hasRight("Homeworks")  || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin")|| $user->hasRight("God"))) {
     $homeworks->setSubjects();
 
-    $tpl->addJS(array("path" => "js/jquery-ui-1.11.0-beta-1.min.js"));
-    $tpl->addJS(array("path" => "js/datepicker.js"));
-    $tpl->addCSS(array("name" => "jquery-ui.css"));
-
     if ($homeworks->getCountOfHomeworks() !== 0) {
         $tpl->assign("Homeworks", $homeworks->getHomeworks());
         $tpl->addMainTemplate("edithomework.tpl.php");

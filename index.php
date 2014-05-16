@@ -13,6 +13,9 @@ date_default_timezone_set("UTC");
 $tpl = new template();
 
 $tpl->addJS(array("path" => "/js/jquery-1.10.2.min.js"));
+$tpl->addJS(array("path" => "js/jquery-ui-1.11.0-beta-1.min.js"));
+$tpl->addJS(array("path" => "js/datepicker.js"));
+$tpl->addCSS(array("name" => "jquery-ui.css"));
 
 if (!isset($_SESSION["UserID"])) {
     $path = "includes/" . $_GET["screen"] . ".inc.php";

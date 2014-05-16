@@ -42,11 +42,7 @@ if ($_GET["mode"] == "edit" && ($user->hasRight("Substitutions") || $user->hasRi
 
     $tpl->assign("Subjects", $substitution->getSubjects());
     $tpl->assign("Types", $substitution->getSubstitutionTypes());
-
-    $tpl->addJS(array("path" => "js/jquery-ui-1.11.0-beta-1.min.js"));
-    $tpl->addJS(array("path" => "js/datepicker.js"));
-    $tpl->addCSS(array("name" => "jquery-ui.css"));
-
+    
     if ($substitution->getCountOfDays() !== 0) {
         $tpl->assign("Dates", $substitution->getSubstitutions());
         $tpl->addMainTemplate("editsubstitutions.tpl.php");
