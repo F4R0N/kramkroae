@@ -13,6 +13,24 @@ class substitutions {
         $this->user = $user;
     }
 
+    function checkUml($word) {
+        if (preg_match("/ä/", $word)) {
+            $suchmuster = '/ä/';
+            $ersetzungen = 'ae';
+            return preg_replace($suchmuster, $ersetzungen, $word);
+        } else if (preg_match("/ö/", $word)) {
+            $suchmuster = '/ö/';
+            $ersetzungen = 'oe';
+            return preg_replace($suchmuster, $ersetzungen, $word);
+        } else if (preg_match("/ü/", $word)) {
+            $suchmuster = '/ü/';
+            $ersetzungen = 'ue';
+            return preg_replace($suchmuster, $ersetzungen, $word);
+        } else {
+            return $word;
+        }
+    }
+
     public function getCountOfDays() {
         return count($this->dates);
     }
@@ -181,23 +199,23 @@ class substitutions {
     }
 
     public function insertSubstitution($lesson, $teacher, $substitute, $subjectID, $typeID, $comments, $date) {
-        $validSubTypes = [1,2,3,4];
+        $validSubTypes = [1, 2, 3, 4];
         if (!$this->isSubject($subjectID))
             $this->errors[] = "Ung&uuml;ltiges Fach!";
         if (!$this->isDate($date))
             $this->errors[] = "Ung&uuml;ltiges Datum!";
         if (!in_array($typeID, $validSubTypes))
             $this->errors[] = "Ung&uuml;ltige Art!";
-        if(!is_numeric($lesson))
+        if (!is_numeric($lesson))
             $this->errors[] = "Ung&uuml;ltige Unterrichtsstunde!";
-        if(!ctype_alpha($teacher))
+        if (!ctype_alpha($this->checkUml($teacher)))
             $this->errors[] = "Ung&uuml;ltige/r Lehrer/in!";
-        if(!ctype_alpha($substitute) && $substitute != "" && $substitute != "/")
+        if (!ctype_alpha($substitute) && $substitute != "" && $substitute != "/")
             $this->errors[] = "Ung&uuml;ltige Vertretung!";
 
         if (count($this->errors) !== 0)
             return false;
-        
+
         $sql = "
             INSERT INTO
                 Substitutions(
@@ -227,9 +245,10 @@ class substitutions {
                    '" . $this->mysqli->real_escape_string($this->user->getID()) . "'
                );
         ";
-        if($this->mysqli->query($sql)){
+        if ($this->mysqli->query($sql)) {
             return true;
-        }else{
+        } else {
+            
         }
     }
 
@@ -247,6 +266,12 @@ class substitutions {
             $this->errors[] = "Ungültiges Fach!";
         if (!$this->isDate($date))
             $this->errors[] = "Ungültiges Datum!";
+        if (!is_numeric($lesson))
+            $this->errors[] = "Ung&uuml;ltige Unterrichtsstunde!";
+        if (!ctype_alpha($this->checkUml($teacher)))
+            $this->errors[] = "Ung&uuml;ltige/r Lehrer/in!";
+        if (!ctype_alpha($substitute) && $substitute != "" && $substitute != "/")
+            $this->errors[] = "Ung&uuml;ltige Vertretung!";
         if (count($this->errors) !== 0)
             return false;
 
