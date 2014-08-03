@@ -103,14 +103,14 @@ a {
     color: black;
     display: block;
     text-decoration: none;
-    margin: 0 auto;
     padding: 10px;
     text-align: center; 
     max-width: 10em;
+    margin: 2px auto;
+    border-radius: 5px;
 }
 #mainmenu .links a:hover{
-    color: #6789AA;
-    background: linear-gradient(180deg, #F9F8FC, #E8E7FB);
+    color: #1F7BE4;
 }
 
 /* - - - Main - - - */

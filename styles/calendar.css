@@ -45,16 +45,18 @@ a {
 .monat_wahl_vorher {
     font-size: 1.23em;
     width: 10em;
-    background-color: lime;
+    background-color: lightblue;
     padding: 0.23em;
     border-radius: 10px;
+    margin: 1em;
 }
 .monat_wahl_weiter {
     font-size: 1.23em;
     width: 10em;
-    background-color: lime;
+    background-color: lightblue;
     padding: 0.23em;
     border-radius: 10px;
+    margin: 1em;
 }
 #header{
     text-align: center;
