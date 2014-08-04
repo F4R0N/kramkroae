@@ -4,6 +4,7 @@ include_once 'classes/pwforgot.class.php';
 $pwforgot = new pwforgot();
 
 $tpl->assign("Title", "Passwort vergessen?");
+$tpl->addCss(array("name" => "LogoutStdStyle.css"));
 $tpl->addCss(array("name" => "pwforgot.css"));
 
 if ($_GET["theCode"] == "" || !isset($_GET["theCode"])) {                         // Normal mode
@@ -14,9 +15,9 @@ if ($_GET["theCode"] == "" || !isset($_GET["theCode"])) {                       
         } else {
             if($pwforgot->findEmailInDB()){
                 $pwforgot->doPWForgotBeforeLink();
-                echo "<a href='index.php?screen=pwforgot&theCode=$pwforgot->lolzRoflxD'>HIER KLICKEN</a>";
+                $tpl->assign("firstDisplay", "<a href='index.php?screen=pwforgot&theCode=$pwforgot->lolzRoflxD'>HIER KLICKEN</a>");
             }else{
-                echo "Ihre E-Mail wurde nicht gefunden!";
+                $tpl->assign("firstDisplay", "Ihre E-Mail wurde nicht gefunden!");
             }
         }
     }
@@ -25,8 +26,7 @@ if ($_GET["theCode"] == "" || !isset($_GET["theCode"])) {                       
     if (isset($_POST["PWchange"])) {
         if ($_POST["PWchange"] == "true") {
             $pwforgot->doAllAfterClick($_GET["theCode"], $_POST["newPW"]);
-            echo "Passwort erfolgreich ge&auml;ndert!<br/>";
-            echo "<a href='index.php?screen=overview&email=$pwforgot->email'>Zur&uuml;ck zur Startseite</a>";
+            $tpl->assign("PWStringAfterSuccess", "<br />Passwort erfolgreich ge&auml;ndert!<br/><a href='index.php?screen=overview&email=$pwforgot->email'>Zur&uuml;ck zur Startseite</a>");
         } else {
             echo "Du hast kein Passwort angegeben!";
         }

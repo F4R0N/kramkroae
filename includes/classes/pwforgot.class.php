@@ -94,7 +94,7 @@ class pwforgot {
         return true;
     }
 
-    //////////////////////// Alles bis hier her vor derm Abschicken
+    //////////////////////// Alles bis hier her vor dem Abschicken
     //////////////////////// Jetzt kommt alles was nach dem Linkklick passiert
 
     private function getEmailBySC() {

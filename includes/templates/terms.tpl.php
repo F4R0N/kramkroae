@@ -1,12 +1,15 @@
 <div id="topBar">
-    <h2>Vertragsbedingungen/Richtlinien</h2>
-    <div id="backToLinks">
+    <h2>Vertragsbedingungen</h2>
+    <div id="topBarLinks">
         <a href="index.php">Startseite</a>
         <a href="index.php?screen=registry&mode=user">Nutzerregistrierung</a>
         <a href="index.php?screen=registry&mode=school">Schulregistrierung</a>
     </div>
 </div>
 <section id="content">
+    
+    Bei Unklarheiten lesen Sie bitte unsere <a href="">Definitionen</a>.
+    
     <h3>1. Registrierung als Sch&uuml;ler/Student</h3>
     1.1) Die Registrierung ist und bleibt f&uuml;r Sie v&ouml;llig kostenlos.<br />
     1.2) Sie m&uuml;ssen sich registrieren, um den vollen Umfang dieses Angebotes nutzen zu k&ouml;nnen.<br />
@@ -25,8 +28,13 @@
     2.5) Die bei der Registrierung von Ihnen angegebenen Daten (au&szlig;er Passwort) sind &ouml;ffentlich einsehbar und k&ouml;nnen zus&auml;tzlich als Schulkontaktprofil genutzt werden.<br />
     2.6) Bitte akzeptieren Sie diese Richtlinien, da wir ansonsten nicht in der Lage sind Ihnen unseren Dienst zur Verf&uuml;gung zu stellen.
     
-    <h3>3. </h3>
+    <h3>3. Nutzung des Angebotes</h3>
+    3.1) Das Angebot dient nicht zur Darstellung der eigenen Person, sondern zum Austausch bildungsbezüglichen Informationen. 
+         Insofern sind keine weiteren pers&ouml;nlichen Daten f&uuml;r den Dienst weder notwendig noch erw&uuml;nscht. <br />
+    3.2) F&uuml;r eine angemessene Nutzung dieses Angebotes ist es jedoch notwendig, dass entweder durch einen Admin oder einen Helper 
+         Informationen wie zum Beispiel anstehende Hausaufgaben oder auch vorraussichtlich ausfallende Stunden in das System eingetragen werden. 
+         
     <div id="lastUpdate">
-        Letzte &Uuml;berarbeitung: 02. M&auml;rz 2014 02:53 - Komplette &Uuml;berarbeitung der Richtlinien
+        Letzte &Uuml;berarbeitung: 04. August 2014 00:59 - Erarbeitung des 3. Paragraphen
     </div>
 </section>

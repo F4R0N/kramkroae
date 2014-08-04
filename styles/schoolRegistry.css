@@ -1,55 +1,8 @@
 body{
-    font-family: Gill, Helvetica, sans-serif;
-    background: #E8E7FB;
     text-align: center;
-}
-h2{
-    text-align: center;
-}
-div#topBar{
-    border: thin solid #1F7BE4;
-    background-color: #1F7BE4;
-    color: #E8E7FB;
-    left: 0;
-    top: 0;
-    right: 0;
-    position: absolute;
-    box-shadow: 0px 3px 8px black;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    padding-bottom: 0.5em;
-}
-
-div#topBarLinks{
-    text-align: center;
-}
-
-div#topBarLinks a{
-    background-color: lightgray;
-    text-decoration: none;
-    border: thin solid lightgray;
-    display:inline-block;
-    width: 10em;
-    padding: 0.42em;
-    color: black;
-}
-
-div#topBar a:hover{
-    color: #1F7BE4;
-}
-
-div#topBar a:active, a:visited, a:active:visited{
-    color: black;
 }
 form{
-    border: thin solid lightgrey;
-    background-color: lightgrey;
-    padding: 2.3em;
-    text-align: center;
     width: 37em;
-    margin: 0 auto;
-    margin-top: 6em;
-    font-size: 1em;
 }
 form input, select{
     font-size: 1em;
@@ -57,6 +10,11 @@ form input, select{
     padding:0.42em;
     margin: 0.42em;
 }
+
+input#schoolname{
+    width: 35em;
+}
+
 #registryHeader input[type="email"], input#password{
     width: 16.3em;
 }
@@ -80,18 +38,4 @@ form input, select{
 }
 #numbers input{
     width: 16.3em;
-}
-button{
-    border-radius: 0.69em;
-    border: thin solid #1F88FF;
-    background-color: #1F88FF;
-    color: black;
-    padding: 0.69em;
-    font-size: 1.1em;
-}
-button:hover{
-    color: white;
-}
-button:active{
-    box-shadow: 0px 0px 2px black;
 }

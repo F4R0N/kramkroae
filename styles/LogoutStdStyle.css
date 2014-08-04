@@ -1,9 +1,7 @@
+/* General */
 body{
     font-family: Gill, Helvetica, sans-serif;
-    background: #E8E7FB;
-}
-h2{
-    text-align: center;
+    background-color: #E8E7FB;
 }
 form{
     border: thin solid lightgrey;
@@ -39,6 +37,24 @@ input[type="checkbox"], input[type="radio"], button{
     margin: 1.337em 0.42em 0em 1.337em;
     
 }
+button{
+    margin-top: 1.337em;
+    border-radius: 0.69em;
+    border: thin solid #1F88FF;
+    background-color: #1F88FF;
+    color: black;
+    padding: 0.42em;
+    font-size: 1.0em;
+}
+
+button:hover{
+    color: white;
+}
+button:active{
+    box-shadow: 0px 0px 2px black;
+}
+
+/* TopBar */
 div#topBar{
     border: thin solid #1F7BE4;
     background-color: #1F7BE4;
@@ -48,25 +64,13 @@ div#topBar{
     right: 0;
     position: absolute;
     box-shadow: 0px 3px 8px black;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 32%;
+    border-bottom-right-radius: 32%;
     padding-bottom: 0.5em;
 }
-
-div#topBarLinks{
+div#topBar h2{
     text-align: center;
 }
-
-div#topBarLinks a{
-    background-color: lightgray;
-    text-decoration: none;
-    border: thin solid lightgray;
-    display:inline-block;
-    width: 10em;
-    padding: 0.42em;
-    color: black;
-}
-
 div#topBar a:hover{
     color: #1F7BE4;
 }
@@ -75,35 +79,16 @@ div#topBar a:active, a:visited, a:active:visited{
     color: black;
 }
 
-input#name{
-    width: 12.4em;
-}
-#registryBottom{
-    text-align: left;
-    margin-left: 2.3em;
-    font-size: 1.1em;
-}
-#registryBottom a{
-    color: #1F88FF;
-}
-#registryBottom button{
-    border-radius: 0.69em;
-    border: thin solid #1F88FF;
-    background-color: #1F88FF;
-    color: black;
-    padding: 0.69em;
-    font-size: 1.1em;
-    margin-left: 9em;
-}
-#registryBottom button:hover{
-    color: white;
-}
-#registryBottom button:active{
-    box-shadow: 0px 0px 2px black;
-}
-#registryFailMessage{
-    color: red;
+/* TopBarLinks */
+div#topBarLinks{
     text-align: center;
-    margin-top: 0.69em;
-    margin-bottom: -1.42em;
+}
+div#topBarLinks a{
+    background-color: lightgray;
+    text-decoration: none;
+    border: thin solid lightgray;
+    display: inline-block;
+    width: 10em;
+    padding: 0.42em;
+    color: black;
 }

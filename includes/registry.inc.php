@@ -26,6 +26,7 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"]) || $_GET["mode"] == ""){
         }
     }
     $tpl->addMainTemplate("registry.tpl.php");
+    $tpl->addCss(array("name" => "LogoutStdStyle.css"));
     $tpl->addCss(array("name" => "registry.css"));
     $tpl->assign("Title", "Registrierung");
     
@@ -42,6 +43,7 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"]) || $_GET["mode"] == ""){
         }
     }
     $tpl->addMainTemplate("schoolRegistry.tpl.php");
+    $tpl->addCss(array("name" => "LogoutStdStyle.css"));
     $tpl->addCss(array("name" => "schoolRegistry.css"));
     $tpl->assign("Title", "Registrierung f&uuml;r Bildungseinrichtungen");
     $tpl->assign("GStates", $schoolRegistry->getGermanStates());
