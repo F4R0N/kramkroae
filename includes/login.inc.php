@@ -5,6 +5,8 @@
     
     $tpl->assign("Title", "Startseite");
     $tpl->addMainTemplate("login.tpl.php");
+    
+    //$tpl->addCss(array("name" => "LogoutStdStyle.css"));
     $tpl->addCss(array("name" => "login.css"));
     
     if (filter_var($_COOKIE["Email"], FILTER_VALIDATE_EMAIL)){
