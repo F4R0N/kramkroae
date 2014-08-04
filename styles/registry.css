@@ -1,0 +1,21 @@
+input#name{
+    width: 12.4em;
+}
+#registryBottom{
+    text-align: left;
+    margin-left: 2.3em;
+    font-size: 1.1em;
+}
+#registryBottom a{
+    color: #1F88FF;
+}
+#registryBottom button{
+    font-size: 1.1em;
+    margin-left: 9em;
+}
+#registryFailMessage{
+    color: red;
+    text-align: center;
+    margin-top: 0.69em;
+    margin-bottom: -1.42em;
+}
