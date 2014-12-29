@@ -14,15 +14,15 @@ class login {
 
     private function setEmailCookie($saveMail, $email) {
         if ($saveMail) {
-            setcookie("Email", $email, time() + 60 * 60 * 24 * 30);
+            setcookie('Email', $email, time() + 60 * 60 * 24 * 30);
         } else {
-            setcookie("Email", "", time() - 1337);
+            setcookie('Email', '', time() - 1337);
         }
     }
 
     function login($email, $password, $saveMail) {
         $loginSucceeded = 0;
-        $password = explode("$", crypt($password, PASSWORD_SALT));
+        $password = explode('$', crypt($password, PASSWORD_SALT));
         $password = $password[4];
 
         $ID = $this->getIDFromEmail($email);
@@ -35,22 +35,28 @@ class login {
             return $loginSucceeded;
         }
 
-        $result = $this->mysqli->query("
+        $query = $this->mysqli->prepare('
             SELECT
 		ID
             FROM
 		Users
             WHERE
-		ID = '" . $this->ID . "'
+		ID = ?
                 AND
-                Password = '" . $this->mysqli->real_escape_string($password) . "'
-        ");
+                Password = ?
+        ');
+        
+        $query->bind_param('is', $this->ID, $this->mysqli->real_escape_string($password));
+        $query->execute();
+        $query->store_result();
+        $query->bind_result($userID);
 
-        if ($result->num_rows === 1) {
+        if ($query->num_rows === 1) {
+            $query->fetch(); 
             $_SESSION['UserID'] = $this->ID;
             $this->setEmailCookie($saveMail, $email);
             $loginSucceeded = true;
-            $sql = "UPDATE Users SET SecurityCode = '0'";
+            $sql = 'UPDATE Users SET SecurityCode = \'0\'';
             $result = $this->mysqli->query($sql);
         }
         $this->logLogin($loginSucceeded);

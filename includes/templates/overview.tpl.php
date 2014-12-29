@@ -1,4 +1,4 @@
-<h2>Hey na :)</h2>
+<h2>Willkommen bei Kramkroae</h2>
 <article>
     <table id="all">
         <tr>
@@ -6,7 +6,33 @@
                 <table id="leftTwoSections">
                     <tr>
                         <td>
-                            <section id="homework">
+                            <section class="homework">
+                                <!-- sinnloser Kommentar Nr. 1 -->
+                                <h3>Hausaufgaben f&uuml;r heute</h3>
+                                <?php if ($VARS["countHW"] != 0) { ?>
+                                    <div class="hwCard">
+                                        <table class="hwInfo">
+                                            <tr>
+                                                <td><b>Fach</b></td> 
+                                                <td><b>Hausaufgabe</b></td>
+                                            </tr>
+                                            <?php for ($i = 0; $i < $VARS["countHW"]; $i++) { ?>
+                                                <tr>
+                                                    <td><?= $VARS["hwSub"][$i] ?></td>
+                                                    <td><?= nl2br($VARS["homework"][$i]) ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </table>
+                                    </div>
+                                <?php } else { ?>
+                                    <i>Es sind keine Hausaufgaben zu machen!</i>
+                                <?php } ?>
+                            </section>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <section class="homework">
                                 <!-- sinnloser Kommentar Nr. 1 -->
                                 <h3>Hausaufgaben zu morgen</h3>
                                 <?php if ($VARS["countHW"] != 0) { ?>
@@ -95,11 +121,11 @@
                             </tr>
                             <tr>
                                 <td>5</td>
-                                <td>Deutsch</td>
+                                <td>Informatik</td>
                             </tr>
                             <tr>
                                 <td>6</td>
-                                <td>Deutsch</td>
+                                <td>Informatik</td>
                             </tr>
                             <tr>
                                 <td>7</td>
@@ -107,11 +133,19 @@
                             </tr>
                             <tr>
                                 <td>8</td>
-                                <td>kath. Religion</td>
+                                <td>Mathe</td>
                             </tr>
                             <tr>
                                 <td>9</td>
-                                <td>kath. Religion</td>
+                                <td>Sport</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Sport</td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>/</td>
                             </tr>
                         </tbody>
                     </table>
