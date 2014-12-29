@@ -11,19 +11,21 @@
     <input type="text" id="name" name="lastName" placeholder="Nachname" value="<?= $VARS["lastName"] ?>"required />
     <br />
 
-    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= $VARS["email"] ?>" required/>
+    <input type="email" id="email" name="email" placeholder="E-Mail-Adresse" value="<?= $VARS["errorMessage"] ?>" required/>
     <br />
 
     <input type="password" id="password" name="password" placeholder="Passwort" title="mind. 6 Zeichen(Buchstaben+Zahlen)" required/>
     <input type="password" id="password" name="passwordCheck" placeholder="Passwort wiederholen" title="Bitte Passwort wiederholen" required/>
     <br />
 
-    <input type="text" name="schoolID" id="schoolID" placeholder="Bildungseinrichtung" required autocomplete="off"/>
+    <input type="text" name="schoolID" id="schoolID" placeholder="Bildungseinrichtung" value="<?= $VARS["schoolErrorMessage"] ?>" required autocomplete="off"/>
     <div id="schools"></div>
 
     <div id="registryBottom">
-        Durch die Registrierung erkl&auml;re ich mich mit den <a href="index.php?screen=terms">AGBs</a> einverstanden und akzeptiere diese!
-        <br />
+        <p id="agbAccept">
+            Durch die Registrierung erkl&auml;re ich mich mit den <a href="index.php?screen=terms">Nutzungsbedingungen</a> 
+            einverstanden und akzeptiere diese!
+        </p>
         <button type="submit" name="registerSubmit" value="1">Registrieren</button>
         <div id="registryFailMessage">
             <?= $VARS["registryFailMessage"] ?>

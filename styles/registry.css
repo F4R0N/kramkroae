@@ -13,6 +13,13 @@ input#name{
     font-size: 1.1em;
     margin-left: 9em;
 }
+
+#registryBottom p#agbAccept{
+    margin: 0 auto;
+    padding-left: 0.76em;
+    font-family: "lucida grande", arial, sans-serif;
+}
+
 #registryFailMessage{
     color: red;
     text-align: center;
@@ -20,7 +27,7 @@ input#name{
     margin-bottom: -1.42em;
 }
 #schools{
-    margin: 1em;
+    margin: 1.5em;
 }
 data#schoolID{
     border: thin solid #004390;

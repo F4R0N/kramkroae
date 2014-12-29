@@ -12,9 +12,15 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"]) || $_GET["mode"] == ""){
             $tpl->assign("firstName", htmlentities($_POST["firstName"]));
             $tpl->assign("lastName", htmlentities($_POST["lastName"]));
             if($registry->checkEmail() == false){
-               $tpl->assign("email", htmlentities($_POST["email"])); 
+               $tpl->assign("errormessage", htmlentities($_POST["email"])); 
             }else{
-                $tpl->assign("email", "Bitte eine andere E-Mail benutzen!"); 
+                $tpl->assign("errorMessage", "Bitte eine andere E-Mail benutzen!"); 
+            }
+            if($registry->checkPassword() == true){
+                $tpl->assign("errorMessage", "Bitte ein anderes Passwort benutzen!");
+            }
+            if($registry->checkSchoolID() == true){
+                $tpl->assign("schoolErrorMessage", "Bitte eine andere Bildungseinrichtung ausw&auml;hlen!");
             }
             
             //$tpl->addMainTemplate("errors.tpl.php");

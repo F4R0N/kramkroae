@@ -42,26 +42,26 @@ class registry {
     }
 
     function getRegistryValues() {
-        $this->firstName = $this->mysqli->real_escape_string(trim($_POST["firstName"]));
-        $this->lastName = $this->mysqli->real_escape_string(trim($_POST["lastName"]));
-        $this->email = strtolower($this->mysqli->real_escape_string(trim($_POST["email"])));
-        $this->password = $this->mysqli->real_escape_string(trim($_POST["password"]));
-        $this->passwordCheck = $this->mysqli->real_escape_string(trim($_POST["passwordCheck"]));
-        $this->schoolID = $this->mysqli->real_escape_string(trim($_POST["schoolID"]));
+        $this->firstName = $this->mysqli->real_escape_string(trim($_POST['firstName']));
+        $this->lastName = $this->mysqli->real_escape_string(trim($_POST['lastName']));
+        $this->email = strtolower($this->mysqli->real_escape_string(trim($_POST['email'])));
+        $this->password = $this->mysqli->real_escape_string(trim($_POST['password']));
+        $this->passwordCheck = $this->mysqli->real_escape_string(trim($_POST['passwordCheck']));
+        $this->schoolID = $this->mysqli->real_escape_string(trim($_POST['schoolID']));
 
         return true;
     }
 
     function checkUml($word){
-	if(preg_match("/ä/", $word)){
+	if(preg_match('/ä/', $word)){
 		$suchmuster = '/ä/';
 		$ersetzungen = 'ae';
 		return preg_replace($suchmuster, $ersetzungen, $word);
-	}else if(preg_match("/ö/", $word)){
+	}else if(preg_match('/ö/', $word)){
 		$suchmuster = '/ö/';
 		$ersetzungen = 'oe';
 		return preg_replace($suchmuster, $ersetzungen, $word);
-	}else if(preg_match("/ü/", $word)){
+	}else if(preg_match('/ü/', $word)){
 		$suchmuster = '/ü/';
 		$ersetzungen = 'ue';
 		return preg_replace($suchmuster, $ersetzungen, $word);
@@ -85,7 +85,7 @@ class registry {
     }
 
     function checkEmail() {
-        $sql = "SELECT 
+        $sql = "SELECT
                     ID 
                 FROM 
                     Users 

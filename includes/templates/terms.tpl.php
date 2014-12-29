@@ -7,9 +7,6 @@
     </div>
 </div>
 <section id="content">
-    
-    Bei Unklarheiten lesen Sie bitte unsere <a href="">Definitionen</a>.
-    
     <h3>1. Registrierung als Sch&uuml;ler/Student</h3>
     1.1) Die Registrierung ist und bleibt f&uuml;r Sie v&ouml;llig kostenlos.<br />
     1.2) Sie m&uuml;ssen sich registrieren, um den vollen Umfang dieses Angebotes nutzen zu k&ouml;nnen.<br />
