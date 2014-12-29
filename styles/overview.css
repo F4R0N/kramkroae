@@ -19,9 +19,9 @@ section h3{
     text-align: center;
 }
 
-section#dates, section#homework{
+section#dates, section.homework{
     width: 40em;
-    min-height: 5em;
+    min-height: 6.2em;
 }
 
 section#subjects {
