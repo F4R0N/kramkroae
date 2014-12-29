@@ -154,6 +154,13 @@ class homeworks {
 
         return true;
     }
+    
+    public function deleteHomeworkByDate(){
+        $sql = 'UPDATE Homeworks SET Display = 0 WHERE End < UNIX_TIMESTAMP(NOW()) LIMIT 50';
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->execute();
+        $stmt->close();
+    }
 
     public function editHomeworks($id, $homework, $start, $end, $subjectID) {
         for ($i = 0; $i < count($id); $i++) {

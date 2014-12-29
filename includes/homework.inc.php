@@ -6,6 +6,8 @@ $tpl->assign("Title", "Hausaufgaben");
 $tpl->addCss(array("name" => "homework.css"));
 
 $homeworks = new homeworks($user);
+$homeworks->deleteHomeworkByDate();
+
 if ($user->hasRight("Homeworks") || $user->hasRight("SchoolAdmin") || $user->hasRight("ClassAdmin") || $user->hasRight("God")) {
     if ($_GET["mode"] == "edit" && $_POST["upload"]) {
         if (!$homeworks->insertHomework($_POST["homework"], $_POST["start"], $_POST["end"], $_POST["subject"])) {
