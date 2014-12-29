@@ -141,16 +141,18 @@ class homeworks {
     }
 
     public function deleteHomework($id) {
-        $sql = "
+        $sql = '
             Update
                 Homeworks
             SET
                 Display = 0
             WHERE
-                ID = '" . $this->mysqli->real_escape_string($id) . "'
-        ";
-
-        $this->mysqli->query($sql);
+                ID = ?
+        ';
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->bind_param('i', $this->mysqli->real_escape_string($id));
+        $stmt->execute();
+        $stmt->close();
 
         return true;
     }
@@ -182,20 +184,31 @@ class homeworks {
         if (count($this->errors) !== 0)
             return false;
 
-        $sql = "
+        $sql = '
             UPDATE
                 Homeworks
             SET
-                Homework = '" . trim($this->mysqli->real_escape_string($homework)) . "',
-                SubjectID = '" . $this->mysqli->real_escape_string($subjectID) . "',
-                Start = '" . $this->timestampToUnixTS($this->mysqli->real_escape_string($start)) . "',
-                End = '" . $this->timestampToUnixTS($this->mysqli->real_escape_string($end)) . "',
-                UpdatedBy = '" . $this->mysqli->real_escape_string($this->user->getID()) . "',
+                Homework = ?,
+                SubjectID = ?,
+                Start = ?,
+                End = ?,
+                UpdatedBy = ?,
                 Updated = UNIX_TIMESTAMP(NOW())
             WHERE
-                ID = '" . $this->mysqli->real_escape_string($id) . "'
-        ";
-        $this->mysqli->query($sql);
+                ID = ?
+        ';
+        
+        $stmt = $this->mysqli->prepare($sql);
+        $stmt->prepare($sql);
+        $stmt->bind_param('siiiii', trim($this->mysqli->real_escape_string($homework)), 
+                                    $this->mysqli->real_escape_string($subjectID),
+                                    $this->timestampToUnixTS($this->mysqli->real_escape_string($start)),
+                                    $this->timestampToUnixTS($this->mysqli->real_escape_string($end)),
+                                    $this->mysqli->real_escape_string($this->user->getID()),
+                                    $this->mysqli->real_escape_string($id));
+        $stmt->execute();
+        $stmt->close();
+        
         return true;
     }
 
@@ -243,5 +256,4 @@ class homeworks {
     }
 
 }
-
 ?>
