@@ -94,8 +94,7 @@ nav#loginMenu{
     float: left;
 }
 #contentText{
-    float: left;
-    margin: 0em 0em 0em 4em;
+    
 }
 #contentText a{
     text-decoration: none;
@@ -106,7 +105,7 @@ nav#loginMenu{
     color: black;
 }
 #registryUser, #registrySchool{
-    width: 22.6em;
+    width: 16em;
     padding: 1.337em;
     margin-bottom: 1em;
 }

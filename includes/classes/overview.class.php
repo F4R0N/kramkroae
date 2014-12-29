@@ -11,14 +11,11 @@ class overview {
     private $nowUNIX;
     private $tillMidnight;
 
-    //date_default_timezone_set('Europe/Berlin');
-
     public function __construct() {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
         $this->tmrwUNIX = strtotime('tomorrow');
         $this->nowUNIX = strtotime('now');
         $this->tillMidnight = $this->tmrwUNIX - $this->nowUNIX;
-        echo $this->tillMidnight;
     }
 
     public function __destruct() {
