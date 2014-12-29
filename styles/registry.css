@@ -19,3 +19,25 @@ input#name{
     margin-top: 0.69em;
     margin-bottom: -1.42em;
 }
+#schools{
+    margin: 1em;
+}
+data#schoolID{
+    border: thin solid #004390;
+    background-color: #004390;
+    color: #E8E7FB;
+    border-radius: 5px;
+    padding: 0.69em;
+    font-size: 14px;
+}
+data#schoolID:hover{
+    box-shadow: 0px 0px 5px black;
+}
+.schoolName{
+    background-color: white;
+    color: black;
+    width: 27em;
+    padding: 0.5em;
+    margin: 0.42em auto;
+    font-size: 1em;
+}

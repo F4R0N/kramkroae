@@ -98,6 +98,7 @@ img#happyFace:empty
     text-align: center;
     font-weight: bold;
     background-color: #E8E7FB;
+    font-size: large;
 }
 #hwCard #secDiv{
     padding: 0.5em;

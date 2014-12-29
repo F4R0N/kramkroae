@@ -9,7 +9,6 @@ class registry {
     private $emailCheck;
     private $password;
     private $passwordCheck;
-    private $gender;
     private $schoolID;
     private $acceptTerms;
     private $errors = array();
@@ -22,14 +21,6 @@ class registry {
         $this->mysqli->close();
     }
 
-    function getCheckedGender($gender) {
-        if ($gender == "0") {
-            return 'checked = "checked"';
-        } elseif ($gender == "1") {
-            return 'checked = "checked"';
-        }
-    }
-
     function getErrors() {
         return $this->errors;
     }
@@ -37,8 +28,7 @@ class registry {
     function checkIfErrors() {
         if ($this->getRegistryValues() == true && $this->checkNames() == false &&
                 $this->checkPassword() == false && $this->checkEmail() == false &&
-                $this->checkGender() == false && $this->checkSchoolID() == false &&
-                $this->checkAcceptTerms() == false) {
+                $this->checkSchoolID() == false) {
             return false;
         }else{
             return true;
@@ -57,9 +47,7 @@ class registry {
         $this->email = strtolower($this->mysqli->real_escape_string(trim($_POST["email"])));
         $this->password = $this->mysqli->real_escape_string(trim($_POST["password"]));
         $this->passwordCheck = $this->mysqli->real_escape_string(trim($_POST["passwordCheck"]));
-        $this->gender = $this->mysqli->real_escape_string(trim($_POST["gender"]));
         $this->schoolID = $this->mysqli->real_escape_string(trim($_POST["schoolID"]));
-        $this->acceptTerms = $this->mysqli->real_escape_string(trim($_POST["acceptTerms"]));
 
         return true;
     }
@@ -132,14 +120,6 @@ class registry {
         }
     }
 
-    function checkGender() {
-        if ($this->gender < 0 || $this->gender > 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function checkSchoolID() {
         $sql = "SELECT SchoolName FROM Schools WHERE ID = " . $this->schoolID;
         $result = $this->mysqli->query($sql);
@@ -151,28 +131,19 @@ class registry {
         }
     }
 
-    function checkAcceptTerms() {
-        if ($this->acceptTerms != "1") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function intoDatabase() {
         $password = explode("$", crypt($this->password, PASSWORD_SALT));
         $password = $password[4];
         $sql = "INSERT INTO
-                    Users (FirstName, LastName, Email, Password, Gender, SchoolID, ClassID, AcceptTerms, RegistryDate)
+                    Users (FirstName, LastName, Email, Password, SchoolID, ClassID, AcceptTerms, RegistryDate)
                 VALUES
                     ('" . $this->mysqli->real_escape_string(ucfirst($this->firstName)) . "',
                     '" . $this->mysqli->real_escape_string(ucfirst($this->lastName)) . "',
                     '" . $this->mysqli->real_escape_string($this->email) . "',
                     '" . $this->mysqli->real_escape_string($password) . "',
-                    '" . $this->mysqli->real_escape_string($this->gender) . "',
                     '" . $this->mysqli->real_escape_string($this->schoolID) . "',
                     '1',
-                    '" . $this->mysqli->real_escape_string($this->acceptTerms) . "',
+                    '1',
                     CURDATE()
                     )
                 ";

@@ -18,11 +18,6 @@ if($_GET["mode"] == "user" || !isset($_GET["mode"]) || $_GET["mode"] == ""){
             }
             
             //$tpl->addMainTemplate("errors.tpl.php");
-            if($_POST["gender"] == 1){
-                $tpl->assign("checkedOne", $registry->getCheckedGender(htmlentities($_POST["gender"])));
-            }elseif($_POST["gender"] == 0){
-                $tpl->assign("checkedZero", $registry->getCheckedGender(htmlentities($_POST["gender"])));
-            }
         }
     }
     $tpl->addMainTemplate("registry.tpl.php");
