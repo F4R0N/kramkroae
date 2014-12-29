@@ -9,17 +9,17 @@
                             <section class="homework">
                                 <!-- sinnloser Kommentar Nr. 1 -->
                                 <h3>Hausaufgaben f&uuml;r heute</h3>
-                                <?php if ($VARS["countHW"] != 0) { ?>
+                                <?php if ($VARS["countTodayHW"] != 0) { ?>
                                     <div class="hwCard">
                                         <table class="hwInfo">
                                             <tr>
                                                 <td><b>Fach</b></td> 
                                                 <td><b>Hausaufgabe</b></td>
                                             </tr>
-                                            <?php for ($i = 0; $i < $VARS["countHW"]; $i++) { ?>
+                                            <?php for ($i = 0; $i < $VARS["countTodayHW"]; $i++) { ?>
                                                 <tr>
-                                                    <td><?= $VARS["hwSub"][$i] ?></td>
-                                                    <td><?= nl2br($VARS["homework"][$i]) ?></td>
+                                                    <td><?= $VARS["todaySubs"][$i] ?></td>
+                                                    <td><?= nl2br($VARS["todayHW"][$i]) ?></td>
                                                 </tr>
                                             <?php } ?>
                                         </table>
@@ -35,17 +35,17 @@
                             <section class="homework">
                                 <!-- sinnloser Kommentar Nr. 1 -->
                                 <h3>Hausaufgaben zu morgen</h3>
-                                <?php if ($VARS["countHW"] != 0) { ?>
+                                <?php if ($VARS["countTmrwHW"] != 0) { ?>
                                     <div class="hwCard">
                                         <table class="hwInfo">
                                             <tr>
                                                 <td><b>Fach</b></td> 
                                                 <td><b>Hausaufgabe</b></td>
                                             </tr>
-                                            <?php for ($i = 0; $i < $VARS["countHW"]; $i++) { ?>
+                                            <?php for ($i = 0; $i < $VARS["countTmrwHW"]; $i++) { ?>
                                                 <tr>
-                                                    <td><?= $VARS["hwSub"][$i] ?></td>
-                                                    <td><?= nl2br($VARS["homework"][$i]) ?></td>
+                                                    <td><?= $VARS["tmrwSubs"][$i] ?></td>
+                                                    <td><?= nl2br($VARS["tmrwHW"][$i]) ?></td>
                                                 </tr>
                                             <?php } ?>
                                         </table>

@@ -6,11 +6,19 @@ class overview {
     private $tmrwHomeworks;
     private $tmrwEvents;
     private $tmrwSchedule;
+    
+    private $tmrwUNIX;
+    private $nowUNIX;
+    private $tillMidnight;
 
     //date_default_timezone_set('Europe/Berlin');
 
     public function __construct() {
         $this->mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE);
+        $this->tmrwUNIX = strtotime('tomorrow');
+        $this->nowUNIX = strtotime('now');
+        $this->tillMidnight = $this->tmrwUNIX - $this->nowUNIX;
+        echo $this->tillMidnight;
     }
 
     public function __destruct() {
@@ -28,7 +36,7 @@ class overview {
         return $result->fetch_object()->Subject;
     }
 
-    public function getTmrwHomeworks() {
+    public function getTodayHomeworks() {
         $data = array();
         $sql = "SELECT 
                     Homework,
@@ -40,13 +48,42 @@ class overview {
                 ON 
                     Homeworks.SubjectID = Subjects.ID
                 WHERE
-                    ClassID = '1'
+                    ClassID = 1
                 AND
                     Display = 1
                 AND
                     End >= UNIX_TIMESTAMP(NOW())
                 AND
-                    End < UNIX_TIMESTAMP(NOW()) + 86400
+                    End < UNIX_TIMESTAMP(NOW()) + $this->tillMidnight
+                 ";
+        $result = $this->mysqli->query($sql);
+        while ($obj = $result->fetch_object()) {
+            array_push($data, $obj);
+        }
+        return $data;
+    }
+    
+    public function getTmrwHomeworks() {
+        $data = array();
+        $nextDay = 86400 + $this->tillMidnight;
+        //echo $nextDay;
+        $sql = "SELECT 
+                    Homework,
+                    SubjectID
+                FROM
+                    Homeworks
+                LEFT JOIN
+                    Subjects
+                ON 
+                    Homeworks.SubjectID = Subjects.ID
+                WHERE
+                    ClassID = 1
+                AND
+                    Display = 1
+                AND
+                    End >= UNIX_TIMESTAMP(NOW())
+                AND
+                    End < UNIX_TIMESTAMP(NOW()) + $nextDay
                  ";
         $result = $this->mysqli->query($sql);
         while ($obj = $result->fetch_object()) {
